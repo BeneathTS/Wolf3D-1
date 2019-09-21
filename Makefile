@@ -8,6 +8,8 @@ OBJECTS = $(SOURCES:.c=.o)
 
 INCLUDES = -I includes
 
+LIB = -I libft/includes
+
 vpath %.c $(SRCDIR)
 
 CFLAGS = -Wall -Wextra -Werror
@@ -17,10 +19,10 @@ CFLAGS = -Wall -Wextra -Werror
 all: lib $(NAME)
 
 $(NAME): $(OBJECTS)
-	@gcc $(CFLAGS) $^ $(INCLUDES) -o $(NAME) 
+	@gcc $(CFLAGS) $^ $(INCLUDES) $(LIB) -o $(NAME) 
 
 $(OBJECTS): $(SOURCES)
-	@gcc $(CFLAGS) -c $^ $(INCLUDES)
+	@gcc $(CFLAGS) -c $^ $(INCLUDES) $(LIB)
 
 lib:
 	@make -C libft
