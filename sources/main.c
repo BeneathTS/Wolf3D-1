@@ -2,7 +2,15 @@
 
 int main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
+	t_env *env;
+	t_map *map;
+
+	if (argc != 2)
+		exit(0);
+	map = map_init();
+	read_map(argv[1], map);
+	env = env_init(map);
+	renderer(env);
+	//mlx_loop(env->mlx);
 	return (0);
 }

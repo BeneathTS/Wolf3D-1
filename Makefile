@@ -1,39 +1,51 @@
-NAME = Wolf3D
+NAME = wolf3d
 
-SOURCES = main.c \
+SRC =	main.c \
+		init_game_data.c \
+		init_env.c \
+		reader.c \
+		renderer.c \
+		ray_caster.c \
 
-SRCDIR = sources
+OS = $(SRC:.c=.o)
 
-OBJECTS = $(SOURCES:.c=.o)
-
-INCLUDES = -I includes
-
-vpath %.c $(SRCDIR)
+vpath %.c sources
 
 CFLAGS = -Wall -Wextra -Werror
+
+L_MLX = -L /usr/local/lib
+
+I_MLX = -I /usr/local/include
+
+MLXFLAGS = -lmlx -framework OpenGL -framework AppKit -framework OpenCL
+
+HDRS = -I includes
+
+LIBHDR = -I libft/includes
+
+LIB = libft/libft.a
 
 .PHONY: all lib clean fclean re clterm
 
 all: lib $(NAME)
 
-$(NAME): $(OBJECTS)
-	@gcc $(CFLAGS) $^ $(INCLUDES) -o $(NAME) 
+$(NAME): $(OS)
+	gcc $(CFLAGS) $(MLXFLAGS) $^ $(LIB) $(L_MLX) $(I_MLX) -o $(NAME)
 
-$(OBJECTS): $(SOURCES)
-	@gcc $(CFLAGS) -c $^ $(INCLUDES)
+$(OS): $(SRC)
+	gcc $(CFLAGS) $^ $(LIBHDR) $(HDRS) $(I_MLX) -c
 
 lib:
 	@make -C libft
 
 clean:
 	@make -C libft clean
-	@rm -f $(OBJECTS)
+	@rm -f $(OS)
 
 fclean: clean
-	@make -C libft fclean
 	@rm -f $(NAME)
 
-re: clean fclean all
+re: fclean all
 
 clterm:
 	clear && printf '\033[3J'
