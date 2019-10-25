@@ -1,26 +1,27 @@
 #include "wolf3d.h"
 
-static void set_values(t_env *env)
-{
-	
-}
-
-static void search_wall(t_env *env, char *wall_hit)
-{
-	int check;
-	int dist_check;
-
-	dist_check = 0;
-	while (!wall_hit && dist_check < env->cam->depth)
-	{
-	}
-}
-
 void cast_a_ray(t_env *env)
 {
-	char wall_hit;
+	(void)env;
 
-	wall_hit = 0;
-	set_values(env);
-	search_wall(env, &wall_hit);
-}
+	double c;
+
+	int mapX;
+	int mapY;
+	c = 0;
+	while (c < 5)
+	{
+		mapX = (int)(env->cam->x / 64) + c*cos(env->cast->ray->angle);
+		mapY = (int)(env->cam->y / 64) + c*sin(env->cast->ray->angle);
+		c += 0.5;
+		printf("%d %d\n", mapX, mapY);
+		if (env->map->level[mapY][mapX] == '#')
+		{
+			printf("wall!\n");
+			env->cast->distance = fabs(env->cam->x - mapX * 64);
+			break;
+		}
+		//draw_pow(env, mapX, mapY);
+	}
+	draw_pow(env, mapX, mapY);
+}	

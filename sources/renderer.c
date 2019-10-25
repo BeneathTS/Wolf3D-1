@@ -5,11 +5,16 @@ void renderer(t_env *env)
 	int x;
 
 	x = -1;
+
 	ft_bzero(env->data_addr, (WIDTH * env->bts_pr_pxl / 8) * HEIGHT);
 	mlx_clear_window(env->mlx, env->win);
+	env->cast->ray->angle = env->cam->pov - (env->cam->fov / 2);
 	while(++x < WIDTH)
 	{
 		cast_a_ray(env);
+		env->cast->ray->angle += env->cam->prj_plane->ray_angle;
 	}
+	draw_map(env);
+	draw_player(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 }

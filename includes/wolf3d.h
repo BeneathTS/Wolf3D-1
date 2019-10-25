@@ -21,32 +21,66 @@
 # define X 0
 # define Y 1
 
-# define OLD 0
-# define NEW 1
+# define V 0
+# define H 1
 
+/*
+** Structure w/ all map data.
+** width - map width.
+** height - map height.
+** level - Buffer to store level.
+*/
 typedef struct		s_map
 {
 	int				width;
 	int				height;
-	int				level_id;
-	char			*level;
+	char			**level;
 }					t_map;
 
-/*
-** Structure with everything you need for raycasting.
-*/
-typedef struct		s_casting
+typedef struct		s_ray
 {
+	double			angle;
+}					t_ray;
 
-}					t_casting;
+typedef struct		s_cast
+{
+	t_ray			*ray;
+	double			distance;
+}					t_cast;
 
+/*
+** Projection plane data struct.
+** size - projection plane size (WIDTH * HEIGHT)
+** mid[2] - сoordinates of the middle of the projection plane. (x = 0, y = 1)
+** dist - distance to the projection plane.
+** ray_angle - the angle between the rays.
+*/
+typedef struct		s_prj_plane
+{
+	int				size;
+	double			mid[2];
+	double			dist;
+	double			ray_angle;
+}					t_prj_plane;
+
+/*
+** Camera / Player data structure.
+** coord[2] - cam coordinates on 2D map. (x = 0, y = 1)
+** height - cam height.
+** fov - field of view.
+** pov - point of view.
+** depth - drawing depth.
+** prj_plane - projection plane data struct ptr.
+*/
 typedef	struct		s_cam
 {
 	double			x;
 	double			y;
-	double			dir[2];    
-	double			plane[2];
-	int				depth;
+	double			height;
+	double			fov;
+	double			pov;
+	float			depth;
+	t_prj_plane		*prj_plane;
 }					t_cam;
 
 /*
@@ -64,20 +98,24 @@ typedef struct		s_env
 	char			*data_addr;
 	t_map			*map;
 	t_cam			*cam;
-	t_casting		*cast;
+	t_cast			*cast;
 }					t_env;
 
 void		read_map(const char *level_name, t_map *map);
-/*
-** Functions that are needed to render an image.
-*/
+
 void		renderer(t_env *env);
 void		cast_a_ray(t_env *env);
-/*
-** Data init functions.
-*/
+
 t_env		*env_init(t_map *map);
 t_map		*map_init();
 t_cam		*cam_init();
-t_casting	*cast_init();
+t_cast		*cast_init();
+t_ray		*ray_init();
+t_prj_plane *prj_plane_init(t_cam *cam);
+
+void init_key_hooks(t_env *env);
+
+void draw_map(t_env *env);
+void draw_player(t_env *env);
+void draw_pow(t_env *env, int mapX, int mapY);
 #endif
