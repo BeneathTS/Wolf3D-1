@@ -1,21 +1,70 @@
 #include "wolf3d.h"
 
-static void draw_column(t_cast *cast, t_env *env, const int x)
+// static void draw_column(t_cast *cast, t_env *env, const int x)
+// {
+// 	int color;
+// 	int map_crd;
+
+// 	if (env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]] == '1')
+// 		color = 0xFFFFFF;
+// 	else if (env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]] == '2')
+// 		color = 0xFFFF00;
+// 	else if (env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]] == '3')
+// 		color = 0xFF00FF;
+
+// 	 while (cast->d_start < cast->d_end)
+// 	 {
+// 	 	map_crd = cast->d_start * WIDTH + x;
+// 		((int*)env->data_addr)[map_crd] = color;
+// 	 	cast->d_start++;
+// 	}
+// }
+
+
+static int get_color(char tex_id, int tex_x, int tex_y, t_env *env)
 {
 	int color;
-	int map_crd;
 
-	if (env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]] == '1')
-		color = 0xFFFFFF;
-	else if (env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]] == '2')
-		color = 0xFFFF00;
-	else if (env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]] == '3')
-		color = 0xFF00FF;
+	while (env->tex->id != tex_id)
+	{
+		if (tex_id > env->tex->id)
+			env->tex = env->tex->next;
+		else
+			env->tex = env->tex->prev;
+		if (!env->tex)
+			exit (-1);
+	}
+	color = ((int*)env->tex->tex_ptr)[tex_x * tex_y];
+	return (color);
+}
 
-	 while (cast->d_start < cast->d_end)
-	 {
-	 	map_crd = cast->d_start * WIDTH + x;
-		((int*)env->data_addr)[map_crd] = color;
+static void draw_column(t_cast *cast, t_env *env, const int x)
+{
+	int tex_x;
+	int tex_y;
+	int d;
+	char tex_id;
+	double wall_x;
+
+	tex_id = env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]];
+	
+	wall_x = (cast->ray->side == V ? env-> cam->pos[Y] + env->cast->distance * env->cast->ray->v_dir[Y] :
+	env-> cam->pos[X] + env->cast->distance * env->cast->ray->v_dir[X]);
+	wall_x -= (int)wall_x;
+
+	tex_x = (int)(wall_x * (double)TEX_SIZE);
+
+	if (cast->ray->side == V && cast->ray->v_dir[X] > 0)
+		tex_x = (TEX_SIZE - 1) - tex_x;
+	
+	if (cast->ray->side == H && cast->ray->v_dir[Y] < 0)
+		tex_x = (TEX_SIZE - 1) - tex_x;
+
+	while (cast->d_start < cast->d_end)
+	{
+		d = cast->d_start * 256 - HEIGHT * 128 +  * 128;
+		tex_y = ((d * TEX_SIZE) / ) / 256;
+		((int*)env->data_addr)[cast->d_start * WIDTH + x] = get_color(tex_id, tex_x, tex_y, env);
 	 	cast->d_start++;
 	}
 }

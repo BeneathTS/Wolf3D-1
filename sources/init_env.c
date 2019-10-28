@@ -17,6 +17,7 @@ t_env		*env_init(t_map *map)
 	if (!(env = (t_env*)malloc(sizeof(t_env))))
 		exit (-1);
 	env->map = map;
+	env->tex = NULL;
 	env->cam = cam_init();
 	env->cast = cast_init();
 	env->cntrls = cntrls_init();

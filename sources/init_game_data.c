@@ -1,13 +1,26 @@
 #include "wolf3d.h"
 
+t_tex *tex_init(t_tex *prev, t_tex *next)
+{
+	t_tex *tex;
+
+	if (!(tex = (t_tex*)malloc(sizeof(t_tex))))
+		exit (-1);
+	tex->id = 1;
+	tex->tex_ptr = NULL;
+	tex->next = next;
+	tex->prev = prev;
+	return (tex);
+}
+
 t_cam *cam_init()
 {
 	t_cam *cam;
 
 	if (!(cam = (t_cam*)malloc(sizeof(t_cam))))
 		exit (-1);
-	cam->pos[X] = 1.05;
-	cam->pos[Y] = 1.05;
+	cam->pos[X] = 1.5;
+	cam->pos[Y] = 1.5;
 	cam->v_dir[X] = 1;
 	cam->v_dir[Y] = 0;
 	cam->v_plane[X] = 0.0;
@@ -17,6 +30,7 @@ t_cam *cam_init()
 	cam->c_v_plane[X] = cam->v_plane[X];
 	cam->c_v_plane[Y] = cam->v_plane[Y];
 	cam->depth = 5;
+	cam->speed = 0.07;
 	return (cam);
 }
 

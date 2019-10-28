@@ -14,8 +14,13 @@
 # include "controls.h"
 # include "get_next_line.h"
 
+# define BS_TEX "textures/xpm/bluestone.xpm"
+# define WD_TEX "textures/xpm/wood.xpm"
+
 # define WIDTH 1280
 # define HEIGHT 720
+
+# define TEX_SIZE 64
 
 # define X 0
 # define Y 1
@@ -41,6 +46,23 @@ typedef struct		s_map
 	int				height;
 	char			**level;
 }					t_map;
+
+/*
+** Struct withh all textures and data what it nedeed.
+** tex_id - id of texture
+** tex_ptr - texture img pointer
+** next - next texture
+** prev - previous texture
+*/
+typedef struct		s_tex
+{
+	char			id;
+	int				width;
+	int				height;
+	void			*tex_ptr;
+	struct s_tex	*next;
+	struct s_tex	*prev;
+}					t_tex;
 
 /*
 ** Structure w/ all ray's data.
@@ -85,6 +107,7 @@ typedef struct		s_cast
 ** v_dir - direction vector/ point of view. (x = 0, y = 1)
 ** v_plane - projection plane vector. (x = 0, y = 1)
 ** depth - drawing depth.
+** speed - moving speed.
 */
 typedef	struct		s_cam
 {
@@ -94,6 +117,7 @@ typedef	struct		s_cam
 	double			c_v_plane[2];
 	double			c_v_dir[2];
 	char			depth;
+	float			speed;
 }					t_cam;
 
 /*
@@ -110,6 +134,7 @@ typedef struct		s_env
 	int				bts_pr_pxl;
 	char			*data_addr;
 	t_map			*map;
+	t_tex			*tex;
 	t_cam			*cam;
 	t_cast			*cast;
 	t_cntrls		*cntrls;
@@ -119,6 +144,7 @@ typedef struct		s_env
 ** Data init functions
 */
 void		read_map(const char *level_name, t_map *map);
+t_tex		*tex_init(t_tex *prev, t_tex *next);
 t_env		*env_init(t_map *map);
 t_map		*map_init();
 t_cam		*cam_init();
@@ -135,5 +161,7 @@ void		cast_a_ray(t_cast *cast, t_cam *cam, t_env *env);
 ** control functions
 */
 void init_key_hooks(t_env *env);
+
+void load_textures(t_env *env);
 
 #endif

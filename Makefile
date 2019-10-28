@@ -7,6 +7,7 @@ SRC =	main.c \
 		renderer.c \
 		ray_caster.c \
 		hooks.c \
+		load_textures.c \
 
 OS = $(SRC:.c=.o)
 
@@ -43,7 +44,9 @@ clean:
 	@make -C libft clean
 	@rm -f $(OS)
 
-fclean: clean
+fclean: 
+	@make -C libft fclean
+	@rm -f $(OS)
 	@rm -f $(NAME)
 
 re: fclean all
