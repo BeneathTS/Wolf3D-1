@@ -1,5 +1,15 @@
 #include "wolf3d.h"
 
+t_cntrls *cntrls_init()
+{
+	t_cntrls *cntrls;
+
+	if (!(cntrls = (t_cntrls *)malloc(sizeof(t_cntrls))))
+		exit(-1);
+	cntrls->angle = 0.0;
+	return (cntrls);
+}
+
 t_env		*env_init(t_map *map)
 {
 	t_env *env;
@@ -9,6 +19,7 @@ t_env		*env_init(t_map *map)
 	env->map = map;
 	env->cam = cam_init();
 	env->cast = cast_init();
+	env->cntrls = cntrls_init();
 	if (!(env->mlx = mlx_init()))
 		exit(-1);
 	if (!(env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "Wolf3D")))

@@ -87,12 +87,8 @@ INCLDS = includes/
 FLAGS = -Wall -Wextra -Werror
 
 $(NAME):
-	@echo "\n==============================="
-	@echo "       \033[1mLibft\033[0m Compiling"
-	@echo "==============================="
-	@gcc -c $(FLAGS) -I $(INCLDS) $(SRCS) 
+	@gcc -c $(FLAGS) -I $(INCLDS) $(SRCS)
 	@ar rc $(NAME) $(OS)
-	@echo "\033[1;32mDone\033[0m!"
 
 all: $(NAME)
 
@@ -101,10 +97,8 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "\n==============================="
-	@echo "       \033[1mLibft\033[0m Removing"
-	@echo "==============================="
-	@sleep 0.2
-	@echo "\033[1;31mLibft removed!\033[0m"
 
 re: fclean $(NAME)
+
+norm:
+	norminette $(SRCS) libft.h

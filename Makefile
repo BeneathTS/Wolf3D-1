@@ -7,7 +7,6 @@ SRC =	main.c \
 		renderer.c \
 		ray_caster.c \
 		hooks.c \
-		debug_fnc.c \
 
 OS = $(SRC:.c=.o)
 

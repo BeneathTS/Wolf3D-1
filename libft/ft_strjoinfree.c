@@ -22,7 +22,8 @@ char	*ft_strjoinfree(char *s1, char *s2, int num)
 	ct2 = ct;
 	if (NULL == s2 || NULL == s1)
 		return (NULL);
-	if (!(nw = ft_memalloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
+	nw = ft_memalloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (NULL == nw)
 		return (NULL);
 	while (*(s1 + (++ct)))
 		*(nw + ct) = *(s1 + ct);
@@ -32,10 +33,5 @@ char	*ft_strjoinfree(char *s1, char *s2, int num)
 		ft_strdel(&s1);
 	else if (num == 2)
 		ft_strdel(&s2);
-	else if (num == 3)
-	{
-		ft_strdel(&s1);
-		ft_strdel(&s2);
-	}
 	return (nw);
 }

@@ -11,18 +11,23 @@
 # include <string.h>
 
 # include "libft.h"
+# include "controls.h"
 # include "get_next_line.h"
 
 # define WIDTH 1280
 # define HEIGHT 720
 
-# define WALL_SIZE 64
-
 # define X 0
 # define Y 1
 
-# define V 0
-# define H 1
+# define OLD 0
+# define NEW 1
+
+# define V 0 //x
+# define H 1 //y
+
+# define NO 0
+# define YES 1
 
 /*
 ** Structure w/ all map data.
@@ -37,50 +42,58 @@ typedef struct		s_map
 	char			**level;
 }					t_map;
 
+/*
+** Structure w/ all ray's data.
+** v_dir - vector direction. (x = 0, y = 1)
+** angle - current ray angle.
+** m_pos - ray position on 2D map. (x = 0, y = 1)
+** s_dist - distance for first intersection point. (0 = Vertical, 1 - Horizontal)
+** d_dist - distance between intersection points. (0 = Vertical, 1 - Horizontal)
+** side - hit side (Vertical or Horizontal);
+*/
 typedef struct		s_ray
 {
+	double			v_dir[2];
 	double			angle;
+	int				m_pos[2];
+	double			s_dist[2];
+	double			d_dist[2];
+	char			side;
 }					t_ray;
 
+/*
+** Structure w/ all needed data for raycasting.
+** ray - ray data structure ptr.
+** time - variable for working with system time required for FPS.
+** distance - ray lenght;
+** wall_height - что-то связанное с размером стены.
+*/
 typedef struct		s_cast
 {
 	t_ray			*ray;
+	double			time[2];
+	int				step[2];
 	double			distance;
+	int				wall_height;
+	int				d_start;
+	int				d_end;
 }					t_cast;
 
 /*
-** Projection plane data struct.
-** size - projection plane size (WIDTH * HEIGHT)
-** mid[2] - сoordinates of the middle of the projection plane. (x = 0, y = 1)
-** dist - distance to the projection plane.
-** ray_angle - the angle between the rays.
-*/
-typedef struct		s_prj_plane
-{
-	int				size;
-	double			mid[2];
-	double			dist;
-	double			ray_angle;
-}					t_prj_plane;
-
-/*
 ** Camera / Player data structure.
-** coord[2] - cam coordinates on 2D map. (x = 0, y = 1)
-** height - cam height.
-** fov - field of view.
-** pov - point of view.
+** pos - player position. (x = 0, y = 1)
+** v_dir - direction vector/ point of view. (x = 0, y = 1)
+** v_plane - projection plane vector. (x = 0, y = 1)
 ** depth - drawing depth.
-** prj_plane - projection plane data struct ptr.
 */
 typedef	struct		s_cam
 {
-	double			x;
-	double			y;
-	double			height;
-	double			fov;
-	double			pov;
-	float			depth;
-	t_prj_plane		*prj_plane;
+	double			pos[2];
+	double			v_dir[2];
+	double			v_plane[2];
+	double			c_v_plane[2];
+	double			c_v_dir[2];
+	char			depth;
 }					t_cam;
 
 /*
@@ -99,23 +112,28 @@ typedef struct		s_env
 	t_map			*map;
 	t_cam			*cam;
 	t_cast			*cast;
+	t_cntrls		*cntrls;
 }					t_env;
 
+/*
+** Data init functions
+*/
 void		read_map(const char *level_name, t_map *map);
-
-void		renderer(t_env *env);
-void		cast_a_ray(t_env *env);
-
 t_env		*env_init(t_map *map);
 t_map		*map_init();
 t_cam		*cam_init();
 t_cast		*cast_init();
 t_ray		*ray_init();
-t_prj_plane *prj_plane_init(t_cam *cam);
 
+/*
+** Rendering functions
+*/
+void		renderer(t_env *env);
+void		cast_a_ray(t_cast *cast, t_cam *cam, t_env *env);
+
+/*
+** control functions
+*/
 void init_key_hooks(t_env *env);
 
-void draw_map(t_env *env);
-void draw_player(t_env *env);
-void draw_pow(t_env *env, int mapX, int mapY);
 #endif

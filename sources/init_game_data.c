@@ -6,13 +6,17 @@ t_cam *cam_init()
 
 	if (!(cam = (t_cam*)malloc(sizeof(t_cam))))
 		exit (-1);
-	cam->x = 64;
-	cam->y = 64;
-	cam->height = WALL_SIZE >> 1;
-	cam->fov = 60.0;
-	cam->depth = 5.0;
-	cam->pov = 1.0;
-	cam->prj_plane = prj_plane_init(cam);
+	cam->pos[X] = 1.05;
+	cam->pos[Y] = 1.05;
+	cam->v_dir[X] = 1;
+	cam->v_dir[Y] = 0;
+	cam->v_plane[X] = 0.0;
+	cam->v_plane[Y] = 0.66;
+	cam->c_v_dir[X] = cam->v_dir[X];
+	cam->c_v_dir[Y] = cam->v_dir[Y];
+	cam->c_v_plane[X] = cam->v_plane[X];
+	cam->c_v_plane[Y] = cam->v_plane[Y];
+	cam->depth = 5;
 	return (cam);
 }
 
@@ -43,20 +47,8 @@ t_cast *cast_init()
 
 	if (!(cast = (t_cast*)malloc(sizeof(t_cast))))
 		exit (-1);
+	cast->time[OLD] = 0;
+	cast->time[NEW] = 0;
 	cast->ray = ray_init();
 	return (cast);
-}
-
-t_prj_plane *prj_plane_init(t_cam *cam)
-{
-	t_prj_plane *plane;
-
-	if (!(plane = (t_prj_plane*)malloc(sizeof(t_prj_plane))))
-		exit (-1);
-	plane->size = WIDTH * HEIGHT;
-	plane->mid[X] = (double)WIDTH / 2.0;
-	plane->mid[Y] = (double)HEIGHT / 2.0;
-	plane->dist = (WIDTH / 2) / tan(cam->fov / 2);
-	plane->ray_angle = cam->fov / (double)WIDTH;
-	return (plane);
 }
