@@ -21,10 +21,10 @@ t_cam *cam_init()
 		exit (-1);
 	cam->pos[X] = 1.5;
 	cam->pos[Y] = 1.5;
-	cam->v_dir[X] = 1;
-	cam->v_dir[Y] = 0;
+	cam->v_dir[X] = 1.0;
+	cam->v_dir[Y] = 0.0;
 	cam->v_plane[X] = 0.0;
-	cam->v_plane[Y] = 0.66;
+	cam->v_plane[Y] = 0.6;
 	cam->c_v_dir[X] = cam->v_dir[X];
 	cam->c_v_dir[Y] = cam->v_dir[Y];
 	cam->c_v_plane[X] = cam->v_plane[X];

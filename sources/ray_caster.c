@@ -27,9 +27,9 @@ static void set_values(t_cast *cast, t_cam *cam, int *wall_hit)
 	* cast->ray->d_dist[H];
 }
 
-static void wall_search(t_cast *cast, t_env *env, t_cam *cam, int *wall_hit)
+static void wall_search(t_cast *cast, t_env *env, int *wall_hit)
 {
-	while (*wall_hit == NO && cast->distance < cam->depth)
+	while (*wall_hit == NO)
 	{
 
 		if (cast->ray->s_dist[V] < cast->ray->s_dist[H])
@@ -54,16 +54,16 @@ void cast_a_ray(t_cast *cast, t_cam *cam, t_env *env)
 	int	wall_hit;
 
 	set_values(cast, cam, &wall_hit);
-	wall_search(cast, env, cam, &wall_hit);
+	wall_search(cast, env, &wall_hit);
 	if (wall_hit == YES)
 	{
 		cast->distance = (cast->ray->side == V ? (cast->ray->m_pos[X] - cam->pos[X] +
 		(1 - cast->step[X]) / 2) / cast->ray->v_dir[X]
 		: (cast->ray->m_pos[Y] - cam->pos[Y] +
 		(1 - cast->step[Y]) / 2) / cast->ray->v_dir[Y]);
-		
-		cast->wall_height = (int)(HEIGHT * 1.27 / cast->distance);
-		
+
+		cast->wall_height = (int)floor(HEIGHT * 1.27 / cast->distance);
+
 		if ((cast->d_start = -cast->wall_height / 2 + HEIGHT / 2) < 0)
 			cast->d_start = 0;
 		if ((cast->d_end = cast->wall_height / 2 + HEIGHT / 2) >= HEIGHT)

@@ -21,6 +21,24 @@
 // }
 
 
+static void draw_floor(t_env *env)
+{
+	int ct;
+	int ct2;
+	int img_crd;
+
+	ct = HEIGHT / 2 - 1;
+	while(++ct < HEIGHT)
+	{
+		ct2 = -1;
+		while (++ct2 < WIDTH)
+		{
+			img_crd = ct * WIDTH + ct2;
+			((int *)env->data_addr)[img_crd] = 0x353c44;
+		}
+	}
+}
+
 static int get_color(char tex_id, int tex_x, int tex_y, t_env *env)
 {
 	int color;
@@ -32,9 +50,9 @@ static int get_color(char tex_id, int tex_x, int tex_y, t_env *env)
 		else
 			env->tex = env->tex->prev;
 		if (!env->tex)
-			exit (-1);
+			exit(-1);
 	}
-	color = ((int*)env->tex->tex_ptr)[tex_x * tex_y];
+	color = ((int *)env->tex->data)[tex_x + tex_y * env->tex->width];
 	return (color);
 }
 
@@ -47,25 +65,24 @@ static void draw_column(t_cast *cast, t_env *env, const int x)
 	double wall_x;
 
 	tex_id = env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]];
-	
-	wall_x = (cast->ray->side == V ? env-> cam->pos[Y] + env->cast->distance * env->cast->ray->v_dir[Y] :
-	env-> cam->pos[X] + env->cast->distance * env->cast->ray->v_dir[X]);
+
+	wall_x = (cast->ray->side == V ? env->cam->pos[Y] + env->cast->distance * env->cast->ray->v_dir[Y] : env->cam->pos[X] + env->cast->distance * env->cast->ray->v_dir[X]);
 	wall_x -= (int)wall_x;
 
 	tex_x = (int)(wall_x * (double)TEX_SIZE);
 
 	if (cast->ray->side == V && cast->ray->v_dir[X] > 0)
 		tex_x = (TEX_SIZE - 1) - tex_x;
-	
+
 	if (cast->ray->side == H && cast->ray->v_dir[Y] < 0)
 		tex_x = (TEX_SIZE - 1) - tex_x;
 
 	while (cast->d_start < cast->d_end)
 	{
-		d = cast->d_start * 256 - HEIGHT * 128 +  * 128;
-		tex_y = ((d * TEX_SIZE) / ) / 256;
-		((int*)env->data_addr)[cast->d_start * WIDTH + x] = get_color(tex_id, tex_x, tex_y, env);
-	 	cast->d_start++;
+		d = cast->d_start * 256 - HEIGHT * 128 + cast->wall_height *128;
+		tex_y = ((d * TEX_SIZE) /cast->wall_height) / 256;
+		((int *)env->data_addr)[cast->d_start * WIDTH + x] = get_color(tex_id, tex_x, tex_y, env);
+		cast->d_start++;
 	}
 }
 
@@ -82,6 +99,7 @@ void renderer(t_env *env)
 	ft_bzero(env->data_addr, (WIDTH * env->bts_pr_pxl / 8) * HEIGHT);
 	mlx_clear_window(env->mlx, env->win);
 	ray = -1;
+	draw_floor(env);
 	while(++ray < WIDTH)
 	{
 		x = 2 * ray / (double)WIDTH - 1;

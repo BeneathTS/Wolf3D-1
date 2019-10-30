@@ -60,6 +60,10 @@ typedef struct		s_tex
 	int				width;
 	int				height;
 	void			*tex_ptr;
+	char			*data;
+	int				bts_pr_pxl;
+	int				sz_ln;
+	int				endian;
 	struct s_tex	*next;
 	struct s_tex	*prev;
 }					t_tex;
@@ -99,6 +103,7 @@ typedef struct		s_cast
 	int				wall_height;
 	int				d_start;
 	int				d_end;
+	char			tex_id;
 }					t_cast;
 
 /*
