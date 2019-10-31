@@ -13,11 +13,11 @@ static void rotate(int key, t_env *env)
 	if (key == KB_D)
 		env->cntrls->angle += 0.05;
 
-	env->cam->c_v_dir[X] = env->cam->v_dir[X] * cos(env->cntrls->angle) - env->cam->v_dir[Y] * sin(env->cntrls->angle);
-	env->cam->c_v_dir[Y] = env->cam->v_dir[X] * sin(env->cntrls->angle) + env->cam->v_dir[Y] * cos(env->cntrls->angle);
+	env->cam->c_v_dir[X] = env->cam->v_dir[X] * cos(env->cntrls->angle * env->cam->r_speed) - env->cam->v_dir[Y] * sin(env->cntrls->angle * env->cam->r_speed);
+	env->cam->c_v_dir[Y] = env->cam->v_dir[X] * sin(env->cntrls->angle * env->cam->r_speed) + env->cam->v_dir[Y] * cos(env->cntrls->angle * env->cam->r_speed);
 
-	env->cam->c_v_plane[X] = env->cam->v_plane[X] * cos(env->cntrls->angle) - env->cam->v_plane[Y] * sin(env->cntrls->angle);
-	env->cam->c_v_plane[Y] = env->cam->v_plane[X] * sin(env->cntrls->angle) + env->cam->v_plane[Y] * cos(env->cntrls->angle);
+	env->cam->c_v_plane[X] = env->cam->v_plane[X] * cos(env->cntrls->angle * env->cam->r_speed) - env->cam->v_plane[Y] * sin(env->cntrls->angle * env->cam->r_speed);
+	env->cam->c_v_plane[Y] = env->cam->v_plane[X] * sin(env->cntrls->angle * env->cam->r_speed) + env->cam->v_plane[Y] * cos(env->cntrls->angle * env->cam->r_speed);
 	renderer(env);
 }
 
@@ -25,22 +25,22 @@ static void move(int key, t_env *env)
 {
 	if (key == KB_W)
 	{
-		env->cam->pos[Y] += env->cam->c_v_dir[Y] * env->cam->speed;
-		env->cam->pos[X] += env->cam->c_v_dir[X] * env->cam->speed;
+		env->cam->pos[Y] += env->cam->c_v_dir[Y] * env->cam->m_speed;
+		env->cam->pos[X] += env->cam->c_v_dir[X] * env->cam->m_speed;
 	}
 	if (key == KB_S)
 	{
-		env->cam->pos[X] -= env->cam->c_v_dir[X] * env->cam->speed;
-		env->cam->pos[Y] -= env->cam->c_v_dir[Y] * env->cam->speed;
+		env->cam->pos[X] -= env->cam->c_v_dir[X] * env->cam->m_speed;
+		env->cam->pos[Y] -= env->cam->c_v_dir[Y] * env->cam->m_speed;
 	}
-	if (env->cam->pos[X] < (1.0 + env->cam->speed))
-		env->cam->pos[X] = 1.0 + env->cam->speed;
-	if (env->cam->pos[X] > env->map->width - (1.0 + env->cam->speed))
-		env->cam->pos[X] = env->map->width - (1.0 + env->cam->speed);
-	if (env->cam->pos[Y] < (1.0 + env->cam->speed))
-		env->cam->pos[Y] = 1.0 + env->cam->speed;
-	if (env->cam->pos[Y] > env->map->height - (1.0 + env->cam->speed))
-		env->cam->pos[Y] = env->map->height - (1.0 + env->cam->speed);
+	if (env->cam->pos[X] < (1.0 + env->cam->m_speed))
+		env->cam->pos[X] = 1.0 + env->cam->m_speed;
+	if (env->cam->pos[X] > env->map->width - (1.0 + env->cam->m_speed))
+		env->cam->pos[X] = env->map->width - (1.0 + env->cam->m_speed);
+	if (env->cam->pos[Y] < (1.0 + env->cam->m_speed))
+		env->cam->pos[Y] = 1.0 + env->cam->m_speed;
+	if (env->cam->pos[Y] > env->map->height - (1.0 + env->cam->m_speed))
+		env->cam->pos[Y] = env->map->height - (1.0 + env->cam->m_speed);
 	renderer(env);
 }
 

@@ -30,7 +30,8 @@ t_cam *cam_init()
 	cam->c_v_plane[X] = cam->v_plane[X];
 	cam->c_v_plane[Y] = cam->v_plane[Y];
 	cam->depth = 5;
-	cam->speed = 0.07;
+	cam->m_speed = 0.1;
+	cam->r_speed = 1.3;
 	return (cam);
 }
 
@@ -61,8 +62,8 @@ t_cast *cast_init()
 
 	if (!(cast = (t_cast*)malloc(sizeof(t_cast))))
 		exit (-1);
-	cast->time[OLD] = 0;
-	cast->time[NEW] = 0;
+	//cast->time[OLD] = 0;
+	//cast->time[NEW] = 0;
 	cast->ray = ray_init();
 	return (cast);
 }

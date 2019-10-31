@@ -1,44 +1,36 @@
 #include "wolf3d.h"
 
-// static void draw_column(t_cast *cast, t_env *env, const int x)
-// {
-// 	int color;
-// 	int map_crd;
-
-// 	if (env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]] == '1')
-// 		color = 0xFFFFFF;
-// 	else if (env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]] == '2')
-// 		color = 0xFFFF00;
-// 	else if (env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]] == '3')
-// 		color = 0xFF00FF;
-
-// 	 while (cast->d_start < cast->d_end)
-// 	 {
-// 	 	map_crd = cast->d_start * WIDTH + x;
-// 		((int*)env->data_addr)[map_crd] = color;
-// 	 	cast->d_start++;
-// 	}
-// }
-
-
+/*
+** Function that draw the floor.
+**
+** Function struct:
+** 1. Fill the bottom half of the screen with color.
+*/
 static void draw_floor(t_env *env)
 {
 	int ct;
 	int ct2;
 	int img_crd;
 
-	ct = HEIGHT / 2 - 1;
+	ct = (HEIGHT >> 1) - 1;
 	while(++ct < HEIGHT)
 	{
 		ct2 = -1;
 		while (++ct2 < WIDTH)
 		{
 			img_crd = ct * WIDTH + ct2;
-			((int *)env->data_addr)[img_crd] = 0x353c44;
+			((int *)env->data_addr)[img_crd] = FLOOR_COLOR;
 		}
 	}
 }
 
+/*
+** Function that searches for texture color.
+**
+** Function struct:
+** 1. Find texture in buffer by special id.
+** 2. Return the texture color, located on tex_x(x) and tex_y(y) in buffer.
+*/
 static int get_color(char tex_id, int tex_x, int tex_y, t_env *env)
 {
 	int color;
@@ -50,56 +42,85 @@ static int get_color(char tex_id, int tex_x, int tex_y, t_env *env)
 		else
 			env->tex = env->tex->prev;
 		if (!env->tex)
-			exit(-1);
+			exit (-1);
 	}
 	color = ((int *)env->tex->data)[tex_x + tex_y * env->tex->width];
 	return (color);
 }
 
+/*
+** Function that drawing columns for each x screen coordinates.
+** 
+** Function struct:
+** 1. Get the id of the texture.
+** 2. Set start y position.
+** 3. Set finish y position.
+** 4. Get where the ray hits the wall.
+** 5. Get where the ray hits the wall on x coordinate.
+** 6. Get x texture coordinate. (that constant value)
+** 7. Draw the column:
+**   7.1 Get y texture coordinate.
+**   7.2 Get texture color.
+**   7.3 Put it on rendering image.
+*/
 static void draw_column(t_cast *cast, t_env *env, const int x)
 {
+	int y[2];
 	int tex_x;
 	int tex_y;
-	int d;
 	char tex_id;
 	double wall_x;
 
 	tex_id = env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]];
 
-	wall_x = (cast->ray->side == V ? env->cam->pos[Y] + env->cast->distance * env->cast->ray->v_dir[Y] : env->cam->pos[X] + env->cast->distance * env->cast->ray->v_dir[X]);
-	wall_x -= (int)wall_x;
+	if ((y[START] = (HEIGHT >> 1) - (cast->wall_height >> 1) -1) < -1)
+		y[START] = -1;
+	if ((y[FINISH] = (HEIGHT >> 1) + (cast->wall_height >> 1)) >= HEIGHT)
+		y[FINISH] = HEIGHT - 1;
 
-	tex_x = (int)(wall_x * (double)TEX_SIZE);
+	wall_x = (cast->ray->side == H ? env->cam->pos[Y] + cast->distance * cast->ray->v_dir[Y]: 
+	env->cam->pos[X] + cast->distance * cast->ray->v_dir[X]);
+	wall_x -= floor(wall_x);
 
-	if (cast->ray->side == V && cast->ray->v_dir[X] > 0)
-		tex_x = (TEX_SIZE - 1) - tex_x;
+	tex_x = (int)(wall_x * TEX_SIZE);
 
-	if (cast->ray->side == H && cast->ray->v_dir[Y] < 0)
-		tex_x = (TEX_SIZE - 1) - tex_x;
-
-	while (cast->d_start < cast->d_end)
+	while (++y[START] < y[FINISH])
 	{
-		d = cast->d_start * 256 - HEIGHT * 128 + cast->wall_height *128;
-		tex_y = ((d * TEX_SIZE) /cast->wall_height) / 256;
-		((int *)env->data_addr)[cast->d_start * WIDTH + x] = get_color(tex_id, tex_x, tex_y, env);
-		cast->d_start++;
+		tex_y = (y[START] - (HEIGHT >> 1) + (cast->wall_height >> 1)) * TEX_SIZE / cast->wall_height;
+		((int *)env->data_addr)[y[START] * WIDTH + x] = get_color(tex_id, tex_x, tex_y, env);
 	}
 }
 
 /*
 ** 2.5D rendering function.
+** 
+** Function struct:
+** 1. Clear window. (cause we call this function more than once)
+** 2. Draw the floor.
+** 3. Cast a rays:
+**   3.1 Cast a ray for each x coordinate.
+** 	 3.2 Draw the screen column. (for each x screen coordinate)
+** 4. Drop the rendered image on window.
+** 
 ** How it works:
-** blah blah blah
+** To draw the walls, we need to cast a rays for each x coordinate of the window screen.
+**
+** The first thing we need to do is get the direction of the ray. 
+** Then, cast a ray to determine if there are walls in its way.
+** After that, draw a column using the information received.
 */
 void renderer(t_env *env)
 {
 	int ray;
 	double	x;
 
-	ft_bzero(env->data_addr, (WIDTH * env->bts_pr_pxl / 8) * HEIGHT);
+	ft_bzero(env->data_addr, (WIDTH * (env->bts_pr_pxl >> 3)) * HEIGHT);
 	mlx_clear_window(env->mlx, env->win);
+
 	ray = -1;
+
 	draw_floor(env);
+
 	while(++ray < WIDTH)
 	{
 		x = 2 * ray / (double)WIDTH - 1;
@@ -110,7 +131,6 @@ void renderer(t_env *env)
 		
 		draw_column(env->cast, env, ray);
 	}
-	
 	
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 }

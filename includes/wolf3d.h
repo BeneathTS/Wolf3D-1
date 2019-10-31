@@ -22,11 +22,13 @@
 
 # define TEX_SIZE 64
 
+# define FLOOR_COLOR 0x353C44
+
 # define X 0
 # define Y 1
 
-# define OLD 0
-# define NEW 1
+# define START 0
+# define FINISH 1
 
 # define V 0 //x
 # define H 1 //y
@@ -51,6 +53,8 @@ typedef struct		s_map
 ** Struct withh all textures and data what it nedeed.
 ** tex_id - id of texture
 ** tex_ptr - texture img pointer
+** data - texture data (use this var to get texture, not tex_ptr)
+** bts_pr_pxl, sz_ln, endian not used, but that needed to mlx.
 ** next - next texture
 ** prev - previous texture
 */
@@ -101,9 +105,6 @@ typedef struct		s_cast
 	int				step[2];
 	double			distance;
 	int				wall_height;
-	int				d_start;
-	int				d_end;
-	char			tex_id;
 }					t_cast;
 
 /*
@@ -111,8 +112,14 @@ typedef struct		s_cast
 ** pos - player position. (x = 0, y = 1)
 ** v_dir - direction vector/ point of view. (x = 0, y = 1)
 ** v_plane - projection plane vector. (x = 0, y = 1)
+**
+** c_v_dir - changed direction vector/ point of view. (x = 0, y = 1)
+** c_v_plane - chenged projection plane vector. (x = 0, y = 1)
+** (changed vectors are used for rotation and movement)
+**
 ** depth - drawing depth.
-** speed - moving speed.
+** m_speed - moving speed.
+** r_speed - rotation speed.
 */
 typedef	struct		s_cam
 {
@@ -122,12 +129,22 @@ typedef	struct		s_cam
 	double			c_v_plane[2];
 	double			c_v_dir[2];
 	char			depth;
-	float			speed;
+	float			m_speed;
+	float			r_speed;
 }					t_cam;
 
 /*
 ** Main struct with all another structures and environment data;
 ** (like window ptr, img ptr etc)
+** mlx - x window connection ptr.
+** win - window ptr.
+** img - main image ptr(used for rendering)
+** bts_pr_pxl, sz_ln, endian not used, but that needed to mlx.
+** map - map data structure.
+** tex - texture data structure.
+** cam - cam/player data structure.
+** cast - raycast(a part of rendering) data structure.
+** cntrls - controls data structure.
 */
 typedef struct		s_env
 {
