@@ -8,6 +8,9 @@ SRC =	main.c \
 		ray_caster.c \
 		hooks.c \
 		load_textures.c \
+		mouse_move.c \
+		menu_data_load.c \
+		menu.c \
 
 OS = $(SRC:.c=.o)
 

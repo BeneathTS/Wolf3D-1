@@ -29,6 +29,7 @@ t_cam *cam_init()
 	cam->c_v_dir[Y] = cam->v_dir[Y];
 	cam->c_v_plane[X] = cam->v_plane[X];
 	cam->c_v_plane[Y] = cam->v_plane[Y];
+	cam->view_height = 0;
 	cam->depth = 5;
 	cam->m_speed = 0.1;
 	cam->r_speed = 1.3;

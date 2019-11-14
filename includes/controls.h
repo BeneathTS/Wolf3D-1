@@ -3,6 +3,8 @@
 
 # define ESC 53
 
+# define ARR_UP 126
+# define ARR_DOWN 125
 # define ARR_LFT 123
 # define ARR_RGHT 124
 
@@ -14,6 +16,7 @@
 typedef struct	s_cntrls
 {
 	double		angle;
+	int			old_coord[2];
 }				t_cntrls;
 
 #endif

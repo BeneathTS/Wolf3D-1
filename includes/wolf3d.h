@@ -10,12 +10,29 @@
 # include <unistd.h>
 # include <string.h>
 
+# include "menu.h"
 # include "libft.h"
 # include "controls.h"
 # include "get_next_line.h"
 
-# define BS_TEX "textures/xpm/bluestone.xpm"
-# define WD_TEX "textures/xpm/wood.xpm"
+# define BG_IMG "assets/menu/XPM/background.xpm"
+# define LG_IMG "assets/menu/XPM/logo.xpm"
+# define LG_BASE "assets/menu/XPM/logo_base.xpm"
+# define BT1 "assets/menu/XPM/bt1.xpm"
+# define BT2 "assets/menu/XPM/bt2.xpm"
+# define BT3 "assets/menu/XPM/bt3.xpm"
+# define BT4 "assets/menu/XPM/bt4.xpm"
+# define BT1_ACTIVE "assets/menu/XPM/bt5.xpm"
+# define BT2_ACTIVE "assets/menu/XPM/bt6.xpm"
+# define BT3_ACTIVE "assets/menu/XPM/bt7.xpm"
+# define BT4_ACTIVE "assets/menu/XPM/bt8.xpm"
+
+# define LOGO_ALPHA 0xCD
+
+# define BUTTONS_ALPHA 0x77
+
+# define BS_TEX "assets/textures/xpm/bluestone.xpm"
+# define WD_TEX "assets/textures/xpm/wood.xpm"
 
 # define WIDTH 1280
 # define HEIGHT 720
@@ -30,11 +47,14 @@
 # define START 0
 # define FINISH 1
 
-# define V 0 //x
-# define H 1 //y
+# define V 0
+# define H 1
 
 # define NO 0
 # define YES 1
+
+# define MENU 0
+# define GAME 1
 
 /*
 ** Structure w/ all map data.
@@ -129,9 +149,18 @@ typedef	struct		s_cam
 	double			c_v_plane[2];
 	double			c_v_dir[2];
 	char			depth;
+	int				view_height;
 	float			m_speed;
 	float			r_speed;
 }					t_cam;
+
+typedef struct	s_menu
+{
+	int			bg_off[2];
+	char		sel_button;
+	t_tex		*tex;
+	t_tex		*first;
+}				t_menu;
 
 /*
 ** Main struct with all another structures and environment data;
@@ -155,10 +184,12 @@ typedef struct		s_env
 	int				endian;
 	int				bts_pr_pxl;
 	char			*data_addr;
+	char			mode;
 	t_map			*map;
 	t_tex			*tex;
 	t_cam			*cam;
 	t_cast			*cast;
+	t_menu			*menu;
 	t_cntrls		*cntrls;
 }					t_env;
 
@@ -185,5 +216,12 @@ void		cast_a_ray(t_cast *cast, t_cam *cam, t_env *env);
 void init_key_hooks(t_env *env);
 
 void load_textures(t_env *env);
+int x_close(t_env *env);
 
+void load_menu_data(t_env *env);
+void draw_menu(t_env *env);
+void bg_paralax(int x, int y, t_env *env);
+void check_button_select(int x, int y, t_env *env);
+void set_alpha(char *data, int width, int height, unsigned int alpha_value);
+int push_buttons(int button, int x, int y, t_env *env);
 #endif

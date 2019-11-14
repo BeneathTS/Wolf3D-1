@@ -8,11 +8,14 @@ int x_close(t_env *env)
 
 static void rotate(int key, t_env *env)
 {
-	if (key == KB_A)
+	if (key == ARR_LFT || key == KB_A)
 		env->cntrls->angle -= 0.05;
-	if (key == KB_D)
+	if (key == ARR_RGHT || key == KB_D)
 		env->cntrls->angle += 0.05;
-
+	if (key == ARR_DOWN)
+		env->cam->view_height += 100;
+	if (key == ARR_UP)
+		env->cam->view_height -= 100;
 	env->cam->c_v_dir[X] = env->cam->v_dir[X] * cos(env->cntrls->angle * env->cam->r_speed) - env->cam->v_dir[Y] * sin(env->cntrls->angle * env->cam->r_speed);
 	env->cam->c_v_dir[Y] = env->cam->v_dir[X] * sin(env->cntrls->angle * env->cam->r_speed) + env->cam->v_dir[Y] * cos(env->cntrls->angle * env->cam->r_speed);
 
@@ -21,7 +24,7 @@ static void rotate(int key, t_env *env)
 	renderer(env);
 }
 
-static void move(int key, t_env *env)
+void player_move(int key, t_env *env)
 {
 	if (key == KB_W)
 	{
@@ -44,19 +47,34 @@ static void move(int key, t_env *env)
 	renderer(env);
 }
 
-int key_controls(int key, t_env *env)
+int key_press(int key, t_env *env)
 {
 	if (key == ESC)
 		x_close(env);
-	if (key == KB_A || key == KB_D)
+	if (key == ARR_DOWN || key == ARR_LFT || key == ARR_RGHT || 
+	key == ARR_UP || key == KB_A || key == KB_D)
 		rotate(key, env);
 	if (key == KB_W || key == KB_S)
-		move(key, env);
+		player_move(key, env);
+	return (0);
+}
+
+int mouse_move(int x, int y, t_env *env)
+{
+	if (env->mode == MENU)
+	{
+		bg_paralax(x, y, env);
+		check_button_select(x, y, env);
+		draw_menu(env);
+	}
 	return (0);
 }
 
 void init_key_hooks(t_env *env)
 {
 	mlx_hook(env->win, 17, 0, x_close, env);
-	mlx_hook(env->win, 2, 0, key_controls, env);
+	mlx_hook(env->win, 2, 0, key_press, env);
+	mlx_hook(env->win, 4, 0, push_buttons, env);
+	//mlx_hook(env->win, 5, 0, mouse_controls_release, env);
+	mlx_hook(env->win, 6, 0, mouse_move, env);
 }

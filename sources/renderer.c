@@ -12,13 +12,14 @@ static void draw_floor(t_env *env)
 	int ct2;
 	int img_crd;
 
-	ct = (HEIGHT >> 1) - 1;
-	while(++ct < HEIGHT)
+	ct = (HEIGHT >> 1) - env->cam->view_height * 0.5 - 1;
+	while (++ct < HEIGHT)
 	{
 		ct2 = -1;
 		while (++ct2 < WIDTH)
 		{
 			img_crd = ct * WIDTH + ct2;
+			if (img_crd < WIDTH * HEIGHT && img_crd > -1)
 			((int *)env->data_addr)[img_crd] = FLOOR_COLOR;
 		}
 	}
@@ -66,28 +67,29 @@ static int get_color(char tex_id, int tex_x, int tex_y, t_env *env)
 static void draw_column(t_cast *cast, t_env *env, const int x)
 {
 	int y[2];
-	int tex_x;
-	int tex_y;
+	int tex_coord[2];
+	int d;
 	char tex_id;
 	double wall_x;
 
 	tex_id = env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]];
 
-	if ((y[START] = (HEIGHT >> 1) - (cast->wall_height >> 1) -1) < -1)
+	if ((y[START] = ((HEIGHT - env->cam->view_height) >> 1) - (cast->wall_height >> 1) - 1) < -1)
 		y[START] = -1;
-	if ((y[FINISH] = (HEIGHT >> 1) + (cast->wall_height >> 1)) >= HEIGHT)
+	if ((y[FINISH] = ((HEIGHT - env->cam->view_height) >> 1) + (cast->wall_height >> 1)) >= HEIGHT)
 		y[FINISH] = HEIGHT - 1;
 
 	wall_x = (cast->ray->side == H ? env->cam->pos[Y] + cast->distance * cast->ray->v_dir[Y]: 
 	env->cam->pos[X] + cast->distance * cast->ray->v_dir[X]);
 	wall_x -= floor(wall_x);
 
-	tex_x = (int)(wall_x * TEX_SIZE);
-
+	tex_coord[X] = (int)(wall_x * TEX_SIZE);
+	
 	while (++y[START] < y[FINISH])
 	{
-		tex_y = (y[START] - (HEIGHT >> 1) + (cast->wall_height >> 1)) * TEX_SIZE / cast->wall_height;
-		((int *)env->data_addr)[y[START] * WIDTH + x] = get_color(tex_id, tex_x, tex_y, env);
+		d = (y[START] << 8) - ((HEIGHT - env->cam->view_height - 1) << 7) + (cast->wall_height << 7);
+		tex_coord[Y] = ((d * TEX_SIZE) / cast->wall_height) >> 8;
+		((int *)env->data_addr)[y[START] * WIDTH + x] = get_color(tex_id, tex_coord[X], tex_coord[Y], env);
 	}
 }
 
@@ -120,7 +122,6 @@ void renderer(t_env *env)
 	ray = -1;
 
 	draw_floor(env);
-
 	while(++ray < WIDTH)
 	{
 		x = 2 * ray / (double)WIDTH - 1;

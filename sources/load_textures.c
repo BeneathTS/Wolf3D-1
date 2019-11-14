@@ -9,7 +9,7 @@ void load_textures(t_env *env)
 	env->tex->data = mlx_get_data_addr(env->tex->tex_ptr, &env->tex->bts_pr_pxl, &env->tex->sz_ln, &env->tex->endian);
 	env->tex->id = '1';
 
-	if (env->tex->width  != 64 || env->tex->height != 64)
+	if (env->tex->width  != TEX_SIZE || env->tex->height != TEX_SIZE)
 		exit (-1);
 	
 	temp = env->tex;
@@ -20,7 +20,7 @@ void load_textures(t_env *env)
 	env->tex->data = mlx_get_data_addr(env->tex->tex_ptr, &env->tex->bts_pr_pxl, &env->tex->sz_ln, &env->tex->endian);
 	env->tex->id = '2';
 
-	if (env->tex->width != 64 || env->tex->height != 64)
+	if (env->tex->width != TEX_SIZE || env->tex->height != TEX_SIZE)
 		exit(-1);
 	
 	env->tex = temp;
