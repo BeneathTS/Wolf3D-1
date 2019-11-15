@@ -14,8 +14,8 @@ int main(int argc, char **argv)
 
 	load_textures(env);
 	load_menu_data(env);
-	sleep(1);
-	draw_menu(env);
+	//draw_menu(env);
+	renderer(env);
 
 	init_key_hooks(env);
 	mlx_loop(env->mlx);

@@ -67,6 +67,11 @@ int mouse_move(int x, int y, t_env *env)
 		check_button_select(x, y, env);
 		draw_menu(env);
 	}
+	if (env->mode == CHOOSE)
+	{
+		bg_paralax(x, y, env);
+		draw_chooser(env);
+	}
 	return (0);
 }
 

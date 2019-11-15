@@ -38,7 +38,6 @@ static void draw_buttons(t_env *env)
 
 void draw_menu(t_env *env)
 {
-	ft_bzero(env->data_addr, (WIDTH * (env->bts_pr_pxl >> 3)) * HEIGHT);
 	mlx_clear_window(env->mlx, env->win);
 
 	env->menu->tex = env->menu->first;

@@ -26,6 +26,8 @@
 # define BT2_ACTIVE "assets/menu/XPM/bt6.xpm"
 # define BT3_ACTIVE "assets/menu/XPM/bt7.xpm"
 # define BT4_ACTIVE "assets/menu/XPM/bt8.xpm"
+# define SCRL_BASE "assets/menu/XPM/scroll_base.xpm"
+# define SCRL "assets/menu/XPM/scroller.xpm"
 
 # define LOGO_ALPHA 0xCD
 
@@ -54,7 +56,10 @@
 # define YES 1
 
 # define MENU 0
-# define GAME 1
+# define CHOOSE 1
+# define GAME 2
+# define SETTINGS 3
+# define EDITOR 4
 
 /*
 ** Structure w/ all map data.
@@ -154,13 +159,25 @@ typedef	struct		s_cam
 	float			r_speed;
 }					t_cam;
 
-typedef struct	s_menu
+typedef struct		s_scroll
 {
-	int			bg_off[2];
-	char		sel_button;
-	t_tex		*tex;
-	t_tex		*first;
-}				t_menu;
+	void			*img_ptr;
+	char			*img_data;
+	int				bts_pr_pxl;
+	int				sz_ln;
+	int				endian;
+	int				offset;
+}					t_scroll;
+
+typedef struct		s_menu
+{
+	int				bg_off[2];
+	char			sel_button;
+	t_tex			*tex;
+	t_tex			*first;
+	t_tex			*chsr;
+	t_scroll		*scroll;
+}					t_menu;
 
 /*
 ** Main struct with all another structures and environment data;
@@ -224,4 +241,5 @@ void bg_paralax(int x, int y, t_env *env);
 void check_button_select(int x, int y, t_env *env);
 void set_alpha(char *data, int width, int height, unsigned int alpha_value);
 int push_buttons(int button, int x, int y, t_env *env);
+void draw_chooser(t_env *env);
 #endif

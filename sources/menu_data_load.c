@@ -54,7 +54,15 @@ static void load_logo(t_env *env)
 	env->menu->tex->id = 'W';
 }
 
-void load_menu_data(t_env *env)
+static void load_chooser_scroll(t_env *env)
+{
+	env->menu->chsr = tex_init(NULL, NULL);
+	env->menu->chsr->tex_ptr = mlx_xpm_file_to_image(env->mlx, SCRL, &env->menu->chsr->width, &env->menu->chsr->height);
+	env->menu->chsr->data = mlx_get_data_addr(env->menu->chsr->tex_ptr, &env->menu->chsr->bts_pr_pxl, &env->menu->chsr->sz_ln, &env->menu->chsr->endian);
+	env->menu->chsr->id = 'S';
+}
+
+void load_menu_data(t_env * env)
 {
 	env->menu->tex->tex_ptr = mlx_xpm_file_to_image(env->mlx, BG_IMG, &env->menu->tex->width, &env->menu->tex->height);
 	env->menu->tex->data = mlx_get_data_addr(env->menu->tex->tex_ptr, &env->menu->tex->bts_pr_pxl, &env->menu->tex->sz_ln, &env->menu->tex->endian);
@@ -64,4 +72,5 @@ void load_menu_data(t_env *env)
 
 	load_logo(env);
 	load_buttons(env);
+	load_chooser_scroll(env);
 }
