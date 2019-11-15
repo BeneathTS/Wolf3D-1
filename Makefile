@@ -1,60 +1,89 @@
-NAME = wolf3d
+.PHONY: all, $(NAME), norm, clean, fclean, re
 
-SRC =	main.c \
-		init_game_data.c \
-		init_env.c \
-		reader.c \
-		renderer.c \
-		ray_caster.c \
-		hooks.c \
-		load_textures.c \
-		mouse_controls.c \
-		menu_data_load.c \
-		menu.c \
-		level_chooser.c \
-		close.c
+#****************************************************************************#
+#					SETTINGS FOR CONCLUSION IN CONSOLE 						 #
+#****************************************************************************#
 
-OS = $(SRC:.c=.o)
+RED = \033[31m
+GREEN = \033[32m
+YELLOW = \033[33m
+BLUE = \033[34m
+PINK = \033[35m
+AQUA = \033[36m
+GREY = \033[37m
+UNDERLINE = \033[4m
+NORMAL = \033[0m
 
-vpath %.c sources
+#****************************************************************************#
+#									TESTS 									 #
+#****************************************************************************#
 
-CFLAGS = -Wall -Wextra -Werror
+NAME = WOLF3D
 
-L_MLX = -L /usr/local/lib
+SRC_PATH = ./sources/
+OBJ_PATH = ./objects/
+INC_PATH = ./includes/
+LIB_PATH = ./libft/
+MLX_PATH = ./mlx/
 
-I_MLX = -I /usr/local/include
+SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
+OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
+INC = $(addprefix -I, $(INC_PATH))
+INC_LIB = $(addprefix -I, $(INC_PATH))
+INC_MLX = $(addprefix -I, $(INC_PATH))
 
-MLXFLAGS = -lmlx -framework OpenGL -framework AppKit -framework OpenCL
+SRC_NAME =	main.c \
+			init_game_data.c \
+			init_env.c \
+			reader.c \
+			renderer.c \
+			ray_caster.c \
+			hooks.c \
+			load_textures.c \
+			mouse_controls.c \
+			menu_data_load.c \
+			menu.c \
+			level_chooser.c \
+			close.c
+						
+OBJ_NAME = $(SRC_NAME:.c=.o)
 
-HDRS = -I includes
+all: $(NAME)
 
-LIBHDR = -I libft/includes
+$(NAME): $(OBJ)
+	@make lib_refresh
+	@gcc -Wall -Wextra -Werror -o $(NAME) $(OBJ) -lm -L $(LIB_PATH) \
+		 -lft -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit -framework OpenCL
+	 
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC_PATH)/wolf3d.h
+	@mkdir -p $(OBJ_PATH)
+	@gcc -g $(INC) -o $@ -c $<
 
-LIB = libft/libft.a
+#****************************************************************************#
+#									OTHER			 						 #
+#****************************************************************************#
 
-.PHONY: all lib clean fclean re clterm
+lib_refresh:
+	@make -C $(LIB_PATH)
+	@make -C $(MLX_PATH)
+	@echo ""
+	@echo "\n\t\t        $(BLUE)💥 WOLF3D READY!💥\t\t     "
+	@echo "💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀\
+💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀"
 
-all: lib $(NAME)
-
-$(NAME): $(OS)
-	gcc $(CFLAGS) $(MLXFLAGS) $^ $(LIB) $(L_MLX) $(I_MLX) -o $(NAME)
-
-$(OS): $(SRC)
-	gcc $(CFLAGS) $^ $(LIBHDR) $(HDRS) $(I_MLX) -c
-
-lib:
-	@make -C libft
+norm:
+	@echo "$(YELLOW)"
+	@norminette -R CheckForbiddenSourceHeader
 
 clean:
-	@make -C libft clean
-	@rm -f $(OS)
+	@clear
+	@rm -rf $(OBJ_PATH)
+	@make clean -C $(LIB_PATH)
+	@make clean -C $(MLX_PATH)
 
-fclean: 
-	@make -C libft fclean
-	@rm -f $(OS)
+fclean: clean
 	@rm -f $(NAME)
+	@make fclean -C $(LIB_PATH)
+	@make clean -C $(MLX_PATH)
 
 re: fclean all
-
-clterm:
-	clear && printf '\033[3J'
