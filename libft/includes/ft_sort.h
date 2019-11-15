@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_sort.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 12:36:44 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 01:52:01 by sleonia          ###   ########.fr       */
+/*   Created: 2019/10/19 22:49:08 by sleonia           #+#    #+#             */
+/*   Updated: 2019/11/12 13:15:26 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef FT_SORT_H
+# define FT_SORT_H
+# include "libft.h"
 
-# include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <math.h>
+int			*my_bubble_sort(int *array, int size);
+void		my_quick_sort(int arr[], int left, int right);
 
-# include "ft_get_next_line.h"
-# include "ft_error.h"
-# include "ft_io.h"
-# include "ft_json_parse.h"
-# include "ft_memory.h"
-# include "ft_sort.h"
-# include "ft_string.h"
-# include "ft_vector.h"
 #endif

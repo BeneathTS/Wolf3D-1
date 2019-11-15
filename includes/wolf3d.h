@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 01:38:06 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 01:56:52 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include "menu.h"
 # include "../libft/includes/libft.h"
 # include "controls.h"
-# include "../libft/includes/get_next_line.h"
 
 # define BG_IMG 		"assets/menu/XPM/background.xpm"
 # define LG_IMG 		"assets/menu/XPM/logo.xpm"

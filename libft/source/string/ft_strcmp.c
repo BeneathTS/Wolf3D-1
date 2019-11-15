@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 12:36:44 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 01:52:01 by sleonia          ###   ########.fr       */
+/*   Created: 2019/04/09 14:28:03 by sleonia           #+#    #+#             */
+/*   Updated: 2019/11/12 12:53:20 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_string.h"
 
-# include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <math.h>
+int		ft_strcmp(const char *s1, const char *s2)
+{
+	int i;
 
-# include "ft_get_next_line.h"
-# include "ft_error.h"
-# include "ft_io.h"
-# include "ft_json_parse.h"
-# include "ft_memory.h"
-# include "ft_sort.h"
-# include "ft_string.h"
-# include "ft_vector.h"
-#endif
+	i = 0;
+	while (s1[i] == s2[i])
+	{
+		if (!s1[i + 1] && !s2[i + 1])
+			return (0);
+		i++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}

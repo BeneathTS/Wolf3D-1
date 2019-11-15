@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 12:36:44 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 01:52:01 by sleonia          ###   ########.fr       */
+/*   Created: 2019/04/10 14:42:28 by sleonia           #+#    #+#             */
+/*   Updated: 2019/11/12 12:50:46 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_memory.h"
 
-# include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <math.h>
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+{
+	unsigned char	symb;
+	unsigned char	*s1;
+	unsigned char	*s2;
+	size_t			i;
 
-# include "ft_get_next_line.h"
-# include "ft_error.h"
-# include "ft_io.h"
-# include "ft_json_parse.h"
-# include "ft_memory.h"
-# include "ft_sort.h"
-# include "ft_string.h"
-# include "ft_vector.h"
-#endif
+	i = 0;
+	s1 = (unsigned char *)dst;
+	s2 = (unsigned char *)src;
+	symb = (unsigned char)c;
+	while (n > 0)
+	{
+		if (s2[i] == symb)
+		{
+			s1[i] = s2[i];
+			return (dst + i + 1);
+		}
+		else
+			s1[i] = s2[i];
+		i++;
+		n--;
+	}
+	return (0);
+}

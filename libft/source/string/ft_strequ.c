@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 12:36:44 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 01:52:01 by sleonia          ###   ########.fr       */
+/*   Created: 2019/04/11 10:23:16 by sleonia           #+#    #+#             */
+/*   Updated: 2019/11/12 12:53:22 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_string.h"
 
-# include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <math.h>
+int		ft_strequ(char const *s1, char const *s2)
+{
+	size_t		i;
+	char		*str1;
+	char		*str2;
 
-# include "ft_get_next_line.h"
-# include "ft_error.h"
-# include "ft_io.h"
-# include "ft_json_parse.h"
-# include "ft_memory.h"
-# include "ft_sort.h"
-# include "ft_string.h"
-# include "ft_vector.h"
-#endif
+	if (!s1 && !s2)
+		return (1);
+	else if (!s1 || !s2)
+		return (0);
+	else
+	{
+		i = 0;
+		str1 = (char *)s1;
+		str2 = (char *)s2;
+		while (str1[i] == str2[i])
+		{
+			if (!(str1[i + 1]) && !(str2[i + 1]))
+				return (1);
+			i++;
+		}
+	}
+	return (0);
+}

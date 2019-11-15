@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 12:36:44 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 01:52:01 by sleonia          ###   ########.fr       */
+/*   Created: 2019/04/11 06:23:27 by sleonia           #+#    #+#             */
+/*   Updated: 2019/11/12 12:53:20 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_string.h"
 
-# include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <math.h>
+char	*ft_strcat(char *dst, const char *src)
+{
+	size_t len;
+	size_t i;
 
-# include "ft_get_next_line.h"
-# include "ft_error.h"
-# include "ft_io.h"
-# include "ft_json_parse.h"
-# include "ft_memory.h"
-# include "ft_sort.h"
-# include "ft_string.h"
-# include "ft_vector.h"
-#endif
+	i = 0;
+	len = ft_strlen(dst);
+	while (src[i])
+	{
+		dst[len++] = src[i++];
+	}
+	dst[len] = '\0';
+	return (dst);
+}

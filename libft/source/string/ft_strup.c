@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strup.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 12:36:44 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 01:52:01 by sleonia          ###   ########.fr       */
+/*   Created: 2019/04/25 21:06:29 by sleonia           #+#    #+#             */
+/*   Updated: 2019/11/12 12:53:29 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "ft_string.h"
 
-# include <string.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <math.h>
+char		*ft_strup(char *s)
+{
+	char		*str;
+	size_t		i;
 
-# include "ft_get_next_line.h"
-# include "ft_error.h"
-# include "ft_io.h"
-# include "ft_json_parse.h"
-# include "ft_memory.h"
-# include "ft_sort.h"
-# include "ft_string.h"
-# include "ft_vector.h"
-#endif
+	if (!s)
+		return (NULL);
+	i = -1;
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	while (s[++i])
+	{
+		while (s[i] && s[i] >= 97 && s[i] <= 122)
+		{
+			str[i] = s[i] - 32;
+			++i;
+			if (!s[i])
+			{
+				str[i] = '\0';
+				return (str);
+			}
+		}
+		str[i] = s[i];
+	}
+	str[i] = '\0';
+	return (str);
+}

@@ -5,101 +5,75 @@
 #                                                     +:+ +:+         +:+      #
 #    By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/04/05 22:01:04 by ahiroko           #+#    #+#              #
-#    Updated: 2019/11/15 23:48:04 by sleonia          ###   ########.fr        #
+#    Created: 2019/04/06 18:14:41 by sleonia           #+#    #+#              #
+#    Updated: 2019/11/12 18:21:16 by sleonia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+.PHONY: all, $(NAME), norm, clean, fclean, re
+
+#****************************************************************************#
+#					SETTINGS FOR CONCLUSION IN CONSOLE 						 #
+#****************************************************************************#
+
+BLACK = \033[30m
+RED = \033[31m
+GREEN = \033[32m
+YELLOW = \033[33m
+BLUE = \033[34m
+PINK = \033[35m
+AQUA = \033[36m
+GREY = \033[37m
+UNDERLINE = \033[4m
+NORMAL = \033[0m
+
+#****************************************************************************#
+#									LIBFT 									 #
+#****************************************************************************#
+
 NAME = libft.a
 
-SRCS = ft_strlen.c \
-		ft_strdup.c \
-		ft_strstr.c \
-		ft_strchr.c \
-		ft_strrchr.c \
-		ft_strcmp.c \
-		ft_strncmp.c \
-		ft_strcpy.c \
-		ft_strncpy.c \
-		ft_strcat.c \
-		ft_strncat.c \
-		ft_tolower.c \
-		ft_toupper.c \
-		ft_isprint.c \
-		ft_isascii.c \
-		ft_isalnum.c \
-		ft_isdigit.c \
-		ft_isalpha.c \
-		ft_atoi.c \
-		ft_ss.c \
-		ft_strnstr.c \
-		ft_bzero.c \
-		ft_memset.c \
-		ft_memchr.c \
-		ft_memcpy.c \
-		ft_memccpy.c \
-		ft_memmove.c \
-		ft_memcmp.c \
-		ft_strlcat.c \
-		ft_memalloc.c \
-		ft_memdel.c \
-		ft_strnew.c \
-		ft_strdel.c \
-		ft_strclr.c \
-		ft_striter.c \
-		ft_striteri.c \
-		ft_strmap.c \
-		ft_strmapi.c \
-		ft_strequ.c \
-		ft_strnequ.c \
-		ft_strsub.c \
-		ft_strjoin.c \
-		ft_strtrim.c \
-		ft_strsplit.c \
-		ft_itoa.c \
-		ft_putchar.c \
-		ft_putstr.c \
-		ft_putendl.c \
-		ft_putnbr.c \
-		ft_putchar_fd.c \
-		ft_putstr_fd.c \
-		ft_putendl_fd.c \
-		ft_putnbr_fd.c \
-		ft_lstnew.c \
-		ft_lstdelone.c \
-		ft_lstdel.c \
-		ft_lstadd.c \
-		ft_lstiter.c \
-		ft_lstmap.c \
-		ft_lstsize.c \
-		ft_sqrt.c \
-		ft_abs.c \
-		ft_isblank.c \
-		ft_strswap.c \
-		ft_strjoinfree.c \
-		ft_strchrdup.c \
-		get_next_line.c \
-		ft_exit.c
+MAKE_DIR = ./Makefiles/
+OBJ_PATH = ./objects/
+OBJ_ERROR_PATH = ./objects/error/*
+OBJ_IO_PATH = ./objects/io/*
+OBJ__JSON_PARSE_PATH = ./objects/json_parse/*
+OBJ_MEMORY_PATH = ./objects/memory/*
+OBJ_SORT_PATH = ./objects/sort/*
+OBJ_STRING_PATH = ./objects/string/*
+OBJ_VECTOR_PATH = ./objects/vector/*
 
-OS = $(SRCS:.c=.o)
+OBJ = $(OBJ_ERROR_PATH) $(OBJ_IO_PATH) $(OBJ_JSON_PARSE_PATH) $(OBJ_MEMORY_PATH) $(OBJ_SORT_PATH) $(OBJ_STRING_PATH) $(OBJ_VECTOR_PATH)
 
-INCLDS = includes/
-
-FLAGS = -Wall -Wextra -Werror
-
-$(NAME):
-	@gcc -c $(FLAGS) -I $(INCLDS) $(SRCS)
-	@ar rc $(NAME) $(OS)
+#****************************************************************************#
+#									ALL 									 #
+#****************************************************************************#
 
 all: $(NAME)
 
-clean:
-	@rm -f $(OS)
+$(NAME):
+	@make -f $(MAKE_DIR)error.mk
+	@make -f $(MAKE_DIR)io.mk
+	@make -f $(MAKE_DIR)json_parse.mk
+	@make -f $(MAKE_DIR)memory.mk
+	@make -f $(MAKE_DIR)sort.mk
+	@make -f $(MAKE_DIR)string.mk
+	@make -f $(MAKE_DIR)vector.mk
+	@echo "\n\t\t\t$(PINK)🎊 LIBFT READY!🎊$(BLACK)"
+	@ar -rc $(NAME) $(OBJ) $?
+	@ranlib $(NAME)
 
-fclean: clean
-	@rm -f $(NAME)
-
-re: fclean $(NAME)
+#****************************************************************************#
+#									OTHER			 						 #
+#****************************************************************************#
 
 norm:
-	norminette $(SRCS) libft.h
+	norminette -R CheckForbiddenSourceHeader
+
+clean: 
+	@/bin/rm -rf $(OBJ_PATH)
+
+fclean: clean
+	@/bin/rm -f $(NAME)
+
+re: fclean all

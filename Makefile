@@ -18,7 +18,7 @@ NORMAL = \033[0m
 #									TESTS 									 #
 #****************************************************************************#
 
-NAME = WOLF3D
+NAME = wolf3D
 
 SRC_PATH = ./sources/
 OBJ_PATH = ./objects/
