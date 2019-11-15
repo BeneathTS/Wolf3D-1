@@ -12,6 +12,7 @@ SRC =	main.c \
 		menu_data_load.c \
 		menu.c \
 		level_chooser.c \
+		close.c
 
 OS = $(SRC:.c=.o)
 

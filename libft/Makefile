@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+         #
+#    By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 22:01:04 by ahiroko           #+#    #+#              #
-#    Updated: 2019/05/18 16:00:45 by ahiroko          ###   ########.fr        #
+#    Updated: 2019/11/15 23:48:04 by sleonia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ SRCS = ft_strlen.c \
 		ft_strjoinfree.c \
 		ft_strchrdup.c \
 		get_next_line.c \
+		ft_exit.c
 
 OS = $(SRCS:.c=.o)
 
