@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 01:54:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 01:54:58 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 03:56:15 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ char	*ft_strchrdup(char *str, char chr)
 	ct2 = -1;
 	while (str[ct] != chr && str[ct])
 		ct++;
-	if (!(new = ft_strnew(ct)))
-		return (NULL);
+	new = ft_strnew(ct);
 	while (++ct2 < ct)
 		new[ct2] = str[ct2];
 	return (new);

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 13:20:45 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/12 13:21:42 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 04:14:59 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ char					*read_big_file(char *file_str, char *filename)
 		return (NULL);
 	if ((size = (read(fd, buf, 500000))) < 0)
 		return (NULL);
-	if (!(file_str = (char *)malloc(sizeof(char) * size)))
-		return (NULL);
+	file_str = (char *)ft_safe_malloc(sizeof(char) * size);
 	while (++i < size)
 		file_str[i] = buf[i];
 	file_str[i] = '\0';

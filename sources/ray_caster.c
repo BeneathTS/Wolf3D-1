@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:54 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 10:42:48 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 13:43:18 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ static void wall_search(t_cast *cast, t_env *env, int *wall_hit)
 			cast->ray->m_pos[Y] += cast->step[Y];
 			cast->ray->side = V;
 		}
+		// 
+		// printf("Y=%d\nX=%d\n", env->cast->ray->m_pos[Y], env->cast->ray->m_pos[X]);
+		// 
 		if (env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]] > '0')
 			*wall_hit = Yes;
 	}

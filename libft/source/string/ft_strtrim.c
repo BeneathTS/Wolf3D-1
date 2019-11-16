@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 10:58:38 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/12 12:53:28 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 04:17:30 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ char				*ft_strtrim(char const *s)
 	k = ft_strlen(s) - 1;
 	while (s[k] == ' ' || s[k] == '\n' || s[k] == '\t')
 		k--;
-	str = (char *)malloc(sizeof(char) * (k - i + 2));
-	if (!str)
-		return (NULL);
+	str = (char *)ft_safe_malloc(sizeof(char) * (k - i + 2));
 	while (i <= k)
 		str[j++] = s[i++];
 	str[j] = '\0';

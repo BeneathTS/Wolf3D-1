@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 19:55:53 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/12 12:53:19 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 04:16:43 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ char			*ft_itoa(int n)
 	len = n < 0 ? 2 : 1;
 	len = ft_count(n, len);
 	dub = n < 0 ? -n : n;
-	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
-		return (NULL);
+	str = (char *)ft_safe_malloc(sizeof(char) * (len + 1));
 	str[len--] = '\0';
 	while (len >= 0)
 	{

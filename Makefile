@@ -52,7 +52,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make lib_refresh
-	@gcc -Wall -Wextra -Werror -o $(NAME) $(OBJ) -lm -L $(LIB_PATH) \
+	@gcc -g -Wall -Wextra -Werror -o $(NAME) $(OBJ) -lm -L $(LIB_PATH) \
 		 -lft -L $(MLX_PATH) -lmlx -framework OpenGL -framework AppKit -framework OpenCL
 	 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC_PATH)/wolf3d.h
@@ -76,6 +76,7 @@ norm:
 	@norminette -R CheckForbiddenSourceHeader
 
 clean:
+	@find . -name ".DS_Store" -delete
 	@clear
 	@rm -rf $(OBJ_PATH)
 	@make clean -C $(LIB_PATH)

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 10:53:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/12 12:53:23 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 04:17:03 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ char			*ft_strjoin(char const *s1, char const *s2)
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
 	len_sum = len_s1 + len_s2 + 1;
-	if (!(str = (char *)malloc(sizeof(str) * len_sum)))
-		return (NULL);
+	str = (char *)ft_safe_malloc(sizeof(str) * len_sum);
 	i = -1;
 	while (++i < len_s1)
 	{

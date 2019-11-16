@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:35 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 00:39:27 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 13:47:01 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			main(int argc, char **argv)
 	t_map	*map;
 
 	if (argc != 2)
-		exit(0);
+		ft_exit(ERROR_INPUT);
 	map = map_init();
 	read_map(argv[1], map);
 	env = env_init(map);

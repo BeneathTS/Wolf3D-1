@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 08:05:22 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/12 12:53:27 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 04:17:40 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char				**ft_strsplit(char const *s, char c)
 	init(&i, &w, &j);
 	tab = 0;
 	tablen = ft_countw_delim(s, c);
-	if ((tab = (char **)malloc(sizeof(char *) * (tablen + 1))) != 0)
+	if ((tab = (char **)ft_safe_malloc(sizeof(char *) * (tablen + 1))) != 0)
 	{
 		tab[tablen] = 0;
 		while (w < tablen)

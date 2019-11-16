@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 18:48:43 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 10:38:13 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 13:11:14 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 */
 # define ERROR_MSG				"\033[31mError!\033[0m"
 # define ERROR_INPUT			"\033[31mError input!\033[0m"
+# define ERROR_SYMBOLS			"\033[31mError symbols!\033[0m"
 # define ERROR_MALLOC			"\033[31mMalloc error!\033[0m"
 # define ERROR_READ_BIG_FILE	"\033[31mRead big file error!\033[0m"
 # define ERROR_STRSPLIT			"\033[31mStrsplit error!\033[0m"
@@ -26,10 +27,12 @@
 # define ERROR_LIGHTS			"\033[31mLights error!\033[0m"
 # define ERROR_FIGURES			"\033[31mFigures error!\033[0m"
 
-void		void_error(char *error_text);
-void		*malloc_error();
-int			int_error(char *error_text);
-void		*char_error(char *error_text, char *line_for_free);
-void		ft_exit(char *error_text);
+
+void		                    void_error(char *error_text);
+void		                    *malloc_error();
+int			                    int_error(char *error_text);
+void		                    *char_error(char *error_text,
+									char *line_for_free);
+void		                    ft_exit(char *error_text);
 
 #endif

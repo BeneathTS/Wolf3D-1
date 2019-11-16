@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_string.h                                        :+:      :+:    :+:   */
+/*   ft_my_string.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 19:29:07 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 04:15:50 by sleonia          ###   ########.fr       */
+/*   Created: 2019/11/09 04:57:33 by sleonia           #+#    #+#             */
+/*   Updated: 2019/11/12 13:28:04 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STRING_H
-# define FT_STRING_H
+#ifndef FT_MY_STRING_H
+# define FT_MY_STRING_H
+# define BUFF_SIZE 17
 # define ABS(nbr) (nbr <= 0.0) ? -nbr : nbr
 
 # include "libft.h"
@@ -38,7 +39,7 @@ char				*ft_strdup(const char *s1);
 int					ft_strequ(char const *s1, char const *s2);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
-char	            *ft_strjoin_free(char *s1, char *s2, int num);
+char				*ft_strjoin_free(char *s1, char *s2, int flag1, int flag2);
 char				*ft_strjoin(char const *s1, char const *s2);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlen(const char *s);
@@ -60,10 +61,10 @@ char				*ft_strtrim(char const *s);
 char				*ft_strup(char *s);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
+int					get_next_line(const int fd, char **line);
+char				*read_file(int size, char *name);
 char				*read_big_file(char *file_str, char *filename);
 double				ft_atof(const char *str);
-int					ft_atoi_base(char *nb, int base);
-int		            ft_isnumber(int c);
-char	            *ft_strchrdup(char *str, char chr);
+int					ft_isnumber(int c);
 
 #endif
