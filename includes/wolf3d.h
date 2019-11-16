@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 01:56:52 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 10:38:22 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,54 +25,8 @@
 # include "menu.h"
 # include "../libft/includes/libft.h"
 # include "controls.h"
+# include "define_value.h"
 
-# define BG_IMG 		"assets/menu/XPM/background.xpm"
-# define LG_IMG 		"assets/menu/XPM/logo.xpm"
-# define LG_BASE 		"assets/menu/XPM/logo_base.xpm"
-# define BT1 			"assets/menu/XPM/bt1.xpm"
-# define BT2 			"assets/menu/XPM/bt2.xpm"
-# define BT3 			"assets/menu/XPM/bt3.xpm"
-# define BT4 			"assets/menu/XPM/bt4.xpm"
-# define BT1_ACTIVE 	"assets/menu/XPM/bt5.xpm"
-# define BT2_ACTIVE 	"assets/menu/XPM/bt6.xpm"
-# define BT3_ACTIVE 	"assets/menu/XPM/bt7.xpm"
-# define BT4_ACTIVE 	"assets/menu/XPM/bt8.xpm"
-# define SCRL_BASE 		"assets/menu/XPM/scroll_base.xpm"
-# define SCRL 			"assets/menu/XPM/scroller.xpm"
-
-# define LOGO_ALPHA 	0xCD
-
-# define BUTTONS_ALPHA	0x77
-
-# define BS_TEX			"assets/textures/xpm/bluestone.xpm"
-# define WD_TEX			"assets/textures/xpm/wood.xpm"
-
-# define WIDTH 			1280
-# define HEIGHT 		720
-
-# define TEX_SIZE 		64
-
-# define FLOOR_COLOR	0x353C44
-
-# define X 				0
-# define Y 				1
-
-# define START 			0
-# define FINISH 		1
-
-# define V 				0
-# define H 				1
-
-# define NO 			0
-# define YES 			1
-
-# define MENU 			0
-# define CHOOSE 		1
-# define GAME 			2
-# define SETTINGS 		3
-# define EDITOR 		4
-
-#define ERROR_MSG		"\033[31mError!\033[0m"
 /*
 ** Structure w/ all map data.
 ** width - map width.

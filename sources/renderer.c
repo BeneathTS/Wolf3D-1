@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:33:01 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 01:03:58 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 10:42:19 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ static void		draw_floor(t_env *env)
 	int			ct2;
 	int			img_crd;
 
-	ct = (HEIGHT >> 1) - env->cam->view_height * 0.5 - 1;
-	while (++ct < HEIGHT)
+	ct = (Height) - env->cam->view_height * 0.5 - 1;
+	while (++ct < Height)
 	{
 		ct2 = -1;
-		while (++ct2 < WIDTH)
+		while (++ct2 < Width)
 		{
-			img_crd = ct * WIDTH + ct2;
-			if (img_crd < WIDTH * HEIGHT && img_crd > -1)
+			img_crd = ct * Width + ct2;
+			if (img_crd < Width * Height && img_crd > -1)
 				((int *)env->data_addr)[img_crd] = FLOOR_COLOR;
 		}
 	}
@@ -89,10 +89,10 @@ static void		draw_column(t_cast *cast, t_env *env, const int x)
 
 	tex_id = env->map->level[env->cast->ray->m_pos[Y]]
 		[env->cast->ray->m_pos[X]];
-	if ((y[START] = ((HEIGHT - env->cam->view_height) >> 1) - (cast->wall_height >> 1) - 1) < -1)
+	if ((y[START] = ((Height - env->cam->view_height) >> 1) - (cast->wall_height >> 1) - 1) < -1)
 		y[START] = -1;
-	if ((y[FINISH] = ((HEIGHT - env->cam->view_height) >> 1) + (cast->wall_height >> 1)) >= HEIGHT)
-		y[FINISH] = HEIGHT - 1;
+	if ((y[FINISH] = ((Height - env->cam->view_height) >> 1) + (cast->wall_height >> 1)) >= Height)
+		y[FINISH] = Height - 1;
 	wall_x = (cast->ray->side == H ? env->cam->pos[Y] + cast->distance
 		* cast->ray->v_dir[Y] : env->cam->pos[X]
 		+ cast->distance * cast->ray->v_dir[X]);
@@ -100,10 +100,10 @@ static void		draw_column(t_cast *cast, t_env *env, const int x)
 	tex_coord[X] = (int)(wall_x * TEX_SIZE);
 	while (++y[START] < y[FINISH])
 	{
-		d = (y[START] << 8) - ((HEIGHT - env->cam->view_height - 1) << 7)
+		d = (y[START] << 8) - ((Height - env->cam->view_height - 1) << 7)
 			+ (cast->wall_height << 7);
 		tex_coord[Y] = ((d * TEX_SIZE) / cast->wall_height) >> 8;
-		((int *)env->data_addr)[y[START] * WIDTH + x] = get_color(
+		((int *)env->data_addr)[y[START] * Width + x] = get_color(
 			tex_id, tex_coord[X], tex_coord[Y], env);
 	}
 }
@@ -133,13 +133,13 @@ void			renderer(t_env *env)
 	int			ray;
 	double		x;
 
-	ft_bzero(env->data_addr, (WIDTH * (env->bts_pr_px >> 3)) * HEIGHT);
+	ft_bzero(env->data_addr, (Width * (env->bts_pr_px >> 3)) * Height);
 	mlx_clear_window(env->mlx, env->win);
 	ray = -1;
 	draw_floor(env);
-	while (++ray < WIDTH)
+	while (++ray < Width)
 	{
-		x = 2 * ray / (double)WIDTH - 1;
+		x = 2 * ray / (double)Width - 1;
 		env->cast->ray->v_dir[X] = env->cam->c_v_dir[X]
 			+ env->cam->c_v_plane[X] * x;
 		env->cast->ray->v_dir[Y] = env->cam->c_v_dir[Y]

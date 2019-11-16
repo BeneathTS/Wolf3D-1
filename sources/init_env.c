@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:18 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 00:01:24 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 10:40:36 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ t_env			*env_init(t_map *map)
 	env->cam = cam_init();
 	env->cast = cast_init();
 	env->cntrls = cntrls_init();
-	env->mode = MENU;
+	env->mode = Menu;
 	if (!(env->mlx = mlx_init()))
 		ft_exit(ERROR_MSG);
-	if (!(env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "Wolf3D")))
+	if (!(env->win = mlx_new_window(env->mlx, Width, Height, "Wolf3D")))
 		ft_exit(ERROR_MSG);
-	if (!(env->img = mlx_new_image(env->mlx, WIDTH, HEIGHT)))
+	if (!(env->img = mlx_new_image(env->mlx, Width, Height)))
 		ft_exit(ERROR_MSG);
 	if (!(env->data_addr = mlx_get_data_addr(env->img,
 		&env->bts_pr_px, &env->sz_ln, &env->endian)))

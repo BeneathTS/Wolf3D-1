@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:13 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/15 23:43:08 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 10:43:26 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ int			key_press(int key, t_env *env)
 
 int			mouse_move(int x, int y, t_env *env)
 {
-	if (env->mode == MENU)
+	if (env->mode == Menu)
 	{
 		bg_paralax(x, y, env);
 		check_button_select(x, y, env);
 		draw_menu(env);
 	}
-	if (env->mode == CHOOSE)
+	if (env->mode == Choose)
 	{
 		bg_paralax(x, y, env);
 		draw_chooser(env);

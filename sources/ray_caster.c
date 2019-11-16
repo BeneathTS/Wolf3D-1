@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:54 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/15 23:32:55 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/16 10:42:48 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 */
 static void set_values(t_cast *cast, t_cam *cam, int *wall_hit)
 {
-	*wall_hit = NO;
+	*wall_hit = No;
 
 	cast->distance = 0;
 
@@ -65,7 +65,7 @@ static void set_values(t_cast *cast, t_cam *cam, int *wall_hit)
 */
 static void wall_search(t_cast *cast, t_env *env, int *wall_hit)
 {
-	while (*wall_hit == NO)
+	while (*wall_hit == No)
 	{
 
 		if (cast->ray->s_dist[H] < cast->ray->s_dist[V])
@@ -81,7 +81,7 @@ static void wall_search(t_cast *cast, t_env *env, int *wall_hit)
 			cast->ray->side = V;
 		}
 		if (env->map->level[env->cast->ray->m_pos[Y]][env->cast->ray->m_pos[X]] > '0')
-			*wall_hit = YES;
+			*wall_hit = Yes;
 	}
 }
 
@@ -99,13 +99,13 @@ void cast_a_ray(t_cast *cast, t_cam *cam, t_env *env)
 
 	set_values(cast, cam, &wall_hit);
 	wall_search(cast, env, &wall_hit);
-	if (wall_hit == YES)
+	if (wall_hit == Yes)
 	{
 		cast->distance = (cast->ray->side == H ? (cast->ray->m_pos[X] - cam->pos[X] +
 		(1 - cast->step[X]) / 2) / cast->ray->v_dir[X]
 		: (cast->ray->m_pos[Y] - cam->pos[Y] +
 		(1 - cast->step[Y]) / 2) / cast->ray->v_dir[Y]);
 
-		cast->wall_height = (int)floor(HEIGHT * 1.27 / cast->distance);
+		cast->wall_height = (int)floor(Height * 1.27 / cast->distance);
 	}
 }	
