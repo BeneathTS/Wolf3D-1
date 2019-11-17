@@ -69,9 +69,9 @@ t_env			*env_init(t_map *map)
 	env->mode = Menu;
 	if (!(env->mlx = mlx_init()))
 		ft_exit(ERROR_MSG);
-	if (!(env->win = mlx_new_window(env->mlx, Width, Height, "Wolf3D")))
+	if (!(env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "Wolf3D")))
 		ft_exit(ERROR_MSG);
-	if (!(env->img = mlx_new_image(env->mlx, Width, Height)))
+	if (!(env->img = mlx_new_image(env->mlx, WIDTH, HEIGHT)))
 		ft_exit(ERROR_MSG);
 	if (!(env->data_addr = mlx_get_data_addr(env->img,
 		&env->bts_pr_px, &env->sz_ln, &env->endian)))

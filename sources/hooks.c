@@ -62,12 +62,12 @@ void		player_move(int key, t_env *env)
 
 int			key_press(int key, t_env *env)
 {
-	if (key == ESC)
+	if (key == ESC && env->mode == Game)
 		x_close(env);
-	if (key == ARR_DOWN || key == ARR_LFT || key == ARR_RGHT ||
-	key == ARR_UP || key == KB_A || key == KB_D)
+	if ((key == ARR_DOWN || key == ARR_LFT || key == ARR_RGHT ||
+	key == ARR_UP || key == KB_A || key == KB_D) && env->mode == Game)
 		rotate(key, env);
-	if (key == KB_W || key == KB_S)
+	if ((key == KB_W || key == KB_S) && env->mode == Game)
 		player_move(key, env);
 	return (0);
 }

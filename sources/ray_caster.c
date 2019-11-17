@@ -109,6 +109,6 @@ void cast_a_ray(t_cast *cast, t_cam *cam, t_env *env)
 		: (cast->ray->m_pos[Y] - cam->pos[Y] +
 		(1 - cast->step[Y]) / 2) / cast->ray->v_dir[Y]);
 
-		cast->wall_height = (int)floor(Height * 1.27 / cast->distance);
+		cast->wall_height = (int)floor(HEIGHT * 1.27 / cast->distance);
 	}
 }	

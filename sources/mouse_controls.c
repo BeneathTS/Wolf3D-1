@@ -12,27 +12,32 @@
 
 #include "wolf3d.h"
 
+// fix dat
 void bg_paralax(int x, int y, t_env *env)
 {
-	if (x > (Width >> 1))
-		env->menu->bg_off[X] = ((x - (Width >> 2)) * 0.02) - 93;
-	if (x < (Width >> 1))
-		env->menu->bg_off[X] = ((x - (Width >> 2)) * 0.02) - 93;
-	if (y > (Height >> 1))
-		env->menu->bg_off[Y] = ((y - (Height >> 2)) * 0.02) - 63;
-	if (y < (Height >> 1))
-		env->menu->bg_off[Y] = ((y - (Height >> 2)) * 0.02) - 63;
+	if (x > (WIDTH >> 1))
+		env->menu->bg_off[X] = ((x - (WIDTH >> 2)) * 0.02) - 0;
+	if (x < (WIDTH >> 1))
+		env->menu->bg_off[X] = ((x - (WIDTH >> 2)) * 0.02) - 0;
+	if (y > (HEIGHT >> 1))
+		env->menu->bg_off[Y] = ((y - (HEIGHT >> 2)) * 0.02) - 0;
+	if (y < (HEIGHT >> 1))
+		env->menu->bg_off[Y] = ((y - (HEIGHT >> 2)) * 0.02) - 0;
 }
 
 void check_button_select(int x, int y, t_env *env)
 {
-	if (x >= 592 && x <= 975 && y >= 243 && y <= 303)
+	if (x >= (WIDTH >> 1) - 49 && x <= (WIDTH >> 1) + 335 && 
+	y >= (HEIGHT >> 1) - 117 && y <= (HEIGHT >> 1) - 59)
 		env->menu->sel_button = '1';
-	else if (x >= 633 && x <= 975 && y >= 310 && y <= 370)
+	else if ((WIDTH >> 1) - 8 && x <= (WIDTH >> 1) + 335 && 
+	y >= (HEIGHT >> 1) - 50 && y <= (HEIGHT >> 1) + 8)
 		env->menu->sel_button = '2';
-	else if (x >= 623 && x <= 975 && y >= 376 && y <= 436)
+	else if (x >= (WIDTH >> 1) - 18 && x <= (WIDTH >> 1) + 335 && 
+	y >= (HEIGHT >> 1) + 16 && y <= (HEIGHT >> 1) + 74)
 		env->menu->sel_button = '3';
-	else if (x >= 563 && x <= 975 && y >= 442 && y <= 502)
+	else if (x >= (WIDTH >> 1) - 78 && x <= (WIDTH >> 1) + 335 && 
+	y >= (HEIGHT >> 1) + 82 && y <= (HEIGHT >> 1) + 140)
 		env->menu->sel_button = '4';
 	else
 		env->menu->sel_button = 0;

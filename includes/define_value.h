@@ -30,11 +30,8 @@ typedef enum			e_type_boolean
 	Yes
 }						t_type_boolean;
 
-typedef enum			e_screen_size
-{
-	Width = 1920,
-	Height = 1080
-}						t_screen_size;
+# define WIDTH 1280
+# define HEIGHT 720
 
 # define LOGO_ALPHA 	0xCD
 
