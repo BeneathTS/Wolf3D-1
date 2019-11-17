@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 10:49:01 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/17 05:30:51 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef enum			e_type_boolean
 
 typedef enum			e_screen_size
 {
-	Width = 1280,
-	Height = 720
+	Width = 1920,
+	Height = 1080
 }						t_screen_size;
 
 # define LOGO_ALPHA 	0xCD
