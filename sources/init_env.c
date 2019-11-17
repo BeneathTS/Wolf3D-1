@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:18 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/17 07:24:48 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/17 22:13:34 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ t_menu			*menu_data_init(t_env *env)
 
 	if (!(menu = (t_menu *)malloc(sizeof(t_menu))))
 		ft_exit(ERROR_MSG);
-	menu->bg_off[X] = -93;
-	menu->bg_off[Y] = -63;
+	menu->bg_off[X] = -350 * (WIDTH / HEIGHT);
+	menu->bg_off[Y] = -400 * (WIDTH / HEIGHT);
 	menu->tex = tex_init(NULL, NULL);
 	(void)env;
 	if (!(menu->scroll = (t_scroll *)malloc(sizeof(t_scroll))))

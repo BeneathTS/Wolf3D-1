@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/17 21:49:52 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/11/17 22:12:45 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 void bg_paralax(int x, int y, t_env *env)
 {
 	if (x > (WIDTH >> 1))
-		env->menu->bg_off[X] = ((x - (WIDTH >> 2)) * 0.02) - 0;
+		env->menu->bg_off[X] = ((x - (WIDTH >> 2)) * 0.02) - 350 * (WIDTH / HEIGHT);
 	if (x < (WIDTH >> 1))
-		env->menu->bg_off[X] = ((x - (WIDTH >> 2)) * 0.02) - 0;
+		env->menu->bg_off[X] = ((x - (WIDTH >> 2)) * 0.02) - 350 * (WIDTH / HEIGHT);
 	if (y > (HEIGHT >> 1))
-		env->menu->bg_off[Y] = ((y - (HEIGHT >> 2)) * 0.02) - 0;
+		env->menu->bg_off[Y] = ((y - (HEIGHT >> 2)) * 0.02) - 400 * (WIDTH / HEIGHT);
 	if (y < (HEIGHT >> 1))
-		env->menu->bg_off[Y] = ((y - (HEIGHT >> 2)) * 0.02) - 0;
+		env->menu->bg_off[Y] = ((y - (HEIGHT >> 2)) * 0.02) - 400 * (WIDTH / HEIGHT);
 }
 
 void check_button_select(int x, int y, t_env *env)
