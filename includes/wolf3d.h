@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 10:38:22 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/17 05:12:28 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define WOLF3D_H
 
 # include <mlx.h>
+# include <SDL.h>
 # include <time.h>
 # include <math.h>
 # include <stdio.h>
