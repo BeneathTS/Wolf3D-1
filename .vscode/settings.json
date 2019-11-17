@@ -5,6 +5,7 @@
 		"titleBar.activeForeground": "#F5FCFB"
 	},
 	"files.associations": {
-		"ft_error.h": "c"
+		"ft_error.h": "c",
+		"ft_string.h": "c"
 	}
 }

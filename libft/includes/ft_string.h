@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 19:29:07 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 04:15:50 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/17 04:12:17 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,5 @@ double				ft_atof(const char *str);
 int					ft_atoi_base(char *nb, int base);
 int		            ft_isnumber(int c);
 char	            *ft_strchrdup(char *str, char chr);
-
+int					ft_find_symb_in_str_arr(char **arr, char symbol);
 #endif
