@@ -6,17 +6,17 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:22 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 11:41:35 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/17 19:42:48 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-t_tex		*tex_init(t_tex *prev, t_tex *next)
+t_tex *tex_init(t_tex *prev, t_tex *next)
 {
-	t_tex	*tex;
+	t_tex *tex;
 
-	if (!(tex = (t_tex*)malloc(sizeof(t_tex))))
+	if (!(tex = (t_tex *)malloc(sizeof(t_tex))))
 		ft_exit(ERROR_MSG);
 	tex->id = 1;
 	tex->tex_ptr = NULL;
@@ -25,11 +25,11 @@ t_tex		*tex_init(t_tex *prev, t_tex *next)
 	return (tex);
 }
 
-t_cam		*cam_init(void)
+t_cam *cam_init(void)
 {
-	t_cam	*cam;
+	t_cam *cam;
 
-	if (!(cam = (t_cam*)malloc(sizeof(t_cam))))
+	if (!(cam = (t_cam *)malloc(sizeof(t_cam))))
 		ft_exit(ERROR_MSG);
 	cam->pos[X] = 1.5;
 	cam->pos[Y] = 1.5;
@@ -48,11 +48,11 @@ t_cam		*cam_init(void)
 	return (cam);
 }
 
-t_map		*map_init(void)
+t_map *map_init(void)
 {
-	t_map	*map;
+	t_map *map;
 
-	if (!(map = (t_map*)malloc(sizeof(t_map))))
+	if (!(map = (t_map *)malloc(sizeof(t_map))))
 		ft_exit(ERROR_MSG);
 	map->width = 0;
 	map->height = 0;
@@ -60,20 +60,20 @@ t_map		*map_init(void)
 	return (map);
 }
 
-t_ray		*ray_init(void)
+t_ray *ray_init(void)
 {
-	t_ray	*ray;
+	t_ray *ray;
 
-	if (!(ray = (t_ray*)malloc(sizeof(t_ray))))
+	if (!(ray = (t_ray *)malloc(sizeof(t_ray))))
 		ft_exit(ERROR_MSG);
 	return (ray);
 }
 
-t_cast		*cast_init(void)
+t_cast *cast_init(void)
 {
-	t_cast	*cast;
+	t_cast *cast;
 
-	if (!(cast = (t_cast*)malloc(sizeof(t_cast))))
+	if (!(cast = (t_cast *)malloc(sizeof(t_cast))))
 		ft_exit(ERROR_MSG);
 	cast->ray = ray_init();
 	return (cast);

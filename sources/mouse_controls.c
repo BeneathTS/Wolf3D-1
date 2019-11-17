@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 10:45:44 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/17 19:46:13 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int push_buttons(int button, int x, int y, t_env *env)
 {
 	if (button == 1 && x >= 592 && x <= 975 && y >= 243 && y <= 303)
 	{
-		env->mode = Choose;
+		env->mode = Game;
+		// env->mode = Choose;
 		draw_chooser(env);
 	}
 	if (button == 1 && x >= 563 && x <= 975 && y >= 442 && y <= 502)

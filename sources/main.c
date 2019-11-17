@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:35 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/17 04:54:23 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/17 19:14:14 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int			main(int argc, char **argv)
 	map = map_init();
 	read_map(argv[1], map);
 	env = env_init(map);
-	//load_textures(env);
+	load_textures(env);
 	load_menu_data(env);
-	draw_menu(env);
-	//renderer(env);
+	// draw_menu(env);
+	renderer(env);
 	init_key_hooks(env);
 	mlx_loop(env->mlx);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/17 05:30:51 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/17 20:09:16 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef enum			e_type_boolean
 	Yes
 }						t_type_boolean;
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 
 # define LOGO_ALPHA 	0xCD
 
@@ -70,7 +70,9 @@ typedef enum			e_type_boolean
 /*
 **	TEXTURE
 */
-# define BS_TEX			"assets/textures/xpm/bluestone.xpm"
-# define WD_TEX			"assets/textures/xpm/wood.xpm"
+# define BS_TEX "assets/textures/xpm/walls/WALL96.xpm"
+# define WD_TEX	"assets/textures/xpm/object/xmastree.xpm"
+// # define BS_TEX			"assets/textures/xpm/bluestone.xpm"
+// # define WD_TEX			"assets/textures/xpm/wood.xpm"
 
 #endif

@@ -68,7 +68,7 @@ $(NAME): $(OBJ)
 	@make lib_refresh
 	@gcc $(FLAGS) -o $(NAME) $(OBJ) -lm -L $(LIB_PATH) $(INC_SDL) $(FRAME) -lft -L $(MLX_PATH) $(MLX_FLAGS)
 	 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC_PATH)/wolf3d.h
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC_PATH)/wolf3d.h $(INC_PATH)/define_value.h
 	@mkdir -p $(OBJ_PATH)
 	@gcc -g $(INC) $(INC_SDL) -o $@ -c $<
 

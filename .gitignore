@@ -1,0 +1,8 @@
+.DS_Store
+.gitmodules
+wolf3D
+.idea
+.vscode
+./objects/
+./includes/libft/objects
+./includes/libft/libft.a

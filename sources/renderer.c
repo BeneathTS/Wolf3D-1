@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:33:01 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/17 07:37:46 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/17 20:04:46 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,34 @@
 ** 1. Fill the bottom half of the screen with color.
 */
 
+static void		draw_flow(t_env *env)
+{
+	int			ct;
+	int			finish;
+	int			ct2;
+	int			img_crd;
+
+	ct = -1;
+	finish = ((HEIGHT >> 1 )) - env->cam->view_height * 0.5;
+	while (++ct < finish)
+	{
+		ct2 = -1;
+		while (++ct2 < WIDTH)
+		{
+			img_crd = ct * WIDTH + ct2;
+			if (img_crd < WIDTH * HEIGHT && img_crd > -1)
+				((int *)env->data_addr)[img_crd] = FLOOR_COLOR;
+		}
+	}
+}
+
 static void		draw_floor(t_env *env)
 {
 	int			ct;
 	int			ct2;
 	int			img_crd;
 
-	ct = (HEIGHT >> 1) - env->cam->view_height * 0.5 - 1;
+	ct = (HEIGHT >> 1) - (env->cam->view_height >> 1) - 1;
 	while (++ct < HEIGHT)
 	{
 		ct2 = -1;
@@ -137,6 +158,7 @@ void			renderer(t_env *env)
 	mlx_clear_window(env->mlx, env->win);
 	ray = -1;
 	draw_floor(env);
+	draw_flow(env);
 	while (++ray < WIDTH)
 	{
 		x = 2 * ray / (double)WIDTH - 1;
