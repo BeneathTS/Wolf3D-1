@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 21:47:18 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/12 12:50:31 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/17 01:40:17 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(s, '\0', n);
+	size_t ct;
+
+	ct = 0;
+	while (ct < n)
+		*(((char*)s) + (ct++)) = 0;
 }

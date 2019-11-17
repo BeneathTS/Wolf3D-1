@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 10:31:36 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 04:16:35 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/17 02:45:09 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin_free(char *s1, char *s2, int num)
 	ct2 = ct;
 	if (NULL == s2 || NULL == s1)
 		return (NULL);
-	nw = ft_safe_malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	nw = ft_memalloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	while (*(s1 + (++ct)))
 		*(nw + ct) = *(s1 + ct);
 	while (*(s2 + (++ct2)))
