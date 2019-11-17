@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_controls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/17 19:46:13 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/17 21:49:52 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,14 @@ void check_button_select(int x, int y, t_env *env)
 
 int push_buttons(int button, int x, int y, t_env *env)
 {
-	if (button == 1 && x >= 592 && x <= 975 && y >= 243 && y <= 303)
+	if (button == 1 && x >= (WIDTH >> 1) - 49 && x <= (WIDTH >> 1) + 335 && y >= (HEIGHT >> 1) - 117 && y <= (HEIGHT >> 1) - 59)
 	{
 		env->mode = Game;
 		// env->mode = Choose;
-		draw_chooser(env);
+		renderer(env);
+		//draw_chooser(env);
 	}
-	if (button == 1 && x >= 563 && x <= 975 && y >= 442 && y <= 502)
+	if (button == 1 && x >= (WIDTH >> 1) - 78 && x <= (WIDTH >> 1) + 335 && y >= (HEIGHT >> 1) + 82 && y <= (HEIGHT >> 1) + 140)
 		x_close(env);
 	return (0);
 }
