@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/18 06:41:59 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/18 06:53:28 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ typedef enum			e_type_boolean
 }						t_type_boolean;
 
 /*
-**	T_1 -> T_3 BAD GUY
-**	T_4 -> T_5 GUN
-**	T_6 -> T_10 GUN ANIMATION
-**	T_11 -> T_37 WALL
+**	T_1 -> T_3		BAD GUY
+**	T_4 -> T_5		GUN
+**	T_6 -> T_10		GUN ANIMATION
+**	T_11 -> T_37	WALL
 */
 
 typedef enum			e_type_texture

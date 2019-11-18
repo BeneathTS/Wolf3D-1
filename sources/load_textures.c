@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:31 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/18 06:46:23 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/18 08:30:15 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ void			load_texture(char *arr_id_tex, t_env **env)
 	{
 		if (!(tex = get_texture_name(i, arr_id_tex)))
 			ft_exit(ERROR_MSG);
-		temp->next = tex_init(temp, NULL);
-		temp = temp->next;
 		if (!(temp->tex_ptr = mlx_xpm_file_to_image((*env)->mlx, tex,
 			&temp->width, &temp->height)))
 			ft_exit(ERROR_MSG);
@@ -73,8 +71,11 @@ void			load_texture(char *arr_id_tex, t_env **env)
 			&temp->sz_ln, &temp->endian)))
 			ft_exit(ERROR_MSG);
 		temp->id = arr_id_tex[i];
-		if (temp->width != TEX_SIZE || temp->height != TEX_SIZE)
-			ft_exit(ERROR_MSG);
+		if (arr_id_tex[i + 1])
+		{
+			temp->next = tex_init(temp, NULL);
+			temp = temp->next;
+		}
 	}
 }
 

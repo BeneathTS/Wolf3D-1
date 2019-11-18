@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:33:01 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/17 20:04:46 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/18 09:12:41 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,16 @@ static void		draw_floor(t_env *env)
 static int		get_color(char tex_id, int tex_x, int tex_y, t_env *env)
 {
 	int			color;
+	t_tex		*tmp;
 
-	while (env->tex->id != tex_id)
+	tmp = env->tex;
+	while (tmp->id != tex_id)
 	{
-		if (tex_id > env->tex->id)
-			env->tex = env->tex->next;
-		else
-			env->tex = env->tex->prev;
-		if (!env->tex)
+		tmp = tmp->next;
+		if (!tmp)
 			ft_exit(ERROR_MSG);
 	}
-	color = ((int *)env->tex->data)[tex_x + tex_y * env->tex->width];
+	color = ((int *)tmp->data)[tex_x + tex_y * tmp->width];
 	return (color);
 }
 
