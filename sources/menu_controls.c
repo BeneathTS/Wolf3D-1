@@ -42,7 +42,7 @@ void check_button_select(int x, int y, t_env *env)
 	if (x >= (WIDTH >> 1) - 49 && x <= (WIDTH >> 1) + 335 && 
 	y >= (HEIGHT >> 1) - 117 && y <= (HEIGHT >> 1) - 59)
 		env->menu->sel_button = '1';
-	else if ((WIDTH >> 1) - 8 && x <= (WIDTH >> 1) + 335 && 
+	else if (x >= (WIDTH >> 1) - 8 && x <= (WIDTH >> 1) + 335 && 
 	y >= (HEIGHT >> 1) - 50 && y <= (HEIGHT >> 1) + 8)
 		env->menu->sel_button = '2';
 	else if (x >= (WIDTH >> 1) - 18 && x <= (WIDTH >> 1) + 335 && 
