@@ -6,29 +6,84 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:31 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/17 20:16:10 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/18 06:46:23 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void load_textures(t_env *env)
+static int		find_in_arr_text(int value, char *arr_id_tex)
 {
-	t_tex *temp;
-	
-	env->tex = tex_init(NULL, NULL);
-	env->tex->tex_ptr = mlx_xpm_file_to_image(env->mlx, BS_TEX, &env->tex->width, &env->tex->height);
-	env->tex->data = mlx_get_data_addr(env->tex->tex_ptr, &env->tex->bts_pr_px, &env->tex->sz_ln, &env->tex->endian);
-	env->tex->id = '1';
-	if (env->tex->width  != TEX_SIZE || env->tex->height != TEX_SIZE)
-		ft_exit(ERROR_MSG);
-	temp = env->tex;
-	env->tex->next = tex_init(env->tex, NULL);
-	env->tex = env->tex->next;
-	env->tex->tex_ptr = mlx_xpm_file_to_image(env->mlx, WD_TEX, &env->tex->width, &env->tex->height);
-	env->tex->data = mlx_get_data_addr(env->tex->tex_ptr, &env->tex->bts_pr_px, &env->tex->sz_ln, &env->tex->endian);
-	env->tex->id = '2';
-	if (env->tex->width != TEX_SIZE || env->tex->height != TEX_SIZE)
-		ft_exit(ERROR_MSG);
-	env->tex = temp;
+	int			i;
+
+	i = -1;
+	if (!arr_id_tex[0])
+		return (0);
+	while (++i < NBR_TEXTURES)
+	{
+		if (arr_id_tex[i] == value)
+			return (-1);
+		if (!arr_id_tex[i])
+			return (i);
+	}
+	return (-1);
+}
+
+static void		get_arr_text_id(char *arr_id_tex, t_env *env)
+{
+	int			i;
+	int			id;
+	int			k;
+
+	i = -1;
+	while (env->map->level[++i])
+	{
+		k = -1;
+		while (env->map->level[i][++k])
+		{
+			if (env->map->level[i][k] != '0')
+			{
+				if ((id = find_in_arr_text((int)env->map->level[i][k],
+					arr_id_tex)) != -1)
+					arr_id_tex[id] = env->map->level[i][k];
+			}
+		}
+	}
+}
+
+void			load_texture(char *arr_id_tex, t_env **env)
+{
+	int			i;
+	char		*tex;
+	t_tex		*temp;
+
+	i = -1;
+	(*env)->tex = tex_init(NULL, NULL);
+	temp = (*env)->tex;
+	while (arr_id_tex[++i])
+	{
+		if (!(tex = get_texture_name(i, arr_id_tex)))
+			ft_exit(ERROR_MSG);
+		temp->next = tex_init(temp, NULL);
+		temp = temp->next;
+		if (!(temp->tex_ptr = mlx_xpm_file_to_image((*env)->mlx, tex,
+			&temp->width, &temp->height)))
+			ft_exit(ERROR_MSG);
+		if (!(temp->data = mlx_get_data_addr(temp->tex_ptr, &temp->bts_pr_px,
+			&temp->sz_ln, &temp->endian)))
+			ft_exit(ERROR_MSG);
+		temp->id = arr_id_tex[i];
+		if (temp->width != TEX_SIZE || temp->height != TEX_SIZE)
+			ft_exit(ERROR_MSG);
+	}
+}
+
+void			load_textures(t_env *env)
+{
+	char		*arr_id_tex;
+
+	arr_id_tex = ft_strnew(NBR_TEXTURES);
+	get_arr_text_id(arr_id_tex, env);
+	load_texture(arr_id_tex, &env);
+	ft_strdel(&arr_id_tex);
 }

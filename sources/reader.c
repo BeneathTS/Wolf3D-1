@@ -6,11 +6,25 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:56 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/17 04:59:17 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/18 04:22:47 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+static void			check_symbols_illegal(char *file)
+{
+	int				i;
+
+	i = -1;
+	while (file[++i])
+	{
+		if (((int)file[i] >= T_1 && (int)file[i] <= T_37))
+			continue ;
+		else
+			ft_exit(ERROR_SYMBOLS);
+	}
+}
 
 static void			fill_line(int i, char **split_whitespace, t_map **map)
 {
@@ -38,6 +52,7 @@ static void			fill_map(char **split_slash_n, t_map **map)
 	if (((*map)->width = ft_len_arr(split_whitespace)) == 0)
 		ft_exit(ERROR_INPUT);
 	fill_line(i, split_whitespace, map);
+	check_symbols_illegal((*map)->level[i]);
 	ft_destroy_string_arr(split_whitespace);
 	while (split_slash_n[++i])
 	{
@@ -45,21 +60,8 @@ static void			fill_map(char **split_slash_n, t_map **map)
 		if ((*map)->width != ft_len_arr(split_whitespace))
 			ft_exit(ERROR_INPUT);
 		fill_line(i, split_whitespace, map);
+		check_symbols_illegal((*map)->level[i]);
 		ft_destroy_string_arr(split_whitespace);
-	}
-}
-
-static void			check_symbols_illegal(char *file)
-{
-	int				i;
-
-	i = -1;
-	while (file[++i])
-	{
-		if (ft_isdigit(file[i]) || file[i] == ' ' || file[i] == '\n')
-			continue ;
-		else
-			ft_exit(ERROR_SYMBOLS);
 	}
 }
 
@@ -87,7 +89,6 @@ void				read_map(const char *level_name, t_map *map)
 
 	if (!(file = read_big_file(file, (char *)level_name)))
 		ft_exit(ERROR_INPUT);
-	check_symbols_illegal(file);
 	split_slash_n = ft_strsplit(file, '\n');
 	ft_strdel(&file);
 	if ((map->height = ft_len_arr(split_slash_n)) == 0)

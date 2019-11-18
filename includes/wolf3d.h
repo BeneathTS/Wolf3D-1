@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/17 05:12:28 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/18 06:42:11 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,7 @@ typedef struct			s_env
 /*
 ** Data init functions
 */
+char					*get_texture_name(int i, char *arr_id_tex);
 void					read_map(const char *level_name, t_map *map);
 t_tex					*tex_init(t_tex *prev, t_tex *next);
 t_env					*env_init(t_map *map);

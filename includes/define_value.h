@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/18 01:33:21 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/18 06:41:59 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ typedef enum			e_type_boolean
 	No,
 	Yes
 }						t_type_boolean;
+
+/*
+**	T_1 -> T_3 BAD GUY
+**	T_4 -> T_5 GUN
+**	T_6 -> T_10 GUN ANIMATION
+**	T_11 -> T_37 WALL
+*/
 
 typedef enum			e_type_texture
 {
@@ -68,12 +75,13 @@ typedef enum			e_type_texture
 	T_34,
 	T_35,
 	T_36,
-	T_37,
-	T_38,
+	T_37
 }						t_type_texture;
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH			1920
+# define HEIGHT			1080
+
+# define NBR_TEXTURES	37
 
 # define LOGO_ALPHA 	0xCD
 
@@ -109,9 +117,6 @@ typedef enum			e_type_texture
 # define SCRL_BASE 		"assets/menu/XPM/scroll_base.xpm"
 # define SCRL 			"assets/menu/XPM/scroller.xpm"
 
-# define BS_TEX			"assets/textures/xpm/walls/WALL51.xpm" //DELETE
-# define WD_TEX			"assets/textures/xpm/walls/WALL96.xpm"//DELETE
-
 /*
 **	TEXTURE FOR BAD GUY
 */
@@ -135,11 +140,7 @@ typedef enum			e_type_texture
 # define GUN_5			"assets/textures/xpm/gun/gun_1_animation/gun_5"
 
 /*
-**	TEXTURE FOR BAD OBJECTS
-*/
-
-/*
-**	TEXTURE FOR BAD WALL
+**	TEXTURE FOR WALL
 */
 # define WALL0			"assets/textures/xpm/walls/WALL0.xpm"
 # define WALL3			"assets/textures/xpm/walls/WALL3.xpm"
@@ -169,7 +170,5 @@ typedef enum			e_type_texture
 # define WALL89			"assets/textures/xpm/walls/WALL89.xpm"
 # define WALL92			"assets/textures/xpm/walls/WALL92.xpm"
 # define WALL96			"assets/textures/xpm/walls/WALL96.xpm"
-
-//37 текстур
 
 #endif

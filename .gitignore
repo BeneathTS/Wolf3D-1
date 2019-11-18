@@ -3,7 +3,7 @@
 wolf3D
 .idea
 .vscode
-./objects/
+./objects/*
 ./mlx/*.o
 ./mlx/*.a
 ./libft/objects
