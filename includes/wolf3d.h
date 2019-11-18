@@ -211,4 +211,6 @@ void					set_alpha(char *data, int width, int height,
 							unsigned int alpha_value);
 int						push_buttons(int button, int x, int y, t_env *env);
 void					draw_chooser(t_env *env);
+void					menu_controls(int x, int y, t_env *env);
+void					menu_push_buttons(int x, int y, t_env *env);
 #endif

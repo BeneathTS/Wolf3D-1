@@ -60,43 +60,24 @@ void		player_move(int key, t_env *env)
 	renderer(env);
 }
 
-// int			key_press(int key, t_env *env)
-// {
-// 	if (key == ESC && env->mode == Game)
-// 		x_close(env);
-// 	if ((key == ARR_DOWN || key == ARR_LFT || key == ARR_RGHT ||
-// 	key == ARR_UP || key == KB_A || key == KB_D) && env->mode == Game)
-// 		rotate(key, env);
-// 	if ((key == KB_W || key == KB_S) && env->mode == Game)
-// 		player_move(key, env);
-// 	return (0);
-// }
-
 int			key_press(int key, t_env *env)
 {
 	if (key == ESC)
 		x_close(env);
-	if ((key == ARR_DOWN || key == ARR_LFT || key == ARR_RGHT ||
-	key == ARR_UP || key == KB_A || key == KB_D) && env->mode == Game)
+	if(env->mode != Game)
+		return (0);
+	if (key == ARR_DOWN || key == ARR_LFT || key == ARR_RGHT ||
+	key == ARR_UP || key == KB_A || key == KB_D)
 		rotate(key, env);
-	if ((key == KB_W || key == KB_S) && env->mode == Game)
+	if (key == KB_W || key == KB_S)
 		player_move(key, env);
 	return (0);
 }
 
 int			mouse_move(int x, int y, t_env *env)
 {
-	if (env->mode == Menu)
-	{
-		bg_paralax(x, y, env);
-		check_button_select(x, y, env);
-		draw_menu(env);
-	}
-	if (env->mode == Choose)
-	{
-		bg_paralax(x, y, env);
-		draw_chooser(env);
-	}
+	if (env->mode != Game)
+		menu_controls(x, y, env);
 	return (0);
 }
 

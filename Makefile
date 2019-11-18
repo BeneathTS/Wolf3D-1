@@ -59,7 +59,8 @@ SRC_NAME =	main.c 				\
 			menu.c 				\
 			level_chooser.c 	\
 			close.c				\
-			get_texture_name.c
+			get_texture_name.c	\
+			menu_controls.c		\
 						
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
