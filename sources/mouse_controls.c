@@ -16,5 +16,7 @@ int push_buttons(int button, int x, int y, t_env *env)
 {
 	if (env->mode == Menu && button == 1)
 		menu_push_buttons(x, y, env);
+	if (env->mode == Settings && button == 1)
+		settings_push_buttons(x, y, env);
 	return (0);
 }

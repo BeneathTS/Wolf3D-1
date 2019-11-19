@@ -12,34 +12,28 @@
 
 #include "wolf3d.h"
 
-static void		draw_scroll_base(t_menu *menu)
-{
-	int y;
-	int finish;
-
-	y = -1;
-	finish = 645;
-	while (++y < finish)
-		((int *)menu->scroll->img_data)[y] = 0xCDFFFFFF;
-}
-
 t_menu			*menu_data_init(t_env *env)
 {
 	t_menu		*menu;
 
+	(void)env;
 	if (!(menu = (t_menu *)malloc(sizeof(t_menu))))
 		ft_exit(ERROR_MSG);
 	menu->bg_off[X] = -350 * (WIDTH / HEIGHT);
 	menu->bg_off[Y] = -400 * (WIDTH / HEIGHT);
-	menu->tex = tex_init(NULL, NULL);
-	(void)env;
-	if (!(menu->scroll = (t_scroll *)malloc(sizeof(t_scroll))))
+	menu->main = tex_init(NULL, NULL);
+	menu->chooser = tex_init(NULL, NULL);
+	menu->settings = tex_init(NULL, NULL);
+	if (!(menu->controls = (t_menu_controls *)malloc(sizeof(t_menu_controls))))
 		ft_exit(ERROR_MSG);
-	menu->scroll->img_ptr = mlx_new_image(env->mlx, 1, 645);
-	menu->scroll->img_data = mlx_get_data_addr(menu->scroll->img_ptr,
-		&menu->scroll->bts_pr_px, &menu->scroll->sz_ln, &menu->scroll->endian);
-	menu->scroll->offset = 0;
-	draw_scroll_base(menu);
+	menu->controls->v_pos[X] = 0;
+	menu->controls->v_pos[Y] = 0;
+	menu->controls->m_pos[X] = 0;
+	menu->controls->m_pos[Y] = 0;
+	menu->controls->r_pos[X] = 0;
+	menu->controls->r_pos[Y] = 0;
+	menu->controls->s_pos[X] = 0;
+	menu->controls->s_pos[Y] = 0;
 	return (menu);
 }
 

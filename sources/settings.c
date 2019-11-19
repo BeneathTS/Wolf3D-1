@@ -12,9 +12,44 @@
 
 #include "wolf3d.h"
 
+static void draw_back_button(t_env *env)
+{
+	if (env->menu->sel_button == 'b')
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->back_button->prev->tex_ptr, WIDTH - 284, HEIGHT - 134);
+	else
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->back_button->tex_ptr, WIDTH - 284, HEIGHT - 134);
+}
+
+static void draw_rollers_and_titles(t_env *env)
+{
+	if (env->menu->settings->id == 'M')
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 218, 148);
+	if (env->menu->settings->id == 'R')
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 218, 343);
+	if (env->menu->settings->id == 'V')
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 218, 522);
+	if (env->menu->settings->id == '1')
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 233, 212);
+	if (env->menu->settings->id == '2')
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 233, 406);
+	if (env->menu->settings->id == '3')
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 233, 581);
+	if (env->menu->settings->id == '4')
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 218, 222);
+	if (env->menu->settings->id == '5')
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 218, 416);
+	if (env->menu->settings->id == '6')
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 218, 591);
+}
+
 void	draw_settings(t_env *env)
 {
 	mlx_clear_window(env->mlx, env->win);
-	mlx_put_image_to_window(env->mlx, env->win, env->menu->first->tex_ptr,
-		env->menu->bg_off[X], env->menu->bg_off[Y]);
+	
+	env->menu->settings = env->menu->first_tex[Settings];
+	mlx_put_image_to_window(env->mlx, env->win, env->menu->first_tex[Menu]->tex_ptr, env->menu->bg_off[X], env->menu->bg_off[Y]);
+	draw_rollers_and_titles(env);
+	while ((env->menu->settings = env->menu->settings->next))
+		draw_rollers_and_titles(env);
+	draw_back_button(env);
 }

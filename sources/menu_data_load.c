@@ -40,49 +40,56 @@ static void load_buttons(t_env * env)
 	ct = -1;
 	while (++ct < 8)
 	{
-	env->menu->tex->next = tex_init(env->menu->tex, NULL);
-	env->menu->tex = env->menu->tex->next;
-	env->menu->tex->tex_ptr = mlx_xpm_file_to_image(env->mlx, get_image(ct), &env->menu->tex->width, &env->menu->tex->height);
-	env->menu->tex->data = mlx_get_data_addr(env->menu->tex->tex_ptr, &env->menu->tex->bts_pr_px, &env->menu->tex->sz_ln, &env->menu->tex->endian);
-	env->menu->tex->id = '1' + ct;
+	env->menu->main->next = tex_init(env->menu->main, NULL);
+	env->menu->main = env->menu->main->next;
+	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, get_image(ct), &env->menu->main->width, &env->menu->main->height);
+	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr, &env->menu->main->bts_pr_px, &env->menu->main->sz_ln, &env->menu->main->endian);
+	env->menu->main->id = '1' + ct;
 	if (ct < 4)
-		set_alpha(env->menu->tex->data, env->menu->tex->width, env->menu->tex->height, BUTTONS_ALPHA);
+		set_alpha(env->menu->main->data, env->menu->main->width, env->menu->main->height, BUTTONS_ALPHA);
 	}
 }
 
 static void load_logo(t_env *env)
 {
-	env->menu->tex->next = tex_init(env->menu->tex, NULL);
-	env->menu->tex = env->menu->tex->next;
-	env->menu->tex->tex_ptr = mlx_xpm_file_to_image(env->mlx, LG_IMG, &env->menu->tex->width, &env->menu->tex->height);
-	env->menu->tex->data = mlx_get_data_addr(env->menu->tex->tex_ptr, &env->menu->tex->bts_pr_px, &env->menu->tex->sz_ln, &env->menu->tex->endian);
-	env->menu->tex->id = 'L';
-	set_alpha(env->menu->tex->data, env->menu->tex->width, env->menu->tex->height, LOGO_ALPHA);
+	env->menu->main->next = tex_init(env->menu->main, NULL);
+	env->menu->main = env->menu->main->next;
+	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, LG_IMG, &env->menu->main->width, &env->menu->main->height);
+	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr, &env->menu->main->bts_pr_px, &env->menu->main->sz_ln, &env->menu->main->endian);
+	env->menu->main->id = 'L';
+	set_alpha(env->menu->main->data, env->menu->main->width, env->menu->main->height, LOGO_ALPHA);
 
-	env->menu->tex->next = tex_init(env->menu->tex, NULL);
-	env->menu->tex = env->menu->tex->next;
-	env->menu->tex->tex_ptr = mlx_xpm_file_to_image(env->mlx, LG_BASE, &env->menu->tex->width, &env->menu->tex->height);
-	env->menu->tex->data = mlx_get_data_addr(env->menu->tex->tex_ptr, &env->menu->tex->bts_pr_px, &env->menu->tex->sz_ln, &env->menu->tex->endian);
-	env->menu->tex->id = 'W';
+	env->menu->main->next = tex_init(env->menu->main, NULL);
+	env->menu->main = env->menu->main->next;
+	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, LG_BASE, &env->menu->main->width, &env->menu->main->height);
+	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr, &env->menu->main->bts_pr_px, &env->menu->main->sz_ln, &env->menu->main->endian);
+	env->menu->main->id = 'W';
 }
 
-static void load_chooser_scroll(t_env *env)
+static void load_back_button(t_env *env)
 {
-	env->menu->chsr = tex_init(NULL, NULL);
-	env->menu->chsr->tex_ptr = mlx_xpm_file_to_image(env->mlx, SCRL, &env->menu->chsr->width, &env->menu->chsr->height);
-	env->menu->chsr->data = mlx_get_data_addr(env->menu->chsr->tex_ptr, &env->menu->chsr->bts_pr_px, &env->menu->chsr->sz_ln, &env->menu->chsr->endian);
-	env->menu->chsr->id = 'S';
+	env->menu->back_button = tex_init(NULL, NULL);
+	env->menu->back_button->tex_ptr = mlx_xpm_file_to_image(env->mlx, BCK_BTN, &env->menu->back_button->width, &env->menu->back_button->height);
+	env->menu->back_button->data = mlx_get_data_addr(env->menu->back_button->tex_ptr, &env->menu->back_button->bts_pr_px, &env->menu->back_button->sz_ln, &env->menu->back_button->endian);
+	env->menu->back_button->id = 'Z';
+
+	env->menu->back_button->next = tex_init(env->menu->back_button, NULL);
+	env->menu->back_button = env->menu->back_button->next;
+	env->menu->back_button->tex_ptr = mlx_xpm_file_to_image(env->mlx, BCK_BTN, &env->menu->back_button->width, &env->menu->back_button->height);
+	env->menu->back_button->data = mlx_get_data_addr(env->menu->back_button->tex_ptr, &env->menu->back_button->bts_pr_px, &env->menu->back_button->sz_ln, &env->menu->back_button->endian);
+	env->menu->back_button->id = 'z';
+	set_alpha(env->menu->back_button->data, env->menu->back_button->width, env->menu->back_button->height, BUTTONS_ALPHA);
 }
 
 void load_menu_data(t_env * env)
 {
-	env->menu->tex->tex_ptr = mlx_xpm_file_to_image(env->mlx, BG_IMG, &env->menu->tex->width, &env->menu->tex->height);
-	env->menu->tex->data = mlx_get_data_addr(env->menu->tex->tex_ptr, &env->menu->tex->bts_pr_px, &env->menu->tex->sz_ln, &env->menu->tex->endian);
-	env->menu->tex->id = 'B';
+	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, BG_IMG, &env->menu->main->width, &env->menu->main->height);
+	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr, &env->menu->main->bts_pr_px, &env->menu->main->sz_ln, &env->menu->main->endian);
+	env->menu->main->id = 'B';
 
-	env->menu->first = env->menu->tex;
+	env->menu->first_tex[Menu] = env->menu->main;
 
 	load_logo(env);
 	load_buttons(env);
-	load_chooser_scroll(env);
+	load_back_button(env);
 }

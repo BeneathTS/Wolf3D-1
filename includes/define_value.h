@@ -103,19 +103,26 @@ typedef enum			e_type_texture
 /*
 **	MENU
 */
-# define BG_IMG 		"assets/menu/XPM/background.xpm"
-# define LG_IMG 		"assets/menu/XPM/logo.xpm"
-# define LG_BASE 		"assets/menu/XPM/logo_base.xpm"
-# define BT1 			"assets/menu/XPM/bt1.xpm"
-# define BT2 			"assets/menu/XPM/bt2.xpm"
-# define BT3 			"assets/menu/XPM/bt3.xpm"
-# define BT4 			"assets/menu/XPM/bt4.xpm"
-# define BT1_ACTIVE 	"assets/menu/XPM/bt5.xpm"
-# define BT2_ACTIVE 	"assets/menu/XPM/bt6.xpm"
-# define BT3_ACTIVE 	"assets/menu/XPM/bt7.xpm"
-# define BT4_ACTIVE 	"assets/menu/XPM/bt8.xpm"
-# define SCRL_BASE 		"assets/menu/XPM/scroll_base.xpm"
-# define SCRL 			"assets/menu/XPM/scroller.xpm"
+# define BG_IMG 		"assets/menu/XPM/main/background.xpm"
+# define LG_IMG 		"assets/menu/XPM/main/logo.xpm"
+# define LG_BASE 		"assets/menu/XPM/main/logo_base.xpm"
+# define BT1 			"assets/menu/XPM/main/bt1.xpm"
+# define BT2 			"assets/menu/XPM/main/bt2.xpm"
+# define BT3 			"assets/menu/XPM/main/bt3.xpm"
+# define BT4 			"assets/menu/XPM/main/bt4.xpm"
+# define BT1_ACTIVE 	"assets/menu/XPM/main/bt5.xpm"
+# define BT2_ACTIVE 	"assets/menu/XPM/main/bt6.xpm"
+# define BT3_ACTIVE 	"assets/menu/XPM/main/bt7.xpm"
+# define BT4_ACTIVE 	"assets/menu/XPM/main/bt8.xpm"
+# define SCRL_BASE 		"assets/menu/XPM/main/scroll_base.xpm"
+# define SCRL 			"assets/menu/XPM/main/scroller.xpm"
+
+# define MV_STTNG		"assets/menu/XPM/settings/moving_title.xpm"
+# define RT_STTNG		"assets/menu/XPM/settings/rotation_title.xpm"
+# define VLM_STTNG		"assets/menu/XPM/settings/volume_title.xpm"
+# define CNTRL_RLLR		"assets/menu/XPM/settings/settings_roller.xpm"
+
+# define BCK_BTN		"assets/menu/XPM/back_button.xpm"
 
 /*
 **	TEXTURE FOR BAD GUY

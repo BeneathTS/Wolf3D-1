@@ -61,6 +61,9 @@ SRC_NAME =	main.c 				\
 			close.c				\
 			get_texture_name.c	\
 			menu_controls.c		\
+			settings.c			\
+			settings_data_load.c\
+			settings_controls.c	\
 						
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

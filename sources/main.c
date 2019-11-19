@@ -24,7 +24,8 @@ int			main(int argc, char **argv)
 	env = env_init(map);
 	load_textures(env);
 	load_menu_data(env);
-	draw_menu(env);
+	load_settings_data(env);
+	draw_main_menu(env);
 	init_key_hooks(env);
 	mlx_loop(env->mlx);
 	return (0);

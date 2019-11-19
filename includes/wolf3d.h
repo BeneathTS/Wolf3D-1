@@ -126,24 +126,24 @@ typedef	struct			s_cam
 	float				r_speed;
 }						t_cam;
 
-typedef struct			s_scroll
+typedef struct			s_menu_controls
 {
-	void				*img_ptr;
-	char				*img_data;
-	int					bts_pr_px;
-	int					sz_ln;
-	int					endian;
-	int					offset;
-}						t_scroll;
+	int					v_pos[2];
+	int					m_pos[2];
+	int					r_pos[2];
+	int					s_pos[2];
+}						t_menu_controls;
 
 typedef struct			s_menu
 {
 	int					bg_off[2];
 	char				sel_button;
-	t_tex				*tex;
-	t_tex				*first;
-	t_tex				*chsr;
-	t_scroll			*scroll;
+	t_tex				*first_tex[4];
+	t_tex				*main;
+	t_tex				*chooser;
+	t_tex				*settings;
+	t_tex				*back_button;
+	t_menu_controls		*controls;
 }						t_menu;
 
 /*
@@ -204,13 +204,16 @@ void					load_textures(t_env *env);
 int						x_close(t_env *env);
 
 void					load_menu_data(t_env *env);
-void					draw_menu(t_env *env);
+void					draw_main_menu(t_env *env);
 void					bg_paralax(int x, int y, t_env *env);
-void					check_button_select(int x, int y, t_env *env);
 void					set_alpha(char *data, int width, int height,
 							unsigned int alpha_value);
 int						push_buttons(int button, int x, int y, t_env *env);
-void					draw_chooser(t_env *env);
+//void					draw_chooser(t_env *env);
+void					draw_settings(t_env *env);
+void					load_settings_data(t_env *env);
 void					menu_controls(int x, int y, t_env *env);
 void					menu_push_buttons(int x, int y, t_env *env);
+void					settings_push_buttons(int x, int y, t_env *env);
+void settings_controls(int x, int y, t_env *env);
 #endif
