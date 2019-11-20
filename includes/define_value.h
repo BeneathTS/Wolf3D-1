@@ -120,6 +120,7 @@ typedef enum			e_type_texture
 # define MV_STTNG		"assets/menu/XPM/settings/moving_title.xpm"
 # define RT_STTNG		"assets/menu/XPM/settings/rotation_title.xpm"
 # define VLM_STTNG		"assets/menu/XPM/settings/volume_title.xpm"
+# define DPTH_STTNG		"assets/menu/XPM/settings/depth_title.xpm"
 # define CNTRL_RLLR		"assets/menu/XPM/settings/settings_roller.xpm"
 
 # define BCK_BTN		"assets/menu/XPM/back_button.xpm"

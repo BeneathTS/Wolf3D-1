@@ -6,6 +6,8 @@ static char *get_image(int ct)
 		return (RT_STTNG);
 	if (ct == 1)
 		return (VLM_STTNG);
+	if (ct == 2)
+		return (DPTH_STTNG);
 	return (NULL);
 }
 
@@ -17,13 +19,18 @@ static void load_titles(t_env *env)
 	env->menu->settings->data = mlx_get_data_addr(env->menu->settings->tex_ptr, &env->menu->settings->bts_pr_px, &env->menu->settings->sz_ln, &env->menu->settings->endian);
 	env->menu->settings->id = 'M';
 	ct = -1;
-	while (++ ct < 2)
+	while (++ct < 3)
 	{
 		env->menu->settings->next = tex_init(env->menu->settings, NULL);
 		env->menu->settings = env->menu->settings->next;
 		env->menu->settings->tex_ptr = mlx_xpm_file_to_image(env->mlx, get_image(ct), &env->menu->settings->width, &env->menu->settings->height);
 		env->menu->settings->data = mlx_get_data_addr(env->menu->settings->tex_ptr, &env->menu->settings->bts_pr_px, &env->menu->settings->sz_ln, &env->menu->settings->endian);
-		env->menu->settings->id = 'R' + (ct * 4);
+		if (ct == 0)
+			env->menu->settings->id = 'R';
+		if (ct == 1)
+			env->menu->settings->id = 'V';
+		if (ct == 2)
+			env->menu->settings->id = 'D';
 	}
 }
 
@@ -46,7 +53,7 @@ static void load_rollers(t_env *env)
 	int ct;
 
 	ct = -1;
-	while (++ct < 3)
+	while (++ct < 4)
 	{
 		env->menu->settings->next = tex_init(env->menu->settings, NULL);
 		env->menu->settings = env->menu->settings->next;
@@ -55,13 +62,13 @@ static void load_rollers(t_env *env)
 		env->menu->settings->id = '1' + ct;
 	}
 	ct = -1;
-	while (++ct < 3)
+	while (++ct < 4)
 	{
 		env->menu->settings->next = tex_init(env->menu->settings, NULL);
 		env->menu->settings = env->menu->settings->next;
 		env->menu->settings->tex_ptr = mlx_new_image(env->mlx, 400, 2);
 		env->menu->settings->data = mlx_get_data_addr(env->menu->settings->tex_ptr, &env->menu->settings->bts_pr_px, &env->menu->settings->sz_ln, &env->menu->settings->endian);
-		env->menu->settings->id = '4' + ct;
+		env->menu->settings->id = '5' + ct;
 		generate_rollers_base(env);
 	}
 }

@@ -29,6 +29,7 @@ t_menu			*menu_data_init(t_env *env)
 	menu->controls->m_pos = 208 + 402 * env->cam->m_speed;
 	menu->controls->r_pos = 208 + 134 * env->cam->r_speed;
 	menu->controls->v_pos = 208;
+	menu->controls->d_pos = 208;
 	menu->controls->s_pos = 0;
 	menu->controls->pressed[0] = No;
 	menu->controls->pressed[1] = No;

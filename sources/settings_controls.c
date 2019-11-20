@@ -10,30 +10,21 @@ static void change_values(t_env *env)
 
 void move_rollers(int x, int y, t_env *env)
 {
+	int *value;
+
 	if (env->menu->controls->pressed[0])
-	{
-		env->menu->controls->m_pos = x - 12;
-		if (x > 610 + 12)
-			env->menu->controls->m_pos = 610;
-		if (x < 208 + 12)
-			env->menu->controls->m_pos = 208;
-	}
+		value = &env->menu->controls->m_pos;
 	else if (env->menu->controls->pressed[1])
-	{
-		env->menu->controls->r_pos = x - 12;
-		if (x > 610 + 12)
-			env->menu->controls->r_pos = 610;
-		if (x < 208 + 12)
-			env->menu->controls->r_pos = 208;
-	}
+		value = &env->menu->controls->r_pos;
 	else if (env->menu->controls->pressed[2])
-	{
-		env->menu->controls->v_pos = x - 12;
-		if (x > 610 + 12)
-			env->menu->controls->v_pos = 610;
-		if (x < 208 + 12)
-			env->menu->controls->v_pos = 208;
-	}
+		value = &env->menu->controls->v_pos;
+	else if (env->menu->controls->pressed[3])
+		value = &env->menu->controls->d_pos;
+	*value = x - 12;
+	if (x > 610 + 12)
+		*value = 610;
+	if (x < 208 + 12)
+		*value = 208;
 	change_values(env);
 }
 
@@ -58,6 +49,8 @@ void settings_push_buttons(int x, int y, t_env *env)
 		env->menu->controls->pressed[1] = Yes;
 	if (x >= env->menu->controls->v_pos && x <= env->menu->controls->v_pos + 22 && y >= 583 && y <= 603)
 		env->menu->controls->pressed[2] = Yes;
+	if (x >= env->menu->controls->d_pos && x <= env->menu->controls->d_pos + 22 && y >= 757 && y <= 777)
+		env->menu->controls->pressed[3] = Yes;
 }
 
 void settings_controls(int x, int y, t_env *env)
@@ -65,7 +58,7 @@ void settings_controls(int x, int y, t_env *env)
 	bg_paralax(x, y, env);
 	check_button_select(x, y, env);
 	if (env->menu->controls->pressed[0] || env->menu->controls->pressed[1] ||
-		env->menu->controls->pressed[2])
+		env->menu->controls->pressed[2] || env->menu->controls->pressed[3])
 		move_rollers(x, y, env);
 	draw_settings(env);
 }

@@ -132,6 +132,7 @@ typedef struct			s_menu_controls
 	int					m_pos;
 	int					r_pos;
 	int					s_pos;
+	int					d_pos;
 	char				pressed[4];
 }						t_menu_controls;
 
