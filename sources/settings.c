@@ -29,11 +29,11 @@ static void draw_rollers_and_titles(t_env *env)
 	if (env->menu->settings->id == 'V')
 		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 218, 522);
 	if (env->menu->settings->id == '1')
-		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 233, 212);
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, env->menu->controls->m_pos, 212);
 	if (env->menu->settings->id == '2')
-		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 233, 406);
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, env->menu->controls->r_pos, 406);
 	if (env->menu->settings->id == '3')
-		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 233, 581);
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, env->menu->controls->v_pos, 581);
 	if (env->menu->settings->id == '4')
 		mlx_put_image_to_window(env->mlx, env->win, env->menu->settings->tex_ptr, 218, 222);
 	if (env->menu->settings->id == '5')

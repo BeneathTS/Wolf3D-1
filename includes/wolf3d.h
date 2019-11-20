@@ -128,10 +128,11 @@ typedef	struct			s_cam
 
 typedef struct			s_menu_controls
 {
-	int					v_pos[2];
-	int					m_pos[2];
-	int					r_pos[2];
-	int					s_pos[2];
+	int					v_pos;
+	int					m_pos;
+	int					r_pos;
+	int					s_pos;
+	char				pressed[4];
 }						t_menu_controls;
 
 typedef struct			s_menu

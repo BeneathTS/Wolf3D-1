@@ -43,8 +43,8 @@ t_cam *cam_init(void)
 	cam->c_v_plane[Y] = cam->v_plane[Y];
 	cam->view_height = 0;
 	cam->depth = 5;
-	cam->m_speed = 0.1;
-	cam->r_speed = 1.3;
+	cam->m_speed = 0.1; // 0 - 1.0
+	cam->r_speed = 1.3; // 0 - 3.0
 	return (cam);
 }
 

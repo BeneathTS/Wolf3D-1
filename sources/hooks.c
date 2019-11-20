@@ -76,8 +76,22 @@ int			key_press(int key, t_env *env)
 
 int			mouse_move(int x, int y, t_env *env)
 {
-	if (env->mode != Game)
+	if (env->mode == Menu)
 		menu_controls(x, y, env);
+	if (env->mode == Settings)
+		settings_controls(x, y, env);
+	return (0);
+}
+
+int mouse_release(int button, int x, int y, t_env *env)
+{
+	if (button == 1)
+	{
+		env->menu->controls->pressed[0] = 0;
+		env->menu->controls->pressed[1] = 0;
+		env->menu->controls->pressed[2] = 0;
+		env->menu->controls->pressed[3] = 0;
+	}
 	return (0);
 }
 
@@ -86,5 +100,6 @@ void		init_key_hooks(t_env *env)
 	mlx_hook(env->win, 17, 0, x_close, env);
 	mlx_hook(env->win, 2, 0, key_press, env);
 	mlx_hook(env->win, 4, 0, push_buttons, env);
+	mlx_hook(env->win, 5, 0, mouse_release, env);
 	mlx_hook(env->win, 6, 0, mouse_move, env);
 }

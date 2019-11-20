@@ -26,14 +26,14 @@ t_menu			*menu_data_init(t_env *env)
 	menu->settings = tex_init(NULL, NULL);
 	if (!(menu->controls = (t_menu_controls *)malloc(sizeof(t_menu_controls))))
 		ft_exit(ERROR_MSG);
-	menu->controls->v_pos[X] = 0;
-	menu->controls->v_pos[Y] = 0;
-	menu->controls->m_pos[X] = 0;
-	menu->controls->m_pos[Y] = 0;
-	menu->controls->r_pos[X] = 0;
-	menu->controls->r_pos[Y] = 0;
-	menu->controls->s_pos[X] = 0;
-	menu->controls->s_pos[Y] = 0;
+	menu->controls->m_pos = 208 + 402 * env->cam->m_speed;
+	menu->controls->r_pos = 208 + 134 * env->cam->r_speed;
+	menu->controls->v_pos = 208;
+	menu->controls->s_pos = 0;
+	menu->controls->pressed[0] = No;
+	menu->controls->pressed[1] = No;
+	menu->controls->pressed[2] = No;
+	menu->controls->pressed[3] = No;
 	return (menu);
 }
 

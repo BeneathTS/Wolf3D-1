@@ -53,16 +53,6 @@ static void check_button_select(int x, int y, t_env *env)
 void menu_controls(int x, int y, t_env *env)
 {
 	bg_paralax(x, y, env);
-	if (env->mode == Menu)
-	{
-		check_button_select(x, y, env);
-		draw_main_menu(env);
-	}
-	if (env->mode == Settings)
-	{
-		settings_controls(x, y, env);
-		draw_settings(env);
-	}
-	// if (env->mode == Choose)
-	// 	draw_chooser(env);
+	check_button_select(x, y, env);
+	draw_main_menu(env);
 }
