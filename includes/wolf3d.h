@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/18 06:42:11 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/21 14:21:02 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,5 +217,5 @@ void					load_settings_data(t_env *env);
 void					menu_controls(int x, int y, t_env *env);
 void					menu_push_buttons(int x, int y, t_env *env);
 void					settings_push_buttons(int x, int y, t_env *env);
-void settings_controls(int x, int y, t_env *env);
+void					settings_controls(int x, int y, t_env *env);
 #endif

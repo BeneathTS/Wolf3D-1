@@ -6,11 +6,15 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:33:01 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/18 09:12:41 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/21 14:04:52 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#define CAM env->cam
+#define CAST env->cast
+#define WALL_H cast->wall_height
+#define VIEW_H CAM->view_height
 
 /*
 ** Function that draw the floor.
@@ -27,7 +31,7 @@ static void		draw_flow(t_env *env)
 	int			img_crd;
 
 	ct = -1;
-	finish = ((HEIGHT >> 1 )) - env->cam->view_height * 0.5;
+	finish = ((HEIGHT >> 1)) - VIEW_H * 0.5;
 	while (++ct < finish)
 	{
 		ct2 = -1;
@@ -46,7 +50,7 @@ static void		draw_floor(t_env *env)
 	int			ct2;
 	int			img_crd;
 
-	ct = (HEIGHT >> 1) - (env->cam->view_height >> 1) - 1;
+	ct = (HEIGHT >> 1) - (VIEW_H >> 1) - 1;
 	while (++ct < HEIGHT)
 	{
 		ct2 = -1;
@@ -107,22 +111,19 @@ static void		draw_column(t_cast *cast, t_env *env, const int x)
 	char		tex_id;
 	double		wall_x;
 
-	tex_id = env->map->level[env->cast->ray->m_pos[Y]]
-		[env->cast->ray->m_pos[X]];
-	if ((y[START] = ((HEIGHT - env->cam->view_height) >> 1) - (cast->wall_height >> 1) - 1) < -1)
+	tex_id = env->map->level[CAST->ray->m_pos[Y]][CAST->ray->m_pos[X]];
+	if ((y[START] = ((HEIGHT - VIEW_H) >> 1) - (WALL_H >> 1) - 1) < -1)
 		y[START] = -1;
-	if ((y[FINISH] = ((HEIGHT - env->cam->view_height) >> 1) + (cast->wall_height >> 1)) >= HEIGHT)
+	if ((y[FINISH] = ((HEIGHT - VIEW_H) >> 1) + (WALL_H >> 1)) >= HEIGHT)
 		y[FINISH] = HEIGHT - 1;
-	wall_x = (cast->ray->side == H ? env->cam->pos[Y] + cast->distance
-		* cast->ray->v_dir[Y] : env->cam->pos[X]
-		+ cast->distance * cast->ray->v_dir[X]);
+	wall_x = (cast->ray->side == H ? CAM->pos[Y] + cast->distance *
+	cast->ray->v_dir[Y] : CAM->pos[X] + cast->distance * cast->ray->v_dir[X]);
 	wall_x -= floor(wall_x);
 	tex_coord[X] = (int)(wall_x * TEX_SIZE);
 	while (++y[START] < y[FINISH])
 	{
-		d = (y[START] << 8) - ((HEIGHT - env->cam->view_height - 1) << 7)
-			+ (cast->wall_height << 7);
-		tex_coord[Y] = ((d * TEX_SIZE) / cast->wall_height) >> 8;
+		d = (y[START] << 8) - ((HEIGHT - VIEW_H - 1) << 7) + (WALL_H << 7);
+		tex_coord[Y] = ((d * TEX_SIZE) / WALL_H) >> 8;
 		((int *)env->data_addr)[y[START] * WIDTH + x] = get_color(
 			tex_id, tex_coord[X], tex_coord[Y], env);
 	}
@@ -161,12 +162,12 @@ void			renderer(t_env *env)
 	while (++ray < WIDTH)
 	{
 		x = 2 * ray / (double)WIDTH - 1;
-		env->cast->ray->v_dir[X] = env->cam->c_v_dir[X]
-			+ env->cam->c_v_plane[X] * x;
-		env->cast->ray->v_dir[Y] = env->cam->c_v_dir[Y]
-			+ env->cam->c_v_plane[Y] * x;
-		cast_a_ray(env->cast, env->cam, env);
-		draw_column(env->cast, env, ray);
+		CAST->ray->v_dir[X] = CAM->c_v_dir[X]
+			+ CAM->c_v_plane[X] * x;
+		CAST->ray->v_dir[Y] = CAM->c_v_dir[Y]
+			+ CAM->c_v_plane[Y] * x;
+		cast_a_ray(CAST, CAM, env);
+		draw_column(CAST, env, ray);
 	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 }
