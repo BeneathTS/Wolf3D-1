@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/18 06:53:28 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/25 02:26:58 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,15 @@ typedef enum			e_type_texture
 	T_36,
 	T_37
 }						t_type_texture;
+
+typedef enum			e_music
+{
+	music_flag_0,
+	music_flag_1,
+	music_flag_2,
+	music_flag_3,
+	music_flag_4
+}						t_music;
 
 # define WIDTH			1920
 # define HEIGHT			1080
@@ -179,4 +188,12 @@ typedef enum			e_type_texture
 # define WALL92			"assets/textures/xpm/walls/WALL92.xpm"
 # define WALL96			"assets/textures/xpm/walls/WALL96.xpm"
 
+/*
+**	MUSIC
+*/
+# define SONG_1			"music/wolf3d_menu.mp3"
+# define SONG_2			"music/SoaD - Toxicity.mp3"
+# define SONG_3			"music/Rammstein - Feuer Frei!.mp3"
+# define SONG_4			"music/SoaD - B.Y.O.B.mp3"
+# define SONG_5			"music/Rammstein - Deutschland.mp3"
 #endif

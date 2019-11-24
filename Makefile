@@ -33,10 +33,10 @@ OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 INC = $(addprefix -I, $(INC_PATH))
 INC_LIB = $(addprefix -I, $(INC_PATH))
 INC_MLX = $(addprefix -I, $(INC_PATH))
-INC_SDL = 	-I Frameworks/SDL2.framework/Versions/A/Headers 			\
-			-I Frameworks/SDL2/SDL2_image.framework/Versions/A/Header 	\
-			-I Frameworks/SDL2/SDL2_ttf.framework/Versions/A/Header 	\
-			-I Frameworks/SDL2/SDL2_mixer.framework/Versions/A/Header 	\
+INC_SDL = 	-I Frameworks/SDL2.framework/Versions/A/Headers 		\
+			-I Frameworks/SDL2_image.framework/Versions/A/Headers 	\
+			-I Frameworks/SDL2_ttf.framework/Versions/A/Headers 	\
+			-I Frameworks/SDL2_mixer.framework/Versions/A/Headers/ 	\
 			-F Frameworks/
 
 FRAME = 	-F Frameworks/ -framework SDL2 -framework SDL2_image 		\
@@ -46,24 +46,25 @@ FLAGS = 	-Wall -Werror -Wextra -Ofast -g
 
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit -framework OpenCL
 
-SRC_NAME =	main.c 				\
-			init_game_data.c 	\
-			init_env.c 			\
-			reader.c 			\
-			renderer.c 			\
-			ray_caster.c 		\
-			hooks.c 			\
-			load_textures.c 	\
-			mouse_controls.c 	\
-			menu_data_load.c 	\
-			menu.c 				\
-			level_chooser.c 	\
-			close.c				\
-			get_texture_name.c	\
-			menu_controls.c		\
-			settings.c			\
-			settings_data_load.c\
-			settings_controls.c	\
+SRC_NAME =	main.c 					\
+			init_game_data.c 		\
+			init_env.c 				\
+			reader.c 				\
+			renderer.c 				\
+			ray_caster.c 			\
+			hooks.c 				\
+			load_textures.c 		\
+			mouse_controls.c 		\
+			menu_data_load.c 		\
+			menu.c 					\
+			level_chooser.c 		\
+			close.c					\
+			get_texture_name.c		\
+			menu_controls.c			\
+			settings.c				\
+			settings_data_load.c	\
+			settings_controls.c		\
+			music_manager.c
 						
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

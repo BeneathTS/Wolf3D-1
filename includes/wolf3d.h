@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/21 14:21:02 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/25 02:47:40 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <mlx.h>
 # include <SDL.h>
+# include <SDL_mixer.h>
 # include <time.h>
 # include <math.h>
 # include <stdio.h>
@@ -171,6 +172,7 @@ typedef struct			s_env
 	int					bts_pr_px;
 	char				*data_addr;
 	char				mode;
+	Mix_Music			*music[5];
 	t_map				*map;
 	t_tex				*tex;
 	t_cam				*cam;
@@ -200,6 +202,9 @@ void					cast_a_ray(t_cast *cast, t_cam *cam, t_env *env);
 /*
 ** control functions
 */
+void					init_sdl_music(Mix_Music **music);
+void					change_music(int flag, Mix_Music **music);
+
 void					init_key_hooks(t_env *env);
 
 void					load_textures(t_env *env);

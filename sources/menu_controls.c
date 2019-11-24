@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 14:15:10 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/21 14:16:34 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/25 02:48:46 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void			menu_push_buttons(int x, int y, t_env *env)
 	{
 		env->mode = Game;
 		// env->mode = Choose;
+		change_music(music_flag_1, env->music);
 		renderer(env);
 		//draw_chooser(env);
 	}

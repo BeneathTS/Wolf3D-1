@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 18:48:43 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 13:11:14 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/24 23:06:46 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 **	Library for return special value and print errors
 */
 # define ERROR_MSG				"\033[31mError!\033[0m"
+# define ERROR_INIT_SDL			"\033[31mFailed to init SDL\033[0m"
 # define ERROR_INPUT			"\033[31mError input!\033[0m"
 # define ERROR_SYMBOLS			"\033[31mError symbols!\033[0m"
 # define ERROR_MALLOC			"\033[31mMalloc error!\033[0m"
