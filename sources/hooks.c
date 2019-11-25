@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:13 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/25 18:55:33 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/11/25 23:48:19 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,22 @@ int			mouse_move(int x, int y, t_env *env)
 		chooser_controls(x, y, env);
 	if (env->mode == Game)
 	{
-		if (x > 960)
-			rotate(ARR_RGHT, env);
-		else if (x < 960)
-			rotate(ARR_LFT, env);
-		if (y > 540)
-			rotate(ARR_DOWN, env);
-		else if (y < 540)
-			rotate(ARR_UP, env);
+			env->cntrls->angle = x * 0.001;
+			env->cam->view_height = y * 3;
+
+			env->cam->c_v_dir[X] = env->cam->v_dir[X] *
+		cos(env->cntrls->angle * env->cam->r_speed) - env->cam->v_dir[Y]
+			* sin(env->cntrls->angle * env->cam->r_speed);
+	env->cam->c_v_dir[Y] = env->cam->v_dir[X] * sin(env->cntrls->angle
+		* env->cam->r_speed) + env->cam->v_dir[Y]
+			* cos(env->cntrls->angle * env->cam->r_speed);
+	env->cam->c_v_plane[X] = env->cam->v_plane[X]
+		* cos(env->cntrls->angle * env->cam->r_speed) - env->cam->v_plane[Y]
+			* sin(env->cntrls->angle * env->cam->r_speed);
+	env->cam->c_v_plane[Y] = env->cam->v_plane[X] * sin(env->cntrls->angle
+		* env->cam->r_speed) + env->cam->v_plane[Y]
+			* cos(env->cntrls->angle * env->cam->r_speed);
+			renderer(env);
 	}
 	return (0);
 }
