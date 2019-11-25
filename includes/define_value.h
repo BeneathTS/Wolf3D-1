@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define_value.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/25 02:26:58 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/25 19:29:31 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,7 @@ typedef enum			e_music
 # define BT2_ACTIVE 	"assets/menu/XPM/main/bt6.xpm"
 # define BT3_ACTIVE 	"assets/menu/XPM/main/bt7.xpm"
 # define BT4_ACTIVE 	"assets/menu/XPM/main/bt8.xpm"
-# define SCRL_BASE 		"assets/menu/XPM/main/scroll_base.xpm"
-# define SCRL 			"assets/menu/XPM/main/scroller.xpm"
+# define SCRL 			"assets/menu/XPM/scroller.xpm"
 
 # define MV_STTNG		"assets/menu/XPM/settings/moving_title.xpm"
 # define RT_STTNG		"assets/menu/XPM/settings/rotation_title.xpm"
@@ -133,6 +132,11 @@ typedef enum			e_music
 # define CNTRL_RLLR		"assets/menu/XPM/settings/settings_roller.xpm"
 
 # define BCK_BTN		"assets/menu/XPM/back_button.xpm"
+# define RFSH_BTN		"assets/menu/XPM/refresh_button.xpm"
+
+# define MAPS_FOLDER	"maps/"
+
+# define MAPS_LIMIT		50
 
 /*
 **	TEXTURE FOR BAD GUY

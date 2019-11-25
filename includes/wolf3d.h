@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/25 09:10:27 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/25 19:39:44 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <dirent.h>
 # include <string.h>
 
 # include "menu.h"
@@ -127,6 +128,17 @@ typedef	struct			s_cam
 	float				r_speed;
 }						t_cam;
 
+typedef struct			s_lvl_crd
+{
+	char				id;
+	char				*level_name;
+	int					pos;
+	t_tex				*background;
+	unsigned int		font_color;
+	struct s_lvl_crd	*next;
+	struct s_lvl_crd	*prev;
+}						t_lvl_crd;
+
 typedef struct			s_menu_controls
 {
 	int					v_pos;
@@ -134,7 +146,11 @@ typedef struct			s_menu_controls
 	int					r_pos;
 	int					s_pos;
 	int					d_pos;
-	char				pressed[4];
+	char				scroller_status;
+	char				id_first_card;
+	char				num_of_cards;
+	char				pressed[5];
+	int					push_coord;
 }						t_menu_controls;
 
 typedef struct			s_menu
@@ -146,7 +162,11 @@ typedef struct			s_menu
 	t_tex				*chooser;
 	t_tex				*settings;
 	t_tex				*back_button;
+	t_tex				*refresh_button;
+	t_lvl_crd			*cards;
 	t_menu_controls		*controls;
+	struct dirent		*file_name;
+	DIR					*dir_ptr;
 }						t_menu;
 
 /*
@@ -284,5 +304,16 @@ void					load_settings_data(t_env *env);
 **	settings.c
 */
 void					draw_settings(t_env *env);
+
+void draw_chooser(t_env *env);
+void chooser_controls(int x, int y, t_env *env);
+void load_chooser_data(t_env *env);
+void push_scroller(int x, int y, t_env *env);
+void check_back_button_select(int x, int y, t_env *env);
+void draw_add_buttons(t_env *env);
+void check_push_add_buttons(int x, int y, t_env *env);
+void load_back_button(t_env *env);
+void load_refresh_button(t_env *env);
+void read_map_files(t_env *env);
 
 #endif

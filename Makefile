@@ -46,26 +46,30 @@ FLAGS = 	-Wall -Werror -Wextra -Ofast -g
 
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit -framework OpenCL
 
-SRC_NAME =	main.c 					\
-			init_game_data.c 		\
-			init_env.c 				\
-			reader.c 				\
-			renderer.c 				\
-			ray_caster.c 			\
-			hooks.c 				\
-			load_textures.c 		\
-			mouse_controls.c 		\
-			menu_data_load.c 		\
-			menu.c 					\
-			level_chooser.c 		\
-			close.c					\
-			get_texture_name.c		\
-			menu_controls.c			\
-			settings.c				\
-			settings_data_load.c	\
-			settings_controls.c		\
-			music_manager.c			\
-			move.c
+SRC_NAME =	main.c 						\
+			init_game_data.c 			\
+			init_env.c 					\
+			reader.c 					\
+			renderer.c 					\
+			ray_caster.c 				\
+			hooks.c 					\
+			load_textures.c 			\
+			mouse_controls.c 			\
+			menu_data_load.c 			\
+			menu.c 						\
+			close.c						\
+			get_texture_name.c			\
+			menu_controls.c				\
+			settings.c					\
+			settings_data_load.c		\
+			settings_controls.c			\
+			music_manager.c				\
+			move.c						\
+			chooser_data_load.c			\
+			chooser.c					\
+			chooser_controls.c			\
+			menu_add_bttns_control.c	\
+			load_additional_buttons.c	\
 						
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:35 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/25 07:11:23 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/25 19:22:30 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int			main(int argc, char **argv)
 	load_textures(env);
 	load_menu_data(env);
 	load_settings_data(env);
+	load_chooser_data(env);
 	change_music(music_flag_0, env->music);
 	draw_main_menu(env);
 	init_key_hooks(env);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:13 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/25 09:14:10 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/25 18:55:33 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int			mouse_move(int x, int y, t_env *env)
 		menu_controls(x, y, env);
 	if (env->mode == Settings)
 		settings_controls(x, y, env);
+	if (env->mode == Choose)
+		chooser_controls(x, y, env);
 	if (env->mode == Game)
 	{
 		if (x > 960)
@@ -79,6 +81,7 @@ int			mouse_release(int button, int x, int y, t_env *env)
 		env->menu->controls->pressed[1] = 0;
 		env->menu->controls->pressed[2] = 0;
 		env->menu->controls->pressed[3] = 0;
+		env->menu->controls->pressed[4] = 0;
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 07:25:32 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/25 07:33:57 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/25 21:56:36 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		collisions_x(t_env *env, double *x, int y, char sign)
 	if (env->map->level[y][(int)step] != '0')
 	{
 		wall = floor(step);
-		*x = (wall - 0.2);
+		*x = (wall - sign * 0.2);
 	}
 	else if (env->map->level[y][(int)(step + 0.2)] != '0')
 	{
@@ -45,7 +45,7 @@ static void		collisions_y(t_env *env, int x, double *y, char sign)
 	step = *y + sign * env->cam->c_v_dir[Y] * env->cam->m_speed;
 	if (env->map->level[(int)step][x] != '0')
 	{
-		wall = (int)step;
+		wall = floor(step);
 		*y = (wall - sign * 0.2);
 	}
 	else if (env->map->level[(int)(step + 0.2)][x] != '0')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:18 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/25 02:14:15 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/25 22:40:56 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,19 @@ t_menu			*menu_data_init(t_env *env)
 	menu->main = tex_init(NULL, NULL);
 	menu->chooser = tex_init(NULL, NULL);
 	menu->settings = tex_init(NULL, NULL);
+	menu->cards = NULL;
 	if (!(menu->controls = (t_menu_controls *)malloc(sizeof(t_menu_controls))))
 		ft_exit(ERROR_MSG);
 	menu->controls->m_pos = 208 + 402 * env->cam->m_speed;
 	menu->controls->r_pos = 208 + 134 * env->cam->r_speed;
-	menu->controls->v_pos = 208;
+	menu->controls->v_pos = 610;
 	menu->controls->d_pos = 208;
-	menu->controls->s_pos = 0;
+	menu->controls->s_pos = 79;
 	menu->controls->pressed[0] = No;
 	menu->controls->pressed[1] = No;
 	menu->controls->pressed[2] = No;
 	menu->controls->pressed[3] = No;
+	menu->controls->pressed[4] = No;
 	return (menu);
 }
 
