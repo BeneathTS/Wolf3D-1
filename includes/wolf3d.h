@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/25 02:47:40 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/25 09:10:27 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,45 +182,107 @@ typedef struct			s_env
 }						t_env;
 
 /*
-** Data init functions
+**	close.c
+*/
+int						x_close(t_env *env);
+
+/*
+**	get_texture_name.c
 */
 char					*get_texture_name(int i, char *arr_id_tex);
-void					read_map(const char *level_name, t_map *map);
-t_tex					*tex_init(t_tex *prev, t_tex *next);
-t_env					*env_init(t_map *map);
-t_map					*map_init();
-t_cam					*cam_init();
-t_cast					*cast_init();
-t_ray					*ray_init();
 
 /*
-** Rendering functions
+**	hooks.c
 */
-void					renderer(t_env *env);
-void					cast_a_ray(t_cast *cast, t_cam *cam, t_env *env);
+void					init_key_hooks(t_env *env);
 
 /*
-** control functions
+**	init_env.c
+*/
+t_env					*env_init(t_map *map);
+
+/*
+**	init_game_data.c
+*/
+t_tex					*tex_init(t_tex *prev, t_tex *next);
+t_cam					*cam_init();
+t_map					*map_init();
+t_ray					*ray_init();
+t_cast					*cast_init();
+
+/*
+**	level_chooser.c
+*/
+
+/*
+**	load_textures.c
+*/
+void					load_textures(t_env *env);
+
+/*
+**	menu_controls.c
+*/
+void					bg_paralax(int x, int y, t_env *env);
+void					menu_push_buttons(int x, int y, t_env *env);
+void					menu_controls(int x, int y, t_env *env);
+
+/*
+**	menu_data_load.c
+*/
+void					load_menu_data(t_env *env);
+
+/*
+**	menu.c
+*/
+void					set_alpha(char *data, int width, int height,
+							unsigned int alpha_value);
+void					draw_main_menu(t_env *env);
+
+/*
+**	mouse_controls.c
+*/
+int						push_buttons(int button, int x, int y, t_env *env);
+
+/*
+**	move.c
+*/
+void					player_move(int key, t_env *env);
+
+/*
+**	music.c
 */
 void					init_sdl_music(Mix_Music **music);
 void					change_music(int flag, Mix_Music **music);
 
-void					init_key_hooks(t_env *env);
+/*
+**	ray_caster.c
+*/
+void					cast_a_ray(t_cast *cast, t_cam *cam, t_env *env);
 
-void					load_textures(t_env *env);
-int						x_close(t_env *env);
+/*
+**	reader.c
+*/
+void					read_map(const char *level_name, t_map *map);
 
-void					load_menu_data(t_env *env);
-void					draw_main_menu(t_env *env);
-void					bg_paralax(int x, int y, t_env *env);
-void					set_alpha(char *data, int width, int height,
-							unsigned int alpha_value);
-int						push_buttons(int button, int x, int y, t_env *env);
-//void					draw_chooser(t_env *env);
-void					draw_settings(t_env *env);
-void					load_settings_data(t_env *env);
-void					menu_controls(int x, int y, t_env *env);
-void					menu_push_buttons(int x, int y, t_env *env);
+/*
+**	renderer.c
+*/
+void					renderer(t_env *env);
+
+/*
+**	settings_controls.c
+*/
 void					settings_push_buttons(int x, int y, t_env *env);
 void					settings_controls(int x, int y, t_env *env);
+
+/*
+**	settings_controls.c
+*/
+void					load_settings_data(t_env *env);
+
+/*
+**	settings.c
+*/
+void					draw_settings(t_env *env);
+
 #endif

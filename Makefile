@@ -64,7 +64,8 @@ SRC_NAME =	main.c 					\
 			settings.c				\
 			settings_data_load.c	\
 			settings_controls.c		\
-			music_manager.c
+			music_manager.c			\
+			move.c
 						
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

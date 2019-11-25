@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:13 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/24 23:56:57 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/25 09:14:10 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	rotate(int key, t_env *env)
 {
 	if (key == ARR_LFT || key == KB_A)
-		env->cntrls->angle -= 0.05;
+		env->cntrls->angle -= 0.01;
 	if (key == ARR_RGHT || key == KB_D)
-		env->cntrls->angle += 0.05;
+		env->cntrls->angle += 0.01;
 	if (key == ARR_DOWN)
-		env->cam->view_height += 100;
+		env->cam->view_height += 20;
 	if (key == ARR_UP)
-		env->cam->view_height -= 100;
+		env->cam->view_height -= 20;
 	env->cam->c_v_dir[X] = env->cam->v_dir[X] *
 		cos(env->cntrls->angle * env->cam->r_speed) - env->cam->v_dir[Y]
 			* sin(env->cntrls->angle * env->cam->r_speed);
@@ -37,34 +37,11 @@ static void	rotate(int key, t_env *env)
 	renderer(env);
 }
 
-void		player_move(int key, t_env *env)
-{
-	if (key == KB_W)
-	{
-		env->cam->pos[Y] += env->cam->c_v_dir[Y] * env->cam->m_speed;
-		env->cam->pos[X] += env->cam->c_v_dir[X] * env->cam->m_speed;
-	}
-	if (key == KB_S)
-	{
-		env->cam->pos[X] -= env->cam->c_v_dir[X] * env->cam->m_speed;
-		env->cam->pos[Y] -= env->cam->c_v_dir[Y] * env->cam->m_speed;
-	}
-	if (env->cam->pos[X] < (1.0 + env->cam->m_speed))
-		env->cam->pos[X] = 1.0 + env->cam->m_speed;
-	if (env->cam->pos[X] > env->map->width - (1.0 + env->cam->m_speed))
-		env->cam->pos[X] = env->map->width - (1.0 + env->cam->m_speed);
-	if (env->cam->pos[Y] < (1.0 + env->cam->m_speed))
-		env->cam->pos[Y] = 1.0 + env->cam->m_speed;
-	if (env->cam->pos[Y] > env->map->height - (1.0 + env->cam->m_speed))
-		env->cam->pos[Y] = env->map->height - (1.0 + env->cam->m_speed);
-	renderer(env);
-}
-
 int			key_press(int key, t_env *env)
 {
 	if (key == ESC)
 		x_close(env);
-	if(env->mode != Game)
+	if (env->mode != Game)
 		return (0);
 	if (key == ARR_DOWN || key == ARR_LFT || key == ARR_RGHT ||
 	key == ARR_UP || key == KB_A || key == KB_D)
@@ -80,10 +57,21 @@ int			mouse_move(int x, int y, t_env *env)
 		menu_controls(x, y, env);
 	if (env->mode == Settings)
 		settings_controls(x, y, env);
+	if (env->mode == Game)
+	{
+		if (x > 960)
+			rotate(ARR_RGHT, env);
+		else if (x < 960)
+			rotate(ARR_LFT, env);
+		if (y > 540)
+			rotate(ARR_DOWN, env);
+		else if (y < 540)
+			rotate(ARR_UP, env);
+	}
 	return (0);
 }
 
-int mouse_release(int button, int x, int y, t_env *env)
+int			mouse_release(int button, int x, int y, t_env *env)
 {
 	if (button == 1)
 	{
