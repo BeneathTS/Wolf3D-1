@@ -7,7 +7,7 @@ static void change_values(t_env *env)
 	else if (env->menu->controls->pressed[1])
 		env->cam->r_speed = (float)(env->menu->controls->r_pos - 208) / 134;
 	else if (env->menu->controls->pressed[2])
-		Mix_VolumeMusic((env->menu->controls->v_pos - 208) / 3.140625);
+		env->volume = Mix_VolumeMusic((env->menu->controls->v_pos - 208) / 3.140625);
 }
 
 void move_rollers(int x, int y, t_env *env)

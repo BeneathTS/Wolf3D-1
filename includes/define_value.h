@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/26 03:26:08 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/26 04:03:11 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,9 @@ typedef enum			e_music
 
 # define V 				0
 # define H 				1
+
+# define RETURN_KO		0
+# define RETURN_OK		1
 
 /*
 **	MENU

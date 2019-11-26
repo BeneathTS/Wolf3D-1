@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/26 03:20:15 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/26 05:39:50 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,7 @@ typedef struct			s_env
 	char				*data_addr;
 	char				mode;
 	Mix_Music			*music[4];
+	int					volume;
 	t_map				*map;
 	t_tex				*tex;
 	t_cam				*cam;
@@ -264,6 +265,8 @@ void					draw_main_menu(t_env *env);
 **	mouse_controls.c
 */
 int						push_buttons(int button, int x, int y, t_env *env);
+int						mouse_move(int x, int y, t_env *env);
+int						mouse_release(int button, int x, int y, t_env *env);
 
 /*
 **	move.c
@@ -284,7 +287,7 @@ void					cast_a_ray(t_cast *cast, t_cam *cam, t_env *env);
 /*
 **	reader.c
 */
-void					read_map(const char *level_name, t_map *map);
+int						read_map(const char *level_name, t_map *map);
 
 /*
 **	renderer.c

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 18:59:01 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/12 12:48:45 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/26 05:41:30 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@ int			int_error(char *error_text)
 {
 	ft_putstr("\033[31m");
 	ft_putendl(error_text);
+	ft_putstr("\033[0m");
 	return (1);
 }
