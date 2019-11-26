@@ -31,13 +31,11 @@ MLX_PATH = ./mlx/
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 INC = $(addprefix -I, $(INC_PATH))
-INC_LIB = $(addprefix -I, $(INC_PATH))
-INC_MLX = $(addprefix -I, $(INC_PATH))
-INC_SDL = 	-I Frameworks/SDL2.framework/Versions/A/Headers 		\
-			-I Frameworks/SDL2_image.framework/Versions/A/Headers 	\
-			-I Frameworks/SDL2_ttf.framework/Versions/A/Headers 	\
-			-I Frameworks/SDL2_mixer.framework/Versions/A/Headers/ 	\
-			-F Frameworks/
+INC_SDL = 		-I Frameworks/SDL2.framework/Versions/A/Headers 		\
+				-I Frameworks/SDL2_image.framework/Versions/A/Headers 	\
+				-I Frameworks/SDL2_ttf.framework/Versions/A/Headers 	\
+				-I Frameworks/SDL2_mixer.framework/Versions/A/Headers/ 	\
+				-F Frameworks/
 
 FRAME = 	-F Frameworks/ -framework SDL2 -framework SDL2_image 		\
             -framework SDL2_ttf -framework SDL2_mixer -rpath Frameworks/
@@ -70,7 +68,10 @@ SRC_NAME =	main.c 						\
 			chooser_controls.c			\
 			menu_add_bttns_control.c	\
 			load_additional_buttons.c	\
-						
+			audio.c
+
+SRC_SDL_AUDIO = ./Simple-SDL2-Audio/src/audio.c
+
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 all: $(NAME)
@@ -81,6 +82,7 @@ $(NAME): $(OBJ)
 	 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC_PATH)/wolf3d.h $(INC_PATH)/define_value.h
 	@mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)Simple-SDL2-Audio/src/
 	@gcc -g $(INC) $(INC_SDL) -o $@ -c $<
 
 #****************************************************************************#

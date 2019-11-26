@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 09:13:59 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/25 09:14:00 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/26 03:05:32 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@ void			init_sdl_music(Mix_Music **music)
 {
 	if (SDL_Init(SDL_INIT_AUDIO) < 0)
 		ft_exit(ERROR_INIT_SDL);
+	initAudio();
 	Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640);
-	if (!(music[0] = Mix_LoadMUS(SONG_1)))
+	if (!(music[0] = Mix_LoadMUS(SONG_0)))
 		ft_exit(ERROR_MSG);
-	if (!(music[1] = Mix_LoadMUS(SONG_2)))
+	if (!(music[1] = Mix_LoadMUS(SONG_1)))
 		ft_exit(ERROR_MSG);
-	if (!(music[2] = Mix_LoadMUS(SONG_3)))
+	if (!(music[2] = Mix_LoadMUS(SONG_2)))
 		ft_exit(ERROR_MSG);
-	if (!(music[3] = Mix_LoadMUS(SONG_4)))
-		ft_exit(ERROR_MSG);
-	if (!(music[4] = Mix_LoadMUS(SONG_5)))
+	if (!(music[3] = Mix_LoadMUS(SHOT)))
 		ft_exit(ERROR_MSG);
 }
 
@@ -40,6 +39,4 @@ void			change_music(int flag, Mix_Music **music)
 		Mix_PlayMusic(music[2], 1);
 	else if (music_flag_3 == flag)
 		Mix_PlayMusic(music[3], 1);
-	else if (music_flag_4 == flag)
-		Mix_PlayMusic(music[4], 1);
 }

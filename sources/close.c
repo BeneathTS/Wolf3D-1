@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:39:51 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/25 02:15:19 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/26 02:26:48 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int		x_close(t_env *env)
 	Mix_FreeMusic(env->music[1]);
 	Mix_FreeMusic(env->music[2]);
 	Mix_FreeMusic(env->music[3]);
-	Mix_FreeMusic(env->music[4]);
 	SDL_Quit();
 	(void)env;
 	exit(0);

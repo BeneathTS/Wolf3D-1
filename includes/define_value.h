@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define_value.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/25 19:29:31 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/11/26 03:26:08 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,9 +195,8 @@ typedef enum			e_music
 /*
 **	MUSIC
 */
-# define SONG_1			"music/wolf3d_menu.mp3"
-# define SONG_2			"music/SoaD - Toxicity.mp3"
-# define SONG_3			"music/Rammstein - Feuer Frei!.mp3"
-# define SONG_4			"music/SoaD - B.Y.O.B.mp3"
-# define SONG_5			"music/Rammstein - Deutschland.mp3"
+# define SONG_0			"music/wolf3d_menu.mp3"
+# define SONG_1			"music/song_1.mp3"
+# define SONG_2			"music/song_2.mp3"
+# define SHOT			"music/shot.wav"
 #endif

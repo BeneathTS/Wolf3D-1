@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/25 19:39:44 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/11/26 03:20:15 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 # include <unistd.h>
 # include <dirent.h>
 # include <string.h>
+# include <stdint.h>
 
+# include "audio.h"
 # include "menu.h"
 # include "../libft/includes/libft.h"
 # include "controls.h"
@@ -192,7 +194,7 @@ typedef struct			s_env
 	int					bts_pr_px;
 	char				*data_addr;
 	char				mode;
-	Mix_Music			*music[5];
+	Mix_Music			*music[4];
 	t_map				*map;
 	t_tex				*tex;
 	t_cam				*cam;
