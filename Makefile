@@ -68,7 +68,8 @@ SRC_NAME =	main.c 						\
 			chooser_controls.c			\
 			menu_add_bttns_control.c	\
 			load_additional_buttons.c	\
-			audio.c
+			audio.c						\
+			player_weapon.c
 
 SRC_SDL_AUDIO = ./Simple-SDL2-Audio/src/audio.c
 

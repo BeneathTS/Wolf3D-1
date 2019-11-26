@@ -27,6 +27,7 @@ int			main(int argc, char **argv)
 	load_menu_data(env);
 	load_settings_data(env);
 	load_chooser_data(env);
+	load_weapon_texture(env);
 	change_music(music_flag_0, env->music);
 	draw_main_menu(env);
 	init_key_hooks(env);

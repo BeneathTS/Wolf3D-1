@@ -172,4 +172,5 @@ void			renderer(t_env *env)
 		draw_column(CAST, env, ray);
 	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
+	mlx_put_image_to_window(env->mlx, env->win, env->cam->weapon->tex_ptr, 420, 0);
 }

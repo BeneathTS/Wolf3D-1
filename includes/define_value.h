@@ -154,11 +154,11 @@ typedef enum			e_music
 /*
 **	TEXTURE FOR GUNS ANIMATION
 */
-# define GUN_1			"assets/textures/xpm/gun/gun_1_animation/gun_1"
-# define GUN_2			"assets/textures/xpm/gun/gun_1_animation/gun_2"
-# define GUN_3			"assets/textures/xpm/gun/gun_1_animation/gun_3"
-# define GUN_4			"assets/textures/xpm/gun/gun_1_animation/gun_4"
-# define GUN_5			"assets/textures/xpm/gun/gun_1_animation/gun_5"
+# define GUN_1			"assets/textures/xpm/gun/gun_1.xpm"
+# define GUN_2			"assets/textures/xpm/gun/gun_2.xpm"
+# define GUN_3			"assets/textures/xpm/gun/gun_3.xpm"
+# define GUN_4			"assets/textures/xpm/gun/gun_4.xpm"
+# define GUN_5			"assets/textures/xpm/gun/gun_5.xpm"
 
 /*
 **	TEXTURE FOR WALL

@@ -129,6 +129,7 @@ typedef	struct			s_cam
 	int					view_height;
 	float				m_speed;
 	float				r_speed;
+	t_tex				*weapon;
 }						t_cam;
 
 typedef struct			s_lvl_crd
@@ -321,5 +322,5 @@ void check_push_add_buttons(int x, int y, t_env *env);
 void load_back_button(t_env *env);
 void load_refresh_button(t_env *env);
 void read_map_files(t_env *env);
-
+void load_weapon_texture(t_env *env);
 #endif
