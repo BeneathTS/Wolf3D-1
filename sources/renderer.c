@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:33:01 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/21 14:04:52 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/26 06:13:32 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ static void		draw_column(t_cast *cast, t_env *env, const int x)
 	{
 		d = (y[START] << 8) - ((HEIGHT - VIEW_H - 1) << 7) + (WALL_H << 7);
 		tex_coord[Y] = ((d * TEX_SIZE) / WALL_H) >> 8;
+		// ((int *)env->data_addr)[y[START] * WIDTH + x] = 0xFF | get_color( //experiment for fog
+		// 	tex_id, tex_coord[X], tex_coord[Y], env);
 		((int *)env->data_addr)[y[START] * WIDTH + x] = get_color(
 			tex_id, tex_coord[X], tex_coord[Y], env);
 	}

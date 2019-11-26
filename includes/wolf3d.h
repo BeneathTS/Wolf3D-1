@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/26 05:39:50 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/26 06:12:20 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <dirent.h>
 # include <string.h>
 # include <stdint.h>
+# include <stdbool.h>
 
 # include "audio.h"
 # include "menu.h"
@@ -287,7 +288,7 @@ void					cast_a_ray(t_cast *cast, t_cam *cam, t_env *env);
 /*
 **	reader.c
 */
-int						read_map(const char *level_name, t_map *map);
+bool					read_map(const char *level_name, t_map *map);
 
 /*
 **	renderer.c
