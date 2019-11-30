@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/26 06:12:20 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/30 22:44:34 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,4 +323,5 @@ void load_back_button(t_env *env);
 void load_refresh_button(t_env *env);
 void read_map_files(t_env *env);
 void load_weapon_texture(t_env *env);
+void resset_card_coords(t_env *env);
 #endif

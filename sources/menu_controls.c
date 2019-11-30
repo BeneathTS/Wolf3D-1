@@ -16,11 +16,11 @@ void menu_push_buttons(int x, int y, t_env *env)
 {
 	if (x >= (WIDTH >> 1) - 49 && x <= (WIDTH >> 1) + 335 && y >= (HEIGHT >> 1) - 117 && y <= (HEIGHT >> 1) - 59)
 	{
-		env->mode = Game;
-		//env->mode = Choose;
-		change_music(music_flag_1, env->music);
-		renderer(env);
-		//draw_chooser(env);
+		//env->mode = Game;
+		env->mode = Choose;
+		//change_music(music_flag_1, env->music);
+		//renderer(env);
+		draw_chooser(env);
 	}
 	if (x >= (WIDTH >> 1) - 8 && x <= (WIDTH >> 1) + 335 && 
 	y >= (HEIGHT >> 1) - 50 && y <= (HEIGHT >> 1) + 8)

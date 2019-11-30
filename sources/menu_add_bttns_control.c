@@ -6,9 +6,6 @@ static void clear_maps(t_lvl_crd *cards, t_menu *menu, t_env *env)
 		cards = cards->prev;
 	while (1)
 	{
-		cards->id = 0;
-		cards->pos = 0;
-		cards->font_color = 0x0;
 		free(cards->level_name);
 		mlx_destroy_image(env->mlx, cards->background->tex_ptr);
 		cards->background->tex_ptr = NULL;
@@ -34,7 +31,7 @@ static void clear_maps(t_lvl_crd *cards, t_menu *menu, t_env *env)
 void draw_add_buttons(t_env *env)
 {
 	if (env->menu->sel_button == 'b')
-		mlx_put_image_to_window(env->mlx, env->win, env->menu->back_button->prev->tex_ptr, WIDTH - 284, HEIGHT - 104); //134
+		mlx_put_image_to_window(env->mlx, env->win, env->menu->back_button->prev->tex_ptr, WIDTH - 284, HEIGHT - 104);
 	else
 		mlx_put_image_to_window(env->mlx, env->win, env->menu->back_button->tex_ptr, WIDTH - 284, HEIGHT - 104);
 	if (env->mode == Choose)
@@ -52,6 +49,7 @@ void check_push_add_buttons(int x, int y, t_env *env)
 	{
 		env->mode = Menu;
 		env->menu->controls->s_pos = 79;
+		resset_card_coords(env);
 		draw_main_menu(env);
 	}
 	if (x >= (WIDTH - 184) && x <= (WIDTH - 80) && y >= (HEIGHT - 104) && y <= (HEIGHT - 81))
@@ -59,6 +57,10 @@ void check_push_add_buttons(int x, int y, t_env *env)
 		env->menu->controls->s_pos = 79;
 		clear_maps(env->menu->cards, env->menu, env);
 		read_map_files(env);
+		if (env->menu->controls->num_of_cards > 9)
+			env->menu->controls->scroller_status = 1;
+		else
+			env->menu->controls->scroller_status = 0;
 		draw_chooser(env);
 	}
 }

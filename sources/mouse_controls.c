@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_controls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/26 03:58:09 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/11/30 22:23:55 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			push_buttons(int button, int x, int y, t_env *env)
 		menu_push_buttons(x, y, env);
 	if (env->mode == Settings && button == 1)
 		settings_push_buttons(x, y, env);
-	if (env->mode == Choose && button ==1)
+	if (env->mode == Choose && button == 1)
 		push_scroller(x, y, env); 
 	return (0);
 }

@@ -27,12 +27,7 @@ static t_lvl_crd *create_card(t_env *env, int id, const char *file_name, t_lvl_c
 	if (!(new_card->level_name = ft_strdup(file_name)))
 		ft_exit(ERROR_MSG);
 	if (prev)
-	{
-		if (prev->pos + 106 <= HEIGHT)
-			new_card->pos = prev->pos + 106;
-		else
-			new_card->pos = HEIGHT;
-	}
+		new_card->pos = prev->pos + 106;
 	else
 		new_card->pos = 79;
 	new_card->prev = prev;
@@ -49,7 +44,7 @@ void read_map_files(t_env *env)
 	int id;
 
 	ct = -1;
-	id = 0;
+	id = -1;
 	if (!(env->menu->dir_ptr = opendir(MAPS_FOLDER)))
 		ft_exit(ERROR_MSG);
 
@@ -61,10 +56,10 @@ void read_map_files(t_env *env)
 			env->menu->file_name->d_name[len - 1] == 'm')
 		{
 			if (!env->menu->cards)
-				env->menu->cards = create_card(env, id++, env->menu->file_name->d_name, env->menu->cards);
+				env->menu->cards = create_card(env, ++id, env->menu->file_name->d_name, env->menu->cards);
 			else 
 				env->menu->cards = (env->menu->cards->next = 
-				create_card(env, id++, env->menu->file_name->d_name, env->menu->cards));
+				create_card(env, ++id, env->menu->file_name->d_name, env->menu->cards));
 		}
 	}
 	env->menu->controls->num_of_cards = id + 1;
@@ -93,7 +88,10 @@ void load_scroller(t_env *env)
 void load_chooser_data(t_env *env)
 {
 	load_scroller(env);
-	env->menu->controls->scroller_status = 1;
 	env->menu->controls->id_first_card = 0;
 	read_map_files(env);
+	if (env->menu->controls->num_of_cards > 9)
+		env->menu->controls->scroller_status = 1;
+	else
+		env->menu->controls->scroller_status = 0;
 }
