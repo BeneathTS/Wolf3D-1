@@ -34,6 +34,7 @@ static t_lvl_crd *create_card(t_env *env, int id, const char *file_name, t_lvl_c
 	new_card->next = NULL;
 	create_background(env, new_card);
 	new_card->font_color = 0x575757;
+	new_card->selected = No;
 	return (new_card);
 }
 

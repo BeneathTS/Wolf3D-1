@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/01 19:11:07 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/01 19:36:44 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ typedef struct			s_lvl_crd
 	int					pos;
 	t_tex				*background;
 	unsigned int		font_color;
+	char				selected;
 	struct s_lvl_crd	*next;
 	struct s_lvl_crd	*prev;
 }						t_lvl_crd;
