@@ -14,7 +14,7 @@ void resset_card_coords(t_env *env)
 	}
 }
 
-static void scrolling(int y, t_env *env, char sign, int old_value)
+void scrolling(t_env *env, char sign, int old_value)
 {
 	while (env->menu->cards->id != 0)
 		env->menu->cards = env->menu->cards->prev;
@@ -46,7 +46,7 @@ void move_scroller(int y, t_env *env)
 	if (y > 842 + 30)
 		env->menu->controls->s_pos = 842;
 	if (temp != env->menu->controls->s_pos)
-		scrolling(y, env, sign, temp);
+		scrolling(env, sign, temp);
 }
 
 void push_scroller(int x, int y, t_env *env)

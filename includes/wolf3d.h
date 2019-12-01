@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/01 19:36:44 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/01 21:12:25 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,4 +326,6 @@ void read_map_files(t_env *env);
 void load_weapon_texture(t_env *env);
 void resset_card_coords(t_env *env);
 void move_scroller(int y, t_env *env);
+void scrolling(t_env *env, char sign, int old_value);
+void check_card_selection(int x, int y, t_env *env);
 #endif

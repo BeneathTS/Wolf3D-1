@@ -6,11 +6,35 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/30 22:23:55 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/01 21:13:29 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void mouse_scroll(int x, int y, int button, t_env *env)
+{
+	int temp;
+	int sign;
+
+	temp = env->menu->controls->s_pos;
+	if (button == 4)
+		env->menu->controls->s_pos += 8;
+	if (button == 5)
+		env->menu->controls->s_pos -= 8;
+	if (temp < env->menu->controls->s_pos)
+		sign = 1;
+	else if (temp > env->menu->controls->s_pos)
+		sign = 0;
+	if (env->menu->controls->s_pos < 79)
+		env->menu->controls->s_pos = 79;
+	if (env->menu->controls->s_pos > 842)
+		env->menu->controls->s_pos = 842;
+	if (temp != env->menu->controls->s_pos)
+		scrolling(env, sign, temp);
+	check_card_selection(x, y, env);
+	draw_chooser(env);
+}
 
 int			push_buttons(int button, int x, int y, t_env *env)
 {
@@ -21,7 +45,9 @@ int			push_buttons(int button, int x, int y, t_env *env)
 	if (env->mode == Settings && button == 1)
 		settings_push_buttons(x, y, env);
 	if (env->mode == Choose && button == 1)
-		push_scroller(x, y, env); 
+		push_scroller(x, y, env);
+	if (env->mode == Choose  && (button == 4 || button == 5))
+		mouse_scroll(x, y, button, env);
 	return (0);
 }
 
