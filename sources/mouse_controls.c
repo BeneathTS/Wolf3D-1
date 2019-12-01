@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/01 21:13:29 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/01 21:19:38 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int			push_buttons(int button, int x, int y, t_env *env)
 		settings_push_buttons(x, y, env);
 	if (env->mode == Choose && button == 1)
 		push_scroller(x, y, env);
-	if (env->mode == Choose  && (button == 4 || button == 5))
+	if (env->mode == Choose && (button == 4 || button == 5) && 
+	env->menu->controls->scroller_status)
 		mouse_scroll(x, y, button, env);
 	return (0);
 }
