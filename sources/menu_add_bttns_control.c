@@ -55,7 +55,8 @@ void check_push_add_buttons(int x, int y, t_env *env)
 	if (x >= (WIDTH - 184) && x <= (WIDTH - 80) && y >= (HEIGHT - 104) && y <= (HEIGHT - 81))
 	{
 		env->menu->controls->s_pos = 79;
-		clear_maps(env->menu->cards, env->menu, env);
+		if (env->menu->controls->num_of_cards > 0)
+			clear_maps(env->menu->cards, env->menu, env);
 		read_map_files(env);
 		if (env->menu->controls->num_of_cards > 9)
 			env->menu->controls->scroller_status = 1;

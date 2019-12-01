@@ -31,6 +31,7 @@ void draw_chooser(t_env *env)
 	mlx_put_image_to_window(env->mlx, env->win, env->menu->first_tex[Menu]->tex_ptr, env->menu->bg_off[X], env->menu->bg_off[Y]);
 	if (env->menu->controls->scroller_status)
 		draw_base_n_scroller(env);
-	draw_cards(env);
+	if (env->menu->controls->num_of_cards > 0)
+		draw_cards(env);
 	draw_add_buttons(env);
 }
