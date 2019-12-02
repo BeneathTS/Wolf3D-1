@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 02:56:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/18 06:53:05 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/02 17:32:22 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static char		*wall_choise_3(int symbol)
 		return (WALL92);
 	else if (symbol == (char)T_37)
 		return (WALL96);
+	else if (symbol == (char)T_38)
+		return (SPECIAL_WALL);
 	return (NULL);
 }
 

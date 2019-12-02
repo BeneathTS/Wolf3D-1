@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/26 06:10:43 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/02 17:31:26 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef enum			e_type_boolean
 **	T_4 -> T_5		GUN
 **	T_6 -> T_10		GUN ANIMATION
 **	T_11 -> T_37	WALL
+**	T_38			WALL WITH 4 TEXTURES
 */
 
 typedef enum			e_type_texture
@@ -75,7 +76,8 @@ typedef enum			e_type_texture
 	T_34,
 	T_35,
 	T_36,
-	T_37
+	T_37,
+	T_38
 }						t_type_texture;
 
 typedef enum			e_music
@@ -90,7 +92,7 @@ typedef enum			e_music
 # define WIDTH			1920
 # define HEIGHT			1080
 
-# define NBR_TEXTURES	37
+# define NBR_TEXTURES	38
 
 # define LOGO_ALPHA 	0xCD
 
@@ -191,6 +193,7 @@ typedef enum			e_music
 # define WALL89			"assets/textures/xpm/walls/WALL89.xpm"
 # define WALL92			"assets/textures/xpm/walls/WALL92.xpm"
 # define WALL96			"assets/textures/xpm/walls/WALL96.xpm"
+# define SPECIAL_WALL	"1"
 
 /*
 **	MUSIC

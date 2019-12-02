@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:56 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/26 06:12:10 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/02 17:34:03 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool			check_symbols_illegal(char *file)
 	i = -1;
 	while (file[++i])
 	{
-		if (((int)file[i] >= T_1 && (int)file[i] <= T_37))
+		if (((int)file[i] >= T_1 && (int)file[i] <= T_38))
 			continue ;
 		else
 			return (false);

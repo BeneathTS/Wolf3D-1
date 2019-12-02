@@ -1,0 +1,14 @@
+{
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#0E342E",
+		"titleBar.activeBackground": "#134840",
+		"titleBar.activeForeground": "#F5FCFB"
+	},
+	"files.associations": {
+		"wolf3d.h": "c",
+		"audio.h": "c",
+		"ft_error.h": "c",
+		"iostream": "cpp"
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
+}

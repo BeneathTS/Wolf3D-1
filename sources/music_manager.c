@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 09:13:59 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/26 03:05:32 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/02 17:33:27 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void			change_music(int flag, Mix_Music **music)
 {
 	Mix_PauseMusic();
 	if (music_flag_0 == flag)
-		Mix_PlayMusic(music[0], 1);
+		Mix_PlayMusic(music[0], 10);
 	else if (music_flag_1 == flag)
-		Mix_PlayMusic(music[1], 1);
+		Mix_PlayMusic(music[1], 10);
 	else if (music_flag_2 == flag)
-		Mix_PlayMusic(music[2], 1);
+		Mix_PlayMusic(music[2], 10);
 	else if (music_flag_3 == flag)
-		Mix_PlayMusic(music[3], 1);
+		Mix_PlayMusic(music[3], 10);
 }
