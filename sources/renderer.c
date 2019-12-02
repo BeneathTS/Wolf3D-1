@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:33:01 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/26 06:13:32 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/02 19:59:36 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,19 @@ static void		draw_floor(t_env *env)
 ** 2. Return the texture color, located on tex_x(x) and tex_y(y) in buffer.
 */
 
-static int		get_color(char tex_id, int tex_x, int tex_y, t_env *env)
+static int		get_color(char tex_id, int tex_x, int tex_y, t_cast *cast, t_env *env)
 {
 	int			color;
 	t_tex		*tmp;
 
 	tmp = env->tex;
+	if (tex_id == T_38)
+	{
+		if (cast->ray->side == V)
+			tex_id = 87;
+		else
+			tex_id = 88;
+	}
 	while (tmp->id != tex_id)
 	{
 		tmp = tmp->next;
@@ -116,8 +123,9 @@ static void		draw_column(t_cast *cast, t_env *env, const int x)
 		y[START] = -1;
 	if ((y[FINISH] = ((HEIGHT - VIEW_H) >> 1) + (WALL_H >> 1)) >= HEIGHT)
 		y[FINISH] = HEIGHT - 1;
-	wall_x = (cast->ray->side == H ? CAM->pos[Y] + cast->distance *
-	cast->ray->v_dir[Y] : CAM->pos[X] + cast->distance * cast->ray->v_dir[X]);
+	wall_x = (cast->ray->side == H
+		? CAM->pos[Y] + cast->distance * cast->ray->v_dir[Y]
+		: CAM->pos[X] + cast->distance * cast->ray->v_dir[X]);
 	wall_x -= floor(wall_x);
 	tex_coord[X] = (int)(wall_x * TEX_SIZE);
 	while (++y[START] < y[FINISH])
@@ -127,7 +135,7 @@ static void		draw_column(t_cast *cast, t_env *env, const int x)
 		// ((int *)env->data_addr)[y[START] * WIDTH + x] = 0xFF | get_color( //experiment for fog
 		// 	tex_id, tex_coord[X], tex_coord[Y], env);
 		((int *)env->data_addr)[y[START] * WIDTH + x] = get_color(
-			tex_id, tex_coord[X], tex_coord[Y], env);
+			tex_id, tex_coord[X], tex_coord[Y], cast, env);
 	}
 }
 

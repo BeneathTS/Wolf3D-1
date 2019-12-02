@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/02 17:31:26 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/02 19:44:21 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ typedef enum			e_type_boolean
 	No,
 	Yes
 }						t_type_boolean;
+
+typedef enum			e_id_of_special_texture
+{
+	North = 85,
+	South,
+	East,
+	West
+}						t_id_of_special_texture;
 
 /*
 **	T_1 -> T_3		BAD GUY
