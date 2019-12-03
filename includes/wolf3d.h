@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 17:38:45 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 19:14:49 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,9 +295,9 @@ int						mouse_release(int button, int x, int y, t_env *env);
 void					player_move(int key, t_env *env);
 
 /*
-**	music.c
+**	music_manager.c
 */
-void					init_sdl_music(Mix_Music **music);
+void					init_sdl_music(Mix_Music **music, int *volume);
 void					change_music(int flag, Mix_Music **music);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:18 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 15:09:35 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 19:17:19 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_menu			*menu_data_init(t_env *env)
 {
 	t_menu		*menu;
 
-	(void)env;
 	if (!(menu = (t_menu *)malloc(sizeof(t_menu))))
 		ft_exit(ERROR_MSG);
 	menu->bg_off[X] = -350 * (WIDTH / HEIGHT);
@@ -29,7 +28,7 @@ t_menu			*menu_data_init(t_env *env)
 		ft_exit(ERROR_MSG);
 	menu->controls->m_pos = 208 + 402 * env->cam->m_speed;
 	menu->controls->r_pos = 208 + 134 * env->cam->r_speed;
-	menu->controls->v_pos = 610;
+	menu->controls->v_pos = 208 + 3.140625 * env->volume;
 	menu->controls->d_pos = 208;
 	menu->controls->s_pos = 79;
 	menu->controls->pressed[0] = No;
@@ -73,8 +72,8 @@ t_env			*env_init(t_map *map)
 	if (!(env->data_addr = mlx_get_data_addr(env->img,
 		&env->bts_pr_px, &env->sz_ln, &env->endian)))
 		ft_exit(ERROR_MSG);
+	init_sdl_music(env->music, &env->volume);
+	printf("%d\n", env->volume);
 	env->menu = menu_data_init(env);
-	init_sdl_music(env->music);
-	env->volume = 128;
 	return (env);
 }

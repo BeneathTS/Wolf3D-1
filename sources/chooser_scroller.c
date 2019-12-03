@@ -65,15 +65,15 @@ void push_scroller(int x, int y, t_env *env)
 			ft_exit(ERROR_MSG);
 		if (!read_map(map_loc, env->map))
 		{
-			system("osascript -e \'display notification \"This map is not valide\" with title \"Warning\"\'");
+			system(CHOOSER_NOTIF);
 			playSound(CHOOSER_ERROR, 128);
 		}
 		else
 		{
-		load_textures(env);
-		env->mode = Game;
-		// change_music(music_flag_1, env->music);
-		renderer(env);
+			load_textures(env);
+			env->mode = Game;
+			change_music(music_flag_1, env->music);
+			renderer(env);
 		}
 		free(map_loc);
 	}

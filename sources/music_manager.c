@@ -6,18 +6,20 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 09:13:59 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 15:09:15 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 19:19:34 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void			init_sdl_music(Mix_Music **music)
+void			init_sdl_music(Mix_Music **music, int *volume) 
 {
 	if (SDL_Init(SDL_INIT_AUDIO) < 0)
 		ft_exit(ERROR_INIT_SDL);
 	initAudio();
 	Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640);
+	*volume = 59;
+	Mix_VolumeMusic(*volume);
 	if (!(music[0] = Mix_LoadMUS(SONG_0)))
 		ft_exit(ERROR_MSG);
 	if (!(music[1] = Mix_LoadMUS(SONG_1)))
