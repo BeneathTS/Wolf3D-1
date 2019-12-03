@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:37:22 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 22:41:04 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/03 22:51:55 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void			ft_free_tex(t_env *env)
 {
 	while (1 && env->tex)
 	{
-		mlx_destroy_image(env->mlx, env->tex->tex_ptr);
-		env->tex->tex_ptr = NULL;
+		// env->tex->tex_ptr = NULL;
 		if (env->tex->next)
 		{
 			env->tex = env->tex->next;
