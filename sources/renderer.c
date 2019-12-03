@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:33:01 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/26 06:13:32 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 12:34:15 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,13 @@ static int		get_color(char tex_id, int tex_x, int tex_y, t_env *env)
 	t_tex		*tmp;
 
 	tmp = env->tex;
+	if (tex_id == T_38)
+	{
+		if (env->cast->ray->side == V)
+			tex_id = 87;
+		else
+			tex_id = 86;
+	}
 	while (tmp->id != tex_id)
 	{
 		tmp = tmp->next;
@@ -116,16 +123,15 @@ static void		draw_column(t_cast *cast, t_env *env, const int x)
 		y[START] = -1;
 	if ((y[FINISH] = ((HEIGHT - VIEW_H) >> 1) + (WALL_H >> 1)) >= HEIGHT)
 		y[FINISH] = HEIGHT - 1;
-	wall_x = (cast->ray->side == H ? CAM->pos[Y] + cast->distance *
-	cast->ray->v_dir[Y] : CAM->pos[X] + cast->distance * cast->ray->v_dir[X]);
+	wall_x = (cast->ray->side == H
+		? CAM->pos[Y] + cast->distance * cast->ray->v_dir[Y]
+		: CAM->pos[X] + cast->distance * cast->ray->v_dir[X]);
 	wall_x -= floor(wall_x);
 	tex_coord[X] = (int)(wall_x * TEX_SIZE);
 	while (++y[START] < y[FINISH])
 	{
 		d = (y[START] << 8) - ((HEIGHT - VIEW_H - 1) << 7) + (WALL_H << 7);
 		tex_coord[Y] = ((d * TEX_SIZE) / WALL_H) >> 8;
-		// ((int *)env->data_addr)[y[START] * WIDTH + x] = 0xFF | get_color( //experiment for fog
-		// 	tex_id, tex_coord[X], tex_coord[Y], env);
 		((int *)env->data_addr)[y[START] * WIDTH + x] = get_color(
 			tex_id, tex_coord[X], tex_coord[Y], env);
 	}
@@ -172,5 +178,6 @@ void			renderer(t_env *env)
 		draw_column(CAST, env, ray);
 	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
-	mlx_put_image_to_window(env->mlx, env->win, env->cam->weapon->tex_ptr, 420, 0);
+	mlx_put_image_to_window(env->mlx, env->win,
+		env->cam->weapon->tex_ptr, 420, 0);
 }

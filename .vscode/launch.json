@@ -11,7 +11,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/wolf3D",
-			"args": ["maps/d.wm"],
+			"args": ["maps/a.wm"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb.c                                              :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/02 21:46:23 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/26 06:12:44 by sleonia          ###   ########.fr       */
+/*   Created: 2019/12/03 12:37:22 by sleonia           #+#    #+#             */
+/*   Updated: 2019/12/03 12:37:39 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "rt.h"
+#include "wolf3d.h"
 
-// int				rgb(int r, int g, int b)
-// {
-// 	int red = color_in_figure & 0xFF;
-// int green = (color_in_figure >> 8) & 0xFF;
-// int blue = (color_in_figure >> 16) & 0xFF;
-// 	return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
-// }
+bool			ft_free(char **var_1, char **var_2)
+{
+	ft_destroy_string_arr(var_1);
+	ft_destroy_string_arr(var_2);
+	return (false);
+}

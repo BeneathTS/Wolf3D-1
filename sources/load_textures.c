@@ -6,11 +6,15 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:31 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/18 08:30:15 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 12:21:34 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+/*
+**	Checking to see if it's a unique element or not.
+*/
 
 static int		find_in_arr_text(int value, char *arr_id_tex)
 {
@@ -28,6 +32,11 @@ static int		find_in_arr_text(int value, char *arr_id_tex)
 	}
 	return (-1);
 }
+
+/*
+**	Create a string in which I write down all
+**	the unique numbers of textures that appear on this map
+*/
 
 static void		get_arr_text_id(char *arr_id_tex, t_env *env)
 {
@@ -51,6 +60,37 @@ static void		get_arr_text_id(char *arr_id_tex, t_env *env)
 	}
 }
 
+/*
+**	Load special wall, which include
+**	4 textures for different side of world
+*/
+
+static void		load_special_wall(char *tex, t_tex **temp, t_env **env)
+{
+	int			i;
+
+	i = 0;
+	(*temp)->id = North;
+	tex = WALL18;
+	while (i++ < 4)
+	{
+		if (i == 1 && (tex = WALL64))
+			(*temp)->id = South;
+		else if (i == 2 && (tex = WALL10))
+			(*temp)->id = East;
+		else if (i == 3 && (tex = WALL55))
+			(*temp)->id = West;
+		if (!((*temp)->tex_ptr = mlx_xpm_file_to_image((*env)->mlx, tex,
+				&(*temp)->width, &(*temp)->height)))
+			ft_exit(ERROR_MSG);
+		if (!((*temp)->data = mlx_get_data_addr((*temp)->tex_ptr,
+			&(*temp)->bts_pr_px, &(*temp)->sz_ln, &(*temp)->endian)))
+			ft_exit(ERROR_MSG);
+		(*temp)->next = tex_init((*temp), NULL);
+		(*temp) = (*temp)->next;
+	}
+}
+
 void			load_texture(char *arr_id_tex, t_env **env)
 {
 	int			i;
@@ -62,17 +102,18 @@ void			load_texture(char *arr_id_tex, t_env **env)
 	temp = (*env)->tex;
 	while (arr_id_tex[++i])
 	{
-		if (!(tex = get_texture_name(i, arr_id_tex)))
-			ft_exit(ERROR_MSG);
-		if (!(temp->tex_ptr = mlx_xpm_file_to_image((*env)->mlx, tex,
-			&temp->width, &temp->height)))
-			ft_exit(ERROR_MSG);
-		if (!(temp->data = mlx_get_data_addr(temp->tex_ptr, &temp->bts_pr_px,
-			&temp->sz_ln, &temp->endian)))
-			ft_exit(ERROR_MSG);
-		temp->id = arr_id_tex[i];
-		if (arr_id_tex[i + 1])
+		tex = get_texture_name(i, arr_id_tex);
+		if (ft_strcmp(tex, SPECIAL_WALL) == 0)
+			load_special_wall(tex, &temp, env);
+		else
 		{
+			if (!(temp->tex_ptr = mlx_xpm_file_to_image((*env)->mlx,
+				tex, &temp->width, &temp->height)))
+				ft_exit(ERROR_MSG);
+			if (!(temp->data = mlx_get_data_addr(temp->tex_ptr,
+				&temp->bts_pr_px, &temp->sz_ln, &temp->endian)))
+				ft_exit(ERROR_MSG);
+			temp->id = arr_id_tex[i];
 			temp->next = tex_init(temp, NULL);
 			temp = temp->next;
 		}
