@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:13 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 15:12:17 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 22:30:27 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,17 @@ static void	rotate(int key, t_env *env)
 
 int			key_press(int key, t_env *env)
 {
-	if (key == ESC)
+	if (key == ESC && env->mode != Game)
 		x_close(env);
+	if (key == ESC)
+	{
+		env->mode = Menu;
+		env->menu->controls->s_pos = 79;
+		resset_card_coords(env);
+		ft_destroy_string_arr(env->map->level);
+		ft_free_tex(env);
+		draw_main_menu(env);
+	}
 	if (env->mode != Game)
 		return (0);
 	if (key == ARR_DOWN || key == ARR_LFT || key == ARR_RGHT ||

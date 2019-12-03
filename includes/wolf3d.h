@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 22:00:00 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/03 22:30:31 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,6 +259,7 @@ int						x_close(t_env *env);
 **	ft_free.c
 */
 bool					ft_free(char **var_1, char **var_2);
+void					ft_free_tex(t_env *env);
 
 /*
 **	get_texture_name.c
