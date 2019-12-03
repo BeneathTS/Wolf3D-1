@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 13:56:50 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 17:38:45 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,18 @@
 # include "controls.h"
 # include "define_value.h"
 
+/*
+**	Struct only for code style 21 school
+*/
 
+typedef struct			s_draw_column
+{
+	int					y[2];
+	int					tex_coord[2];
+	int					d;
+	char				tex_id;
+	double				wall_x;
+}						t_draw_column;
 
 /*
 ** Structure w/ all map data.

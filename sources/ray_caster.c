@@ -6,12 +6,11 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:54 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/21 13:18:10 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 17:50:24 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-#define RAY cast->ray
 
 /*
 ** The function in which we calculate the initial values.
@@ -32,24 +31,24 @@
 ** Find the step for the direction of the ray. (like bresenhem algorithm)
 */
 
-static void		set_values(t_cast *cast, t_cam *cam, int *wall_hit)
+static void		set_values(t_ray *ray, t_cast *cast, t_cam *cam, int *wall_hit)
 {
 	*wall_hit = No;
 	cast->distance = 0;
-	RAY->m_pos[X] = (int)cam->pos[X];
-	RAY->m_pos[Y] = (int)cam->pos[Y];
-	RAY->d_dist[H] = sqrt(pow(RAY->v_dir[Y], 2.0) /
-		pow(RAY->v_dir[X], 2.0) + 1);
-	RAY->d_dist[V] = sqrt(pow(RAY->v_dir[X], 2.0) /
-		pow(RAY->v_dir[Y], 2.0) + 1);
-	cast->step[X] = (RAY->v_dir[X] < 0 ? -1 : 1);
-	cast->step[Y] = (RAY->v_dir[Y] < 0 ? -1 : 1);
-	RAY->s_dist[H] = (cast->step[X] > 0
-		? RAY->m_pos[X] - cam->pos[X] + 1
-		: cam->pos[X] - RAY->m_pos[X]) * RAY->d_dist[H];
-	RAY->s_dist[V] = (cast->step[Y] > 0
-		? RAY->m_pos[Y] - cam->pos[Y] + 1
-		: cam->pos[Y] - RAY->m_pos[Y]) * RAY->d_dist[V];
+	ray->m_pos[X] = (int)cam->pos[X];
+	ray->m_pos[Y] = (int)cam->pos[Y];
+	ray->d_dist[H] = sqrt(pow(ray->v_dir[Y], 2.0) /
+		pow(ray->v_dir[X], 2.0) + 1);
+	ray->d_dist[V] = sqrt(pow(ray->v_dir[X], 2.0) /
+		pow(ray->v_dir[Y], 2.0) + 1);
+	cast->step[X] = (ray->v_dir[X] < 0 ? -1 : 1);
+	cast->step[Y] = (ray->v_dir[Y] < 0 ? -1 : 1);
+	ray->s_dist[H] = (cast->step[X] > 0
+		? ray->m_pos[X] - cam->pos[X] + 1
+		: cam->pos[X] - ray->m_pos[X]) * ray->d_dist[H];
+	ray->s_dist[V] = (cast->step[Y] > 0
+		? ray->m_pos[Y] - cam->pos[Y] + 1
+		: cam->pos[Y] - ray->m_pos[Y]) * ray->d_dist[V];
 }
 
 /*
@@ -62,23 +61,23 @@ static void		set_values(t_cast *cast, t_cam *cam, int *wall_hit)
 **		(horizontal / vertical)
 */
 
-static void		wall_search(t_cast *cast, t_env *env, int *wall_hit)
+static void		wall_search(t_ray *ray, t_cast *cast, t_env *env, int *wall_hit)
 {
 	while (*wall_hit == No)
 	{
-		if (RAY->s_dist[H] < RAY->s_dist[V])
+		if (ray->s_dist[H] < ray->s_dist[V])
 		{
-			RAY->s_dist[H] += RAY->d_dist[H];
-			RAY->m_pos[X] += cast->step[X];
-			RAY->side = H;
+			ray->s_dist[H] += ray->d_dist[H];
+			ray->m_pos[X] += cast->step[X];
+			ray->side = H;
 		}
 		else
 		{
-			RAY->s_dist[V] += RAY->d_dist[V];
-			RAY->m_pos[Y] += cast->step[Y];
-			RAY->side = V;
+			ray->s_dist[V] += ray->d_dist[V];
+			ray->m_pos[Y] += cast->step[Y];
+			ray->side = V;
 		}
-		if (env->map->level[env->RAY->m_pos[Y]][env->RAY->m_pos[X]] > '0')
+		if (env->map->level[ray->m_pos[Y]][ray->m_pos[X]] > '0')
 			*wall_hit = Yes;
 	}
 }
@@ -92,19 +91,19 @@ static void		wall_search(t_cast *cast, t_env *env, int *wall_hit)
 ** 3. Calculate distance to the wall and wall height.
 */
 
-void			cast_a_ray(t_cast *cast, t_cam *cam, t_env *env)
+void			cast_a_ray(t_cast *cast, t_cam *cam, t_env *env )
 {
 	int			wall_hit;
 
-	set_values(cast, cam, &wall_hit);
-	wall_search(cast, env, &wall_hit);
+	set_values(cast->ray, cast, cam, &wall_hit);
+	wall_search(cast->ray, cast, env, &wall_hit);
 	if (wall_hit == Yes)
 	{
-		cast->distance = (RAY->side == H
-			? (RAY->m_pos[X] - cam->pos[X]
-				+ (1 - cast->step[X]) / 2) / RAY->v_dir[X]
-			: (RAY->m_pos[Y] - cam->pos[Y] +
-				(1 - cast->step[Y]) / 2) / RAY->v_dir[Y]);
+		cast->distance = (cast->ray->side == H
+			? (cast->ray->m_pos[X] - cam->pos[X]
+				+ (1 - cast->step[X]) / 2) / cast->ray->v_dir[X]
+			: (cast->ray->m_pos[Y] - cam->pos[Y] +
+				(1 - cast->step[Y]) / 2) / cast->ray->v_dir[Y]);
 		cast->wall_height = (int)floor(HEIGHT * 1.27 / cast->distance);
 	}
 }
