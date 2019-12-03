@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:33:01 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/02 20:09:13 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 12:34:15 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void		draw_floor(t_env *env)
 ** 2. Return the texture color, located on tex_x(x) and tex_y(y) in buffer.
 */
 
-static int		get_color(char tex_id, int tex_x, int tex_y, t_cast *cast, t_env *env)
+static int		get_color(char tex_id, int tex_x, int tex_y, t_env *env)
 {
 	int			color;
 	t_tex		*tmp;
@@ -79,7 +79,7 @@ static int		get_color(char tex_id, int tex_x, int tex_y, t_cast *cast, t_env *en
 	tmp = env->tex;
 	if (tex_id == T_38)
 	{
-		if (cast->ray->side == V)
+		if (env->cast->ray->side == V)
 			tex_id = 87;
 		else
 			tex_id = 86;
@@ -132,10 +132,8 @@ static void		draw_column(t_cast *cast, t_env *env, const int x)
 	{
 		d = (y[START] << 8) - ((HEIGHT - VIEW_H - 1) << 7) + (WALL_H << 7);
 		tex_coord[Y] = ((d * TEX_SIZE) / WALL_H) >> 8;
-		// ((int *)env->data_addr)[y[START] * WIDTH + x] = 0xFF | get_color( //experiment for fog
-		// 	tex_id, tex_coord[X], tex_coord[Y], env);
 		((int *)env->data_addr)[y[START] * WIDTH + x] = get_color(
-			tex_id, tex_coord[X], tex_coord[Y], cast, env);
+			tex_id, tex_coord[X], tex_coord[Y], env);
 	}
 }
 
@@ -180,5 +178,6 @@ void			renderer(t_env *env)
 		draw_column(CAST, env, ray);
 	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
-	mlx_put_image_to_window(env->mlx, env->win, env->cam->weapon->tex_ptr, 420, 0);
+	mlx_put_image_to_window(env->mlx, env->win,
+		env->cam->weapon->tex_ptr, 420, 0);
 }

@@ -6,18 +6,11 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:56 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/02 17:34:03 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 12:37:06 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-static bool			ft_free(char **var_1, char **var_2)
-{
-	ft_destroy_string_arr(var_1);
-	ft_destroy_string_arr(var_2);
-	return (false);
-}
 
 static bool			check_symbols_illegal(char *file)
 {

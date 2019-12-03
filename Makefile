@@ -56,6 +56,7 @@ SRC_NAME =	main.c 						\
 			menu_data_load.c 			\
 			menu.c 						\
 			close.c						\
+			ft_free.c					\
 			get_texture_name.c			\
 			menu_controls.c				\
 			settings.c					\

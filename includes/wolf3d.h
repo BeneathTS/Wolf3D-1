@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/01 21:12:25 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/03 12:38:24 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,11 @@ typedef struct			s_env
 **	close.c
 */
 int						x_close(t_env *env);
+
+/*
+**	ft_free.c
+*/
+bool					ft_free(char **var_1, char **var_2);
 
 /*
 **	get_texture_name.c

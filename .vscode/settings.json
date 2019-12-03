@@ -8,7 +8,12 @@
 		"wolf3d.h": "c",
 		"audio.h": "c",
 		"ft_error.h": "c",
-		"iostream": "cpp"
+		"iostream": "cpp",
+		"array": "c",
+		"string_view": "c",
+		"iterator": "c",
+		"string": "c",
+		"vector": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }
