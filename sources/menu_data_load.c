@@ -6,13 +6,13 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:38 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/23 19:42:26 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/03 20:27:37 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static char *get_image(int ct)
+static char	*get_image(int ct)
 {
 	if (ct == 0)
 		return (BT1);
@@ -33,47 +33,58 @@ static char *get_image(int ct)
 	return (NULL);
 }
 
-static void load_buttons(t_env * env)
+static void	load_buttons(t_env *env)
 {
 	int ct;
 
 	ct = -1;
 	while (++ct < 8)
 	{
-	env->menu->main->next = tex_init(env->menu->main, NULL);
-	env->menu->main = env->menu->main->next;
-	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, get_image(ct), &env->menu->main->width, &env->menu->main->height);
-	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr, &env->menu->main->bts_pr_px, &env->menu->main->sz_ln, &env->menu->main->endian);
-	env->menu->main->id = '1' + ct;
-	if (ct < 4)
-		set_alpha(env->menu->main->data, env->menu->main->width, env->menu->main->height, BUTTONS_ALPHA);
+		env->menu->main->next = tex_init(env->menu->main, NULL);
+		env->menu->main = env->menu->main->next;
+		env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx,
+		get_image(ct), &env->menu->main->width, &env->menu->main->height);
+		env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr,
+			&env->menu->main->bts_pr_px, &env->menu->main->sz_ln,
+			&env->menu->main->endian);
+		env->menu->main->id = '1' + ct;
+		if (ct < 4)
+			set_alpha(env->menu->main->data, env->menu->main->width,
+				env->menu->main->height, BUTTONS_ALPHA);
 	}
 }
 
-static void load_logo(t_env *env)
+static void	load_logo(t_env *env)
 {
 	env->menu->main->next = tex_init(env->menu->main, NULL);
 	env->menu->main = env->menu->main->next;
-	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, LG_IMG, &env->menu->main->width, &env->menu->main->height);
-	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr, &env->menu->main->bts_pr_px, &env->menu->main->sz_ln, &env->menu->main->endian);
+	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, LG_IMG,
+		&env->menu->main->width, &env->menu->main->height);
+	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr,
+	&env->menu->main->bts_pr_px, &env->menu->main->sz_ln,
+	&env->menu->main->endian);
 	env->menu->main->id = 'L';
-	set_alpha(env->menu->main->data, env->menu->main->width, env->menu->main->height, LOGO_ALPHA);
-
+	set_alpha(env->menu->main->data, env->menu->main->width,
+	env->menu->main->height, LOGO_ALPHA);
 	env->menu->main->next = tex_init(env->menu->main, NULL);
 	env->menu->main = env->menu->main->next;
-	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, LG_BASE, &env->menu->main->width, &env->menu->main->height);
-	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr, &env->menu->main->bts_pr_px, &env->menu->main->sz_ln, &env->menu->main->endian);
+	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, LG_BASE,
+		&env->menu->main->width, &env->menu->main->height);
+	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr,
+	&env->menu->main->bts_pr_px, &env->menu->main->sz_ln,
+	&env->menu->main->endian);
 	env->menu->main->id = 'W';
 }
 
-void load_menu_data(t_env * env)
+void		load_menu_data(t_env *env)
 {
-	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, BG_IMG, &env->menu->main->width, &env->menu->main->height);
-	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr, &env->menu->main->bts_pr_px, &env->menu->main->sz_ln, &env->menu->main->endian);
+	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, BG_IMG,
+		&env->menu->main->width, &env->menu->main->height);
+	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr,
+		&env->menu->main->bts_pr_px, &env->menu->main->sz_ln,
+		&env->menu->main->endian);
 	env->menu->main->id = 'B';
-
 	env->menu->first_tex[Menu] = env->menu->main;
-
 	load_logo(env);
 	load_buttons(env);
 	load_back_button(env);

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   music_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 09:13:59 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 19:19:34 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 21:20:56 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void			init_sdl_music(Mix_Music **music, int *volume) 
+void			init_sdl_music(Mix_Music **music, int *volume)
 {
 	if (SDL_Init(SDL_INIT_AUDIO) < 0)
 		ft_exit(ERROR_INIT_SDL);

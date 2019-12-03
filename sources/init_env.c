@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:18 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 19:17:19 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 20:20:19 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ t_env			*env_init(t_map *map)
 		&env->bts_pr_px, &env->sz_ln, &env->endian)))
 		ft_exit(ERROR_MSG);
 	init_sdl_music(env->music, &env->volume);
-	printf("%d\n", env->volume);
 	env->menu = menu_data_init(env);
 	return (env);
 }

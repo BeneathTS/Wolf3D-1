@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 19:14:49 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 22:00:00 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,36 @@ typedef struct			s_env
 }						t_env;
 
 /*
+**	chooser_controls.c
+*/
+void					check_card_selection(int x, int y, t_env *env);
+void					chooser_controls(int x, int y, t_env *env);
+
+/*
+**	chooser_data_load_2.c
+*/
+void					create_background(t_env *env, t_lvl_crd *card);
+
+/*
+**	chooser_data_load.c
+*/
+void					read_map_files(t_env *env, t_menu *menu);
+void					load_chooser_data(t_env *env);
+
+/*
+**	chooser_scroller.c
+*/
+void					resset_card_coords(t_env *env);
+void					scrolling(t_env *env, char sign, int old_value);
+void					move_scroller(int y, t_env *env);
+void					push_scroller(int x, int y, t_env *env);
+
+/*
+**	chooser.c
+*/
+void					draw_chooser(t_env *env);
+
+/*
 **	close.c
 */
 int						x_close(t_env *env);
@@ -255,13 +285,22 @@ t_ray					*ray_init();
 t_cast					*cast_init();
 
 /*
-**	level_chooser.c
+**	load additional_buttons.c
 */
+void					load_back_button(t_env *env);
+void					load_refresh_button(t_env *env);
 
 /*
 **	load_textures.c
 */
 void					load_textures(t_env *env);
+
+/*
+**	menu_additional_bttns_control.c
+*/
+void					check_add_button_select(int x, int y, t_env *env);
+void					draw_add_buttons(t_env *env);
+void					check_push_add_buttons(int x, int y, t_env *env);
 
 /*
 **	menu_controls.c
@@ -301,6 +340,11 @@ void					init_sdl_music(Mix_Music **music, int *volume);
 void					change_music(int flag, Mix_Music **music);
 
 /*
+**	player_weapon.c
+*/
+void					load_weapon_texture(t_env *env);
+
+/*
 **	ray_caster.c
 */
 void					cast_a_ray(t_cast *cast, t_cam *cam, t_env *env);
@@ -322,7 +366,7 @@ void					settings_push_buttons(int x, int y, t_env *env);
 void					settings_controls(int x, int y, t_env *env);
 
 /*
-**	settings_controls.c
+**	settings_data_load.c
 */
 void					load_settings_data(t_env *env);
 
@@ -331,19 +375,4 @@ void					load_settings_data(t_env *env);
 */
 void					draw_settings(t_env *env);
 
-void draw_chooser(t_env *env);
-void chooser_controls(int x, int y, t_env *env);
-void load_chooser_data(t_env *env);
-void push_scroller(int x, int y, t_env *env);
-void check_back_button_select(int x, int y, t_env *env);
-void draw_add_buttons(t_env *env);
-void check_push_add_buttons(int x, int y, t_env *env);
-void load_back_button(t_env *env);
-void load_refresh_button(t_env *env);
-void read_map_files(t_env *env);
-void load_weapon_texture(t_env *env);
-void resset_card_coords(t_env *env);
-void move_scroller(int y, t_env *env);
-void scrolling(t_env *env, char sign, int old_value);
-void check_card_selection(int x, int y, t_env *env);
 #endif

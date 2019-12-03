@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define_value.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 19:02:07 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 21:25:43 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,6 @@ typedef enum			e_music
 
 # define WIDTH			1920
 # define HEIGHT			1080
-
-# define CHOOSER_NOTIF	"osascript -e \'display notification\" \
-							This map is not valide\" with title \"Warning\"\'"
 
 # define NBR_TEXTURES	38
 

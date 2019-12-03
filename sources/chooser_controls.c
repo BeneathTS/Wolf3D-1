@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   chooser_controls.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/03 20:38:12 by ahiroko           #+#    #+#             */
+/*   Updated: 2019/12/03 21:57:26 by ahiroko          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
-static void change_bg_color(t_lvl_crd *card, unsigned int color)
+static void	change_bg_color(t_lvl_crd *card, unsigned int color)
 {
 	int x;
 	int y;
@@ -14,7 +26,7 @@ static void change_bg_color(t_lvl_crd *card, unsigned int color)
 	}
 }
 
-void unselect_old(t_lvl_crd *cards)
+void		unselect_old(t_lvl_crd *cards)
 {
 	if (cards->next)
 		cards = cards->next;
@@ -26,20 +38,21 @@ void unselect_old(t_lvl_crd *cards)
 		cards->font_color = 0x575757;
 		change_bg_color(cards, 0x55B7B7B7);
 		if (!cards->next || cards->pos == HEIGHT)
-			return;
+			return ;
 		cards = cards->next;
 	}
 }
 
-void check_card_selection(int x, int y, t_env *env)
+void		check_card_selection(int x, int y, t_env *env)
 {
 	while (env->menu->cards->id != 0)
 		env->menu->cards = env->menu->cards->prev;
-	while (env->menu->cards->pos + 72 < 0 )
+	while (env->menu->cards->pos + 72 < 0)
 		env->menu->cards = env->menu->cards->next;
-	while(1)
+	while (1)
 	{
-		if (x >= 243 && x <= 1567 && y >= env->menu->cards->pos && y <= env->menu->cards->pos + 72)
+		if (x >= 243 && x <= 1567 &&
+			y >= env->menu->cards->pos && y <= env->menu->cards->pos + 72)
 		{
 			env->menu->cards->selected = Yes;
 			env->menu->cards->font_color = 0x000000;
@@ -56,10 +69,10 @@ void check_card_selection(int x, int y, t_env *env)
 	}
 }
 
-void chooser_controls(int x, int y, t_env *env)
+void		chooser_controls(int x, int y, t_env *env)
 {
 	bg_paralax(x, y, env);
-	check_back_button_select(x, y, env);
+	check_add_button_select(x, y, env);
 	if (env->menu->controls->pressed[4])
 		move_scroller(y, env);
 	check_card_selection(x, y, env);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_caster.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:54 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 18:04:12 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 21:21:39 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void		wall_search(t_ray *ray, t_cast *cast, t_env *env, int *wall_hit)
 ** 3. Calculate distance to the wall and wall height.
 */
 
-void			cast_a_ray(t_cast *cast, t_cam *cam, t_env *env )
+void			cast_a_ray(t_cast *cast, t_cam *cam, t_env *env)
 {
 	int			wall_hit;
 

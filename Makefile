@@ -66,6 +66,7 @@ SRC_NAME =	main.c 						\
 			music_manager.c				\
 			move.c						\
 			chooser_data_load.c			\
+			chooser_data_load_2.c		\
 			chooser.c					\
 			chooser_controls.c			\
 			menu_add_bttns_control.c	\
