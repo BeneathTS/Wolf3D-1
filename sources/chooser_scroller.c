@@ -64,11 +64,17 @@ void push_scroller(int x, int y, t_env *env)
 		if (!(map_loc = ft_strjoin_free(map_loc, env->menu->cards->level_name, 1)))
 			ft_exit(ERROR_MSG);
 		if (!read_map(map_loc, env->map))
-			exit (int_error("Error input!"));
+		{
+			system("osascript -e \'display notification \"This map is not valide\" with title \"Warning\"\'");
+			playSound(CHOOSER_ERROR, 128);
+		}
+		else
+		{
 		load_textures(env);
-		free(map_loc);
 		env->mode = Game;
 		// change_music(music_flag_1, env->music);
 		renderer(env);
+		}
+		free(map_loc);
 	}
 }

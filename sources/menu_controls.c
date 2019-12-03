@@ -26,6 +26,12 @@ void menu_push_buttons(int x, int y, t_env *env)
 		draw_settings(env);
 		env->menu->sel_button = 0;
 	}
+	if (x >= (WIDTH >> 1) - 18 && x <= (WIDTH >> 1) + 335 && 
+	y >= (HEIGHT >> 1) + 16 && y <= (HEIGHT >> 1) + 74)
+	{
+		playSound(OPEN_EDITOR, 128);
+		system("touch ./maps/new_map.wm ; open -a TextEdit ./maps/new_map.wm");
+	}
 	if (x >= (WIDTH >> 1) - 78 && x <= (WIDTH >> 1) + 335 && y >= (HEIGHT >> 1) + 82 && y <= (HEIGHT >> 1) + 140)
 		x_close(env);
 }

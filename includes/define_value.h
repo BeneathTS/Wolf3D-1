@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/02 19:44:21 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 18:47:59 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,4 +210,6 @@ typedef enum			e_music
 # define SONG_1			"music/song_1.mp3"
 # define SONG_2			"music/song_2.mp3"
 # define SHOT			"music/shot.wav"
+# define OPEN_EDITOR	"music/oh-shit-iam-sorry.wav"
+# define CHOOSER_ERROR	"music/fisting-is-300.wav"
 #endif
