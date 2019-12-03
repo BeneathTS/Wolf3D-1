@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_controls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 14:58:06 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 15:53:36 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int			mouse_move(int x, int y, t_env *env)
 	if (env->mode == Game)
 	{
 		env->cntrls->angle = x * 0.001;
-		env->cam->view_height = y * 3;
+		env->cam->view_height = (y -(HEIGHT >> 1)) * 3;
 		env->cam->c_v_dir[X] = env->cam->v_dir[X] *
 			cos(env->cntrls->angle * env->cam->r_speed) - env->cam->v_dir[Y]
 			* sin(env->cntrls->angle * env->cam->r_speed);
