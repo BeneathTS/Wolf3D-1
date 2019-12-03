@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:31 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/02 19:30:06 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 11:02:54 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,45 @@ static void		get_arr_text_id(char *arr_id_tex, t_env *env)
 	}
 }
 
-// void			nazvanie_ne_pridumal()
-// {
-// 	if (!(temp->tex_ptr = mlx_xpm_file_to_image((*env)->mlx, tex,
-// 		&temp->width, &temp->height)))
-// 		ft_exit(ERROR_MSG);
-// 	if (!(temp->data = mlx_get_data_addr(temp->tex_ptr, &temp->bts_pr_px,
-// 		&temp->sz_ln, &temp->endian)))
-// 		ft_exit(ERROR_MSG);
-// 	temp->id = arr_id_tex[i];
-// 	if (arr_id_tex[i + 1])
-// 	{
-// 		temp->next = tex_init(temp, NULL);
-// 		temp = temp->next;
-// 	}
-// }
+/*
+**	Load special wall, which include
+**	4 textures for different side of world
+*/
+
+static void		load_special_wall(char *tex, t_tex **temp, t_env **env)
+{
+	int			i;
+
+	i = 0;
+	(*temp)->id = North;
+	tex = WALL18;
+	while (i++ < 4)
+	{
+		if (i == 1)
+		{
+			tex = WALL64;
+			(*temp)->id = South;	
+		}
+		else if (i == 2)
+		{
+			tex = WALL10;
+			(*temp)->id = East;
+		}
+		else if (i == 3)
+		{
+			tex = WALL55;
+			(*temp)->id = West;
+		}
+		if (!((*temp)->tex_ptr = mlx_xpm_file_to_image((*env)->mlx, tex,
+				&(*temp)->width, &(*temp)->height)))
+				ft_exit(ERROR_MSG);
+		if (!((*temp)->data = mlx_get_data_addr((*temp)->tex_ptr, &(*temp)->bts_pr_px,
+				&(*temp)->sz_ln, &(*temp)->endian)))
+				ft_exit(ERROR_MSG);
+		(*temp)->next = tex_init((*temp), NULL);
+		(*temp) = (*temp)->next;
+	}
+}
 
 void			load_texture(char *arr_id_tex, t_env **env)
 {
@@ -81,47 +105,7 @@ void			load_texture(char *arr_id_tex, t_env **env)
 		if (!(tex = get_texture_name(i, arr_id_tex)))
 			ft_exit(ERROR_MSG);
 		if (ft_strcmp(tex, SPECIAL_WALL) == 0)
-		{
-			if (!(temp->tex_ptr = mlx_xpm_file_to_image((*env)->mlx, WALL96,
-				&temp->width, &temp->height)))
-				ft_exit(ERROR_MSG);
-			if (!(temp->data = mlx_get_data_addr(temp->tex_ptr, &temp->bts_pr_px,
-				&temp->sz_ln, &temp->endian)))
-				ft_exit(ERROR_MSG);
-			temp->id = North;
-			temp->next = tex_init(temp, NULL);
-			temp = temp->next;
-			//
-			if (!(temp->tex_ptr = mlx_xpm_file_to_image((*env)->mlx, WALL10,
-				&temp->width, &temp->height)))
-				ft_exit(ERROR_MSG);
-			if (!(temp->data = mlx_get_data_addr(temp->tex_ptr, &temp->bts_pr_px,
-				&temp->sz_ln, &temp->endian)))
-				ft_exit(ERROR_MSG);
-			temp->id = South;
-			temp->next = tex_init(temp, NULL);
-			temp = temp->next;
-			//
-			if (!(temp->tex_ptr = mlx_xpm_file_to_image((*env)->mlx, WALL7,
-				&temp->width, &temp->height)))
-				ft_exit(ERROR_MSG);
-			if (!(temp->data = mlx_get_data_addr(temp->tex_ptr, &temp->bts_pr_px,
-				&temp->sz_ln, &temp->endian)))
-				ft_exit(ERROR_MSG);
-			temp->id = East;
-			temp->next = tex_init(temp, NULL);
-			temp = temp->next;
-			//
-			if (!(temp->tex_ptr = mlx_xpm_file_to_image((*env)->mlx, WALL3,
-				&temp->width, &temp->height)))
-				ft_exit(ERROR_MSG);
-			if (!(temp->data = mlx_get_data_addr(temp->tex_ptr, &temp->bts_pr_px,
-				&temp->sz_ln, &temp->endian)))
-				ft_exit(ERROR_MSG);
-			temp->id = West;
-			temp->next = tex_init(temp, NULL);
-			temp = temp->next;
-		}
+			load_special_wall(tex, &temp, env);
 		else
 		{
 			if (!(temp->tex_ptr = mlx_xpm_file_to_image((*env)->mlx, tex,

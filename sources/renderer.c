@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:33:01 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/02 19:59:36 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/02 20:09:13 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int		get_color(char tex_id, int tex_x, int tex_y, t_cast *cast, t_env *en
 		if (cast->ray->side == V)
 			tex_id = 87;
 		else
-			tex_id = 88;
+			tex_id = 86;
 	}
 	while (tmp->id != tex_id)
 	{
