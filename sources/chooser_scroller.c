@@ -51,8 +51,24 @@ void move_scroller(int y, t_env *env)
 
 void push_scroller(int x, int y, t_env *env)
 {
+	char *map_loc;
+
 	check_push_add_buttons(x, y, env);
 	if (x >= WIDTH - 100 && x <= WIDTH - 78 &&
 		y >= env->menu->controls->s_pos && y <= env->menu->controls->s_pos + 73 && env->menu->controls->scroller_status == 1)
 		env->menu->controls->pressed[4] = Yes;
+	if (env->menu->cards->selected == Yes)
+	{
+		if (!(map_loc = ft_strdup(MAPS_FOLDER)))
+			ft_exit(ERROR_MSG);
+		if (!(map_loc = ft_strjoin_free(map_loc, env->menu->cards->level_name, 1)))
+			ft_exit(ERROR_MSG);
+		if (!read_map(map_loc, env->map))
+			exit (int_error("Error input!"));
+		load_textures(env);
+		free(map_loc);
+		env->mode = Game;
+		// change_music(music_flag_1, env->music);
+		renderer(env);
+	}
 }
