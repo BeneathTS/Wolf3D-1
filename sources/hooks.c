@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:13 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/26 03:57:53 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 15:12:17 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static void	rotate(int key, t_env *env)
 {
 	if (key == ARR_LFT || key == KB_A)
-		env->cntrls->angle -= 0.01;
+		env->cntrls->angle -= 0.03;
 	if (key == ARR_RGHT || key == KB_D)
-		env->cntrls->angle += 0.01;
+		env->cntrls->angle += 0.03;
 	if (key == ARR_DOWN)
-		env->cam->view_height += 20;
+		env->cam->view_height += 40;
 	if (key == ARR_UP)
-		env->cam->view_height -= 20;
+		env->cam->view_height -= 40;
 	env->cam->c_v_dir[X] = env->cam->v_dir[X] *
 		cos(env->cntrls->angle * env->cam->r_speed) - env->cam->v_dir[Y]
 			* sin(env->cntrls->angle * env->cam->r_speed);

@@ -27,6 +27,7 @@ OBJ_PATH = ./objects/
 INC_PATH = ./includes/
 LIB_PATH = ./libft/
 MLX_PATH = ./mlx/
+SDL_AUDIO_PATH = ./Simple-SDL2-Audio/
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
@@ -69,11 +70,8 @@ SRC_NAME =	main.c 						\
 			chooser_controls.c			\
 			menu_add_bttns_control.c	\
 			load_additional_buttons.c	\
-			audio.c						\
 			player_weapon.c				\
 			chooser_scroller.c			\
-
-SRC_SDL_AUDIO = ./Simple-SDL2-Audio/src/audio.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -81,11 +79,10 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make lib_refresh
-	@gcc $(FLAGS) -o $(NAME) $(OBJ) -lm -L $(LIB_PATH) $(INC_SDL) $(FRAME) -lft -L $(MLX_PATH) $(MLX_FLAGS)
+	@gcc $(FLAGS) -o $(NAME) $(OBJ) -lm -L $(LIB_PATH) -L $(SDL_AUDIO_PATH) -lsdl_audio $(INC_SDL) $(FRAME) -lft -L $(MLX_PATH) $(MLX_FLAGS)
 	 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC_PATH)/wolf3d.h $(INC_PATH)/define_value.h
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(INC_PATH)/wolf3d.h $(INC_PATH)/define_value.h $(INC_PATH)/controls.h
 	@mkdir -p $(OBJ_PATH)
-	@mkdir -p $(OBJ_PATH)Simple-SDL2-Audio/src/
 	@gcc -g $(INC) $(INC_SDL) -o $@ -c $<
 
 #****************************************************************************#
@@ -103,6 +100,7 @@ $(FRAMEDIR):
 lib_refresh:
 	@make -C $(LIB_PATH)
 	@make -C $(MLX_PATH)
+	@make -C $(SDL_AUDIO_PATH)
 	@echo ""
 	@echo "\n\t\t        $(BLUE)💥 WOLF3D READY!💥\t\t     "
 	@echo "💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀\
@@ -118,10 +116,12 @@ clean:
 	@rm -rf $(OBJ_PATH)
 	@make clean -C $(LIB_PATH)
 	@make clean -C $(MLX_PATH)
+	@make clean -C $(SDL_AUDIO_PATH)
 
 fclean: clean
 	@rm -f $(NAME)
 	@make fclean -C $(LIB_PATH)
 	@make clean -C $(MLX_PATH)
+	@make fclean -C $(SDL_AUDIO_PATH)
 
 re: fclean all

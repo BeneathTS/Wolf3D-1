@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:18 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 12:51:42 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/03 15:09:35 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_env			*env_init(t_map *map)
 		&env->bts_pr_px, &env->sz_ln, &env->endian)))
 		ft_exit(ERROR_MSG);
 	env->menu = menu_data_init(env);
-	// init_sdl_music(env->music);
+	init_sdl_music(env->music);
 	env->volume = 128;
 	return (env);
 }
