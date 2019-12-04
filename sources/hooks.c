@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:13 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 22:30:27 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/04 17:15:13 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			key_press(int key, t_env *env)
 {
 	if (key == ESC && env->mode != Game)
 		x_close(env);
-	if (key == ESC)
+	if (key == ESC && env->mode == Game)
 	{
 		env->mode = Menu;
 		env->menu->controls->s_pos = 79;
