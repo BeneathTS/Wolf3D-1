@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:56 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 12:37:06 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/04 22:59:40 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static bool			check_symbols_illegal(char *file)
 	int				i;
 
 	i = -1;
+	printf("%s\n", file);
 	while (file[++i])
 	{
 		if (((int)file[i] >= T_1 && (int)file[i] <= T_38))
@@ -61,10 +62,11 @@ static bool			fill_map(char **split_slash_n, t_map **map)
 	while (split_slash_n[++i])
 	{
 		split_whitespace = ft_strsplit(split_slash_n[i], ' ');
-		if ((*map)->width != ft_len_arr(split_whitespace))
-			return (ft_free(split_whitespace, NULL));
 		fill_line(i, split_whitespace, map);
-		check_symbols_illegal((*map)->level[i]);
+		if ((*map)->width != ft_strlen((*map)->level[i]))
+			return (ft_free(split_whitespace, NULL));
+		if (!check_symbols_illegal((*map)->level[i]))
+			return (false);
 		ft_destroy_string_arr(split_whitespace);
 	}
 	return (true);
