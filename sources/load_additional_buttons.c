@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 21:35:18 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/03 21:39:58 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/04 20:30:42 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 void	load_back_button(t_env *env)
 {
 	env->menu->back_button = tex_init(NULL, NULL);
-	env->menu->back_button->tex_ptr = mlx_xpm_file_to_image(env->mlx, BCK_BTN,
-		&env->menu->back_button->width, &env->menu->back_button->height);
+	if (!(env->menu->back_button->tex_ptr = mlx_xpm_file_to_image(env->mlx,
+	BCK_BTN, &env->menu->back_button->width, &env->menu->back_button->height)))
+		ft_exit(ERROR_MSG);
 	env->menu->back_button->data =
 		mlx_get_data_addr(env->menu->back_button->tex_ptr,
 		&env->menu->back_button->bts_pr_px, &env->menu->back_button->sz_ln,
@@ -24,8 +25,9 @@ void	load_back_button(t_env *env)
 	env->menu->back_button->id = 'Z';
 	env->menu->back_button->next = tex_init(env->menu->back_button, NULL);
 	env->menu->back_button = env->menu->back_button->next;
-	env->menu->back_button->tex_ptr = mlx_xpm_file_to_image(env->mlx, BCK_BTN,
-		&env->menu->back_button->width, &env->menu->back_button->height);
+	if (!(env->menu->back_button->tex_ptr = mlx_xpm_file_to_image(env->mlx,
+	BCK_BTN, &env->menu->back_button->width, &env->menu->back_button->height)))
+		ft_exit(ERROR_MSG);
 	env->menu->back_button->data =
 		mlx_get_data_addr(env->menu->back_button->tex_ptr,
 		&env->menu->back_button->bts_pr_px, &env->menu->back_button->sz_ln,
@@ -38,9 +40,10 @@ void	load_back_button(t_env *env)
 void	load_refresh_button(t_env *env)
 {
 	env->menu->refresh_button = tex_init(NULL, NULL);
-	env->menu->refresh_button->tex_ptr = mlx_xpm_file_to_image(env->mlx,
+	if (!(env->menu->refresh_button->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 		RFSH_BTN, &env->menu->refresh_button->width,
-			&env->menu->refresh_button->height);
+			&env->menu->refresh_button->height)))
+		ft_exit(ERROR_MSG);
 	env->menu->refresh_button->data = mlx_get_data_addr(
 		env->menu->refresh_button->tex_ptr,
 		&env->menu->refresh_button->bts_pr_px,
@@ -49,9 +52,10 @@ void	load_refresh_button(t_env *env)
 	env->menu->refresh_button->next =
 		tex_init(env->menu->refresh_button, NULL);
 	env->menu->refresh_button = env->menu->refresh_button->next;
-	env->menu->refresh_button->tex_ptr = mlx_xpm_file_to_image(env->mlx,
+	if (!(env->menu->refresh_button->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 		RFSH_BTN, &env->menu->refresh_button->width,
-		&env->menu->refresh_button->height);
+		&env->menu->refresh_button->height)))
+		ft_exit(ERROR_MSG);
 	env->menu->refresh_button->data =
 		mlx_get_data_addr(env->menu->refresh_button->tex_ptr,
 		&env->menu->refresh_button->bts_pr_px,

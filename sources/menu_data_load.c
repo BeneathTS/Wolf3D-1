@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:38 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 20:27:37 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/04 20:32:44 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ static void	load_buttons(t_env *env)
 	{
 		env->menu->main->next = tex_init(env->menu->main, NULL);
 		env->menu->main = env->menu->main->next;
-		env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx,
-		get_image(ct), &env->menu->main->width, &env->menu->main->height);
+		if (!(env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx,
+		get_image(ct), &env->menu->main->width, &env->menu->main->height)))
+			ft_exit(ERROR_MSG);
 		env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr,
 			&env->menu->main->bts_pr_px, &env->menu->main->sz_ln,
 			&env->menu->main->endian);
@@ -58,8 +59,9 @@ static void	load_logo(t_env *env)
 {
 	env->menu->main->next = tex_init(env->menu->main, NULL);
 	env->menu->main = env->menu->main->next;
-	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, LG_IMG,
-		&env->menu->main->width, &env->menu->main->height);
+	if (!(env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx,
+	LG_IMG, &env->menu->main->width, &env->menu->main->height)))
+		ft_exit(ERROR_MSG);
 	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr,
 	&env->menu->main->bts_pr_px, &env->menu->main->sz_ln,
 	&env->menu->main->endian);
@@ -68,8 +70,9 @@ static void	load_logo(t_env *env)
 	env->menu->main->height, LOGO_ALPHA);
 	env->menu->main->next = tex_init(env->menu->main, NULL);
 	env->menu->main = env->menu->main->next;
-	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, LG_BASE,
-		&env->menu->main->width, &env->menu->main->height);
+	if (!(env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx,
+	LG_BASE, &env->menu->main->width, &env->menu->main->height)))
+		ft_exit(ERROR_MSG);
 	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr,
 	&env->menu->main->bts_pr_px, &env->menu->main->sz_ln,
 	&env->menu->main->endian);
@@ -78,8 +81,9 @@ static void	load_logo(t_env *env)
 
 void		load_menu_data(t_env *env)
 {
-	env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx, BG_IMG,
-		&env->menu->main->width, &env->menu->main->height);
+	if (!(env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx,
+	BG_IMG, &env->menu->main->width, &env->menu->main->height)))
+		ft_exit(ERROR_MSG);
 	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr,
 		&env->menu->main->bts_pr_px, &env->menu->main->sz_ln,
 		&env->menu->main->endian);

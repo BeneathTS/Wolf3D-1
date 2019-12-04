@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:37:22 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 22:51:55 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/04 20:48:43 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void			ft_free_tex(t_env *env)
 {
 	while (1 && env->tex)
 	{
-		// env->tex->tex_ptr = NULL;
 		if (env->tex->next)
 		{
 			env->tex = env->tex->next;

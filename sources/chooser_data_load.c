@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:42:12 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/04 18:53:37 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/04 20:25:30 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,17 @@ void				load_scroller(t_env *env)
 	int ct;
 
 	ct = -1;
-	env->menu->chooser->tex_ptr = mlx_xpm_file_to_image(env->mlx, SCRL,
-		&env->menu->chooser->width, &env->menu->chooser->height);
+	if (!(env->menu->chooser->tex_ptr = mlx_xpm_file_to_image(env->mlx,
+	SCRL, &env->menu->chooser->width, &env->menu->chooser->height)))
+		ft_exit(ERROR_MSG);
 	env->menu->chooser->data = mlx_get_data_addr(env->menu->chooser->tex_ptr,
 		&env->menu->chooser->bts_pr_px, &env->menu->chooser->sz_ln,
 		&env->menu->chooser->endian);
 	env->menu->chooser->id = 'S';
 	env->menu->chooser->next = tex_init(env->menu->chooser, NULL);
 	env->menu->chooser = env->menu->chooser->next;
-	env->menu->chooser->tex_ptr = mlx_new_image(env->mlx, 1, 835);
+	if (!(env->menu->chooser->tex_ptr = mlx_new_image(env->mlx, 1, 835)))
+		ft_exit(ERROR_MSG);
 	env->menu->chooser->data = mlx_get_data_addr(env->menu->chooser->tex_ptr,
 		&env->menu->chooser->bts_pr_px, &env->menu->chooser->sz_ln,
 		&env->menu->chooser->endian);
