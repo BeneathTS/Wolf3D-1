@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_weapon.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:39:44 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/04 20:33:11 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/04 22:25:10 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void				load_weapon_texture(t_env *env)
 	env->cam->weapon->data = mlx_get_data_addr(
 		env->cam->weapon->tex_ptr, &env->cam->weapon->bts_pr_px,
 		&env->cam->weapon->sz_ln, &env->cam->weapon->endian);
-	set_color_alpha(env->cam->weapon, 0xFF, 0x980088);
+	set_color_alpha(env->cam->weapon, 0xFF, EMPTY_COLOR);
 	env->cam->weapon->id = '1';
 }

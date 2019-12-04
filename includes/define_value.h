@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/04 21:15:36 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/04 22:24:55 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef enum			e_music
 
 # define FLOOR_COLOR	0x353C44
 # define CEILING_COLOR	0x525252
+# define EMPTY_COLOR	0x980088
 
 # define X 				0
 # define Y 				1

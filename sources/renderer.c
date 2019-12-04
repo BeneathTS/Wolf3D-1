@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:33:01 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/04 22:17:39 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/04 22:25:37 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ static int		get_color(char tex_id, int tex_x, int tex_y, t_env *env)
 		else if (side == V && env->cam->pos[Y] < env->cast->ray->m_pos[Y])
 			tex_id = 87;
 		else if (side == V && env->cam->pos[Y] > env->cast->ray->m_pos[Y])
-			tex_id = 88;
+			tex_id = 90;
 	}
 	while (tmp->id != tex_id)
 	{
 		tmp = tmp->next;
 		if (!tmp)
-			ft_exit(ERROR_MSG);
+			return (color = EMPTY_COLOR);
 	}
 	color = ((int *)tmp->data)[tex_x + tex_y * tmp->width];
 	return (color);
