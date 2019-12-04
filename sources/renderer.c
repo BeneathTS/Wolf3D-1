@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:33:01 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 17:45:32 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/04 22:17:39 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** 1. Fill the bottom half of the screen with color.
 */
 
-static void		draw_flow(t_env *env)
+static void		draw_ceiling(t_env *env)
 {
 	int			ct;
 	int			finish;
@@ -35,7 +35,7 @@ static void		draw_flow(t_env *env)
 		{
 			img_crd = ct * WIDTH + ct2;
 			if (img_crd < WIDTH * HEIGHT && img_crd > -1)
-				((int *)env->data_addr)[img_crd] = FLOOR_COLOR;
+				((int *)env->data_addr)[img_crd] = CEILING_COLOR;
 		}
 	}
 }
@@ -70,15 +70,21 @@ static void		draw_floor(t_env *env)
 static int		get_color(char tex_id, int tex_x, int tex_y, t_env *env)
 {
 	int			color;
+	char		side;
 	t_tex		*tmp;
 
+	side = env->cast->ray->side;
 	tmp = env->tex;
 	if (tex_id == T_38)
 	{
-		if (env->cast->ray->side == V)
-			tex_id = 87;
-		else
+		if (side == H && env->cam->pos[X] > env->cast->ray->m_pos[X])
+			tex_id = 85;
+		else if (side == H && env->cam->pos[X] < env->cast->ray->m_pos[X])
 			tex_id = 86;
+		else if (side == V && env->cam->pos[Y] < env->cast->ray->m_pos[Y])
+			tex_id = 87;
+		else if (side == V && env->cam->pos[Y] > env->cast->ray->m_pos[Y])
+			tex_id = 88;
 	}
 	while (tmp->id != tex_id)
 	{
@@ -161,7 +167,7 @@ void			renderer(t_env *env)
 	mlx_clear_window(env->mlx, env->win);
 	ray = -1;
 	draw_floor(env);
-	draw_flow(env);
+	draw_ceiling(env);
 	while (++ray < WIDTH)
 	{
 		x = 2 * ray / (double)WIDTH - 1;

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:31 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 12:21:34 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/04 22:14:32 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ static void		load_special_wall(char *tex, t_tex **temp, t_env **env)
 {
 	int			i;
 
-	i = 0;
-	(*temp)->id = North;
-	tex = WALL18;
+	i = -1;
 	while (i++ < 4)
 	{
-		if (i == 1 && (tex = WALL64))
+		if (i == 0 && (tex = WALL18))
+			(*temp)->id = North;
+		else if (i == 1 && (tex = WALL64))
 			(*temp)->id = South;
 		else if (i == 2 && (tex = WALL10))
 			(*temp)->id = East;

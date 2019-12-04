@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 22:30:31 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/04 21:21:25 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct			s_ray
 	double				s_dist[2];
 	double				d_dist[2];
 	char				side;
+	char				tex_side;
 }						t_ray;
 
 /*
