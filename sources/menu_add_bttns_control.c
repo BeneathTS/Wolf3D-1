@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:35:10 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/03 21:55:27 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/04 19:06:33 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void		check_push_add_buttons(int x, int y, t_env *env)
 	{
 		env->mode = Menu;
 		env->menu->controls->s_pos = 79;
-		resset_card_coords(env);
+		if (env->menu->controls->num_of_cards > 0)
+			resset_card_coords(env);
 		draw_main_menu(env);
 	}
 	if (x >= (WIDTH - 184) && x <= (WIDTH - 80) &&

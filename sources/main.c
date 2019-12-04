@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:35 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 19:04:09 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/04 18:58:07 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int			main(int argc, char **argv)
 	if (argc > 1)
 		ft_exit(ERROR_INPUT);
 	map = map_init();
-	// if (!read_map(argv[1], map))
-	// 	return (int_error("Error input!"));
 	env = env_init(map);
-	// load_textures(env);
 	load_menu_data(env);
 	load_settings_data(env);
 	load_chooser_data(env);

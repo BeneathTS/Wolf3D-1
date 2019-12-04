@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 21:26:32 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/04 17:18:05 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/04 19:05:25 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,11 @@ static void	check_validation(const char *map_loc, t_env *env)
 	if (!read_map(map_loc, env->map))
 	{
 		system("osascript -e \'display notification\" \
-			This map is not valide\" with title \"Warning\"\'");
+			This map is not valid!\" with title \"Warning!\"\'");
 		playSound(CHOOSER_ERROR, 128);
 	}
 	else
 	{
-		env->menu->cards->selected = No;
 		load_textures(env);
 		env->mode = Game;
 		change_music(music_flag_1, env->music);
@@ -91,14 +90,15 @@ void		push_scroller(int x, int y, t_env *env)
 			y <= env->menu->controls->s_pos + 73 &&
 				env->menu->controls->scroller_status == 1)
 		env->menu->controls->pressed[4] = Yes;
-	if (env->menu->cards->selected == Yes)
-	{
-		if (!(map_loc = ft_strdup(MAPS_FOLDER)))
-			ft_exit(ERROR_MSG);
-		if (!(map_loc = ft_strjoin_free(map_loc,
-			env->menu->cards->level_name, 1)))
-			ft_exit(ERROR_MSG);
-		check_validation(map_loc, env);
-		free(map_loc);
-	}
+	if (env->menu->controls->num_of_cards > 0)
+		if (env->menu->cards->selected == Yes)
+		{
+			if (!(map_loc = ft_strdup(MAPS_FOLDER)))
+				ft_exit(ERROR_MSG);
+			if (!(map_loc = ft_strjoin_free(map_loc,
+				env->menu->cards->level_name, 1)))
+				ft_exit(ERROR_MSG);
+			check_validation(map_loc, env);
+			free(map_loc);
+		}
 }

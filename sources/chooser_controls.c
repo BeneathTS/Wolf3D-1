@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:38:12 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/03 21:57:26 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/04 19:03:13 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void		chooser_controls(int x, int y, t_env *env)
 	check_add_button_select(x, y, env);
 	if (env->menu->controls->pressed[4])
 		move_scroller(y, env);
-	check_card_selection(x, y, env);
+	if (env->menu->controls->num_of_cards > 0)
+		check_card_selection(x, y, env);
 	draw_chooser(env);
 }
