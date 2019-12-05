@@ -6,22 +6,11 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 02:56:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 12:23:04 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/05 03:06:08 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-static char		*bad_guy_choise(int symbol)
-{
-	if (symbol == (char)T_1)
-		return (BAD_GUY);
-	else if (symbol == (char)T_2)
-		return (BAD_GUY_2);
-	else if (symbol == (char)T_3)
-		return (DEAD_GUY);
-	return (NULL);
-}
 
 static char		*wall_choise_3(int symbol)
 {
@@ -71,9 +60,7 @@ static char		*wall_choise_2(int symbol)
 
 static char		*wall_choise(int symbol)
 {
-	if (symbol == (char)T_10)
-		return (WALL0);
-	else if (symbol == (char)T_11)
+	if (symbol == (char)T_11)
 		return (WALL3);
 	else if (symbol == (char)T_12)
 		return (WALL7);
@@ -101,9 +88,7 @@ char			*get_texture_name(int i, char *arr_id_tex)
 	char		*res;
 
 	res = NULL;
-	if ((res = bad_guy_choise(arr_id_tex[i])))
-		return (res);
-	else if ((res = wall_choise(arr_id_tex[i])))
+	if ((res = wall_choise(arr_id_tex[i])))
 		return (res);
 	else
 		ft_exit(ERROR_MSG);

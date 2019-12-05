@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_controls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:28:34 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/03 21:25:45 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/05 17:39:06 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ void		menu_push_buttons(int x, int y, t_env *env)
 	y >= (HEIGHT >> 1) + 16 && y <= (HEIGHT >> 1) + 74)
 	{
 		playSound(OPEN_EDITOR, 128);
-		system("touch ./maps/new_map.wm ; \
-			open -a TextEdit ./maps/new_map.wm");
+		system("osascript -e \'tell app \"System Events\" to display dialog \
+\"Use only 58-85 symbols on ascii (: -> U)\"\'");
+		system("touch ./maps/new_map.wm ; open -a TextEdit ./maps/new_map.wm");
 	}
 	if (x >= (WIDTH >> 1) - 78 && x <= (WIDTH >> 1) + 335
 	&& y >= (HEIGHT >> 1) + 82 && y <= (HEIGHT >> 1) + 140)

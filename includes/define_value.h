@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/04 22:24:55 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/05 17:42:08 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,25 @@ typedef enum			e_id_of_special_texture
 **	T_38			WALL WITH 4 TEXTURES
 */
 
-typedef enum			e_type_texture
+/*
+**	typedef enum			e_type_texture
+**	{
+**		T_1 = 48,
+**		T_2,
+**		T_3,
+**		T_4,
+**		T_5,
+**		T_6,
+**		T_7,
+**		T_8,
+**		T_9,
+**		T_10
+** 							t_type_texture;
+*/
+
+typedef enum			e_type_walls
 {
-	T_1 = 48,
-	T_2,
-	T_3,
-	T_4,
-	T_5,
-	T_6,
-	T_7,
-	T_8,
-	T_9,
-	T_10,
-	T_11,
+	T_11 = 58,
 	T_12,
 	T_13,
 	T_14,
@@ -86,7 +92,7 @@ typedef enum			e_type_texture
 	T_36,
 	T_37,
 	T_38
-}						t_type_texture;
+}						t_type_walls;
 
 typedef enum			e_music
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chooser_scroller.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 21:26:32 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/04 19:05:25 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/05 19:18:39 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static void	check_validation(const char *map_loc, t_env *env)
 	}
 	else
 	{
+		env->menu->cards->selected = No;
 		load_textures(env);
 		env->mode = Game;
 		change_music(music_flag_1, env->music);
