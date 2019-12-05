@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:56 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/05 20:11:12 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/05 21:48:01 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,19 +96,10 @@ bool				read_map(const char *level_name, t_map *map)
 	fill_map(split_slash_n, split_whitespace, &map);
 	ft_destroy_string_arr(split_slash_n);
 	if ((map->width = ft_strlen(map->level[0])) < 3)
-	{
-		ft_destroy_string_arr(map->level);
-		return (false);
-	}
+		return (ft_free(ft_destroy_string_arr(map->level), NULL));
 	if (!(check_symbols_in_map(map)))
-	{
-		ft_destroy_string_arr(map->level);
-		return (false);
-	}
+		return (ft_free(ft_destroy_string_arr(map->level), NULL));
 	if (!check_borders(map))
-	{
-		ft_destroy_string_arr(map->level);
-		return (false);
-	}
+		return (ft_free(ft_destroy_string_arr(map->level), NULL));
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 19:29:07 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 04:16:00 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/05 21:50:47 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void				ft_memdel(void **ap);
 void				ft_memdel_with_1_ptr(void *ap);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
-void	            *ft_safe_malloc(size_t size);
+void				*ft_safe_malloc(size_t size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 18:48:43 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/24 23:06:46 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/05 21:51:57 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,11 @@
 # define ERROR_LIGHTS			"\033[31mLights error!\033[0m"
 # define ERROR_FIGURES			"\033[31mFigures error!\033[0m"
 
-
-void		                    void_error(char *error_text);
-void		                    *malloc_error();
-int			                    int_error(char *error_text);
-void		                    *char_error(char *error_text,
+void							void_error(char *error_text);
+void							*malloc_error();
+int								int_error(char *error_text);
+void							*char_error(char *error_text,
 									char *line_for_free);
-void		                    ft_exit(char *error_text);
+void							ft_exit(char *error_text);
 
 #endif

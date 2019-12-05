@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 01:49:39 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/12 12:49:32 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/05 17:38:46 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@ void	print_arr_str(char **arr_str)
 		return ;
 	}
 	while (arr_str[++i])
-		ft_putendl(arr_str[i]);
+	{
+		ft_putstr(arr_str[i]);
+		ft_putchar(' ');
+	}
 }

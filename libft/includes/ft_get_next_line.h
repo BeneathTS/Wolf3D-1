@@ -6,12 +6,12 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 01:50:20 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 02:02:03 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/05 21:51:09 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef FT_GET_NEXT_LINE_H
+# define FT_GET_NEXT_LINE_H
 
 # include "libft.h"
 
