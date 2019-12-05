@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:13 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/04 17:15:13 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/05 13:19:10 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int			key_press(int key, t_env *env)
 		x_close(env);
 	if (key == ESC && env->mode == Game)
 	{
+		env->cam->pos[X] = 1.5;
+		env->cam->pos[Y] = 1.5;
 		env->mode = Menu;
 		env->menu->controls->s_pos = 79;
 		resset_card_coords(env);
