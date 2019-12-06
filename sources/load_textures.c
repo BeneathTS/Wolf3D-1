@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:31 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/04 22:14:32 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/06 21:54:21 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,23 +91,23 @@ static void		load_special_wall(char *tex, t_tex **temp, t_env **env)
 	}
 }
 
-void			load_texture(char *arr_id_tex, t_env **env)
+void			load_texture(char *arr_id_tex, t_env *env)
 {
 	int			i;
 	char		*tex;
 	t_tex		*temp;
 
 	i = -1;
-	(*env)->tex = tex_init(NULL, NULL);
-	temp = (*env)->tex;
+	env->tex = tex_init(NULL, NULL);
+	temp = env->tex;
 	while (arr_id_tex[++i])
 	{
 		tex = get_texture_name(i, arr_id_tex);
-		if (ft_strcmp(tex, SPECIAL_WALL) == 0)
-			load_special_wall(tex, &temp, env);
-		else
-		{
-			if (!(temp->tex_ptr = mlx_xpm_file_to_image((*env)->mlx,
+		// if (ft_strcmp(tex, SPECIAL_WALL) == 0)
+			// load_special_wall(tex, &temp, env);
+		// else
+		// {
+			if (!(temp->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 				tex, &temp->width, &temp->height)))
 				ft_exit(ERROR_MSG);
 			if (!(temp->data = mlx_get_data_addr(temp->tex_ptr,
@@ -116,7 +116,7 @@ void			load_texture(char *arr_id_tex, t_env **env)
 			temp->id = arr_id_tex[i];
 			temp->next = tex_init(temp, NULL);
 			temp = temp->next;
-		}
+		// }
 	}
 }
 
@@ -126,6 +126,6 @@ void			load_textures(t_env *env)
 
 	arr_id_tex = ft_strnew(NBR_TEXTURES);
 	get_arr_text_id(arr_id_tex, env);
-	load_texture(arr_id_tex, &env);
+	load_texture(arr_id_tex, env);
 	ft_strdel(&arr_id_tex);
 }

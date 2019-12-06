@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 21:26:32 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/05 19:18:39 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/06 21:37:29 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,20 @@ void		move_scroller(int y, t_env *env)
 
 static void	check_validation(const char *map_loc, t_env *env)
 {
-	if (!read_map(map_loc, env->map))
-	{
-		system("osascript -e \'display notification\" \
-			This map is not valid!\" with title \"Warning!\"\'");
-		playSound(CHOOSER_ERROR, 128);
-	}
-	else
-	{
+	// if (!read_map(map_loc, env->map))
+	// {
+		// system("osascript -e \'display notification\" \
+		// 	This map is not valid!\" with title \"Warning!\"\'");
+		// playSound(CHOOSER_ERROR, 128);
+	// }
+	// else
+	// {
 		env->menu->cards->selected = No;
 		load_textures(env);
-		env->mode = Game;
-		change_music(music_flag_1, env->music);
+		// env->mode = Game;
+		// change_music(music_flag_1, env->music);
 		renderer(env);
-	}
+	// }
 }
 
 void		push_scroller(int x, int y, t_env *env)

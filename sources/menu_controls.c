@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:28:34 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/05 17:39:06 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/06 21:35:41 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void		menu_push_buttons(int x, int y, t_env *env)
 	if (x >= (WIDTH >> 1) - 18 && x <= (WIDTH >> 1) + 335 &&
 	y >= (HEIGHT >> 1) + 16 && y <= (HEIGHT >> 1) + 74)
 	{
-		playSound(OPEN_EDITOR, 128);
-		system("osascript -e \'tell app \"System Events\" to display dialog \
-\"Use only 58-85 symbols on ascii (: -> U)\"\'");
-		system("touch ./maps/new_map.wm ; open -a TextEdit ./maps/new_map.wm");
+// 		playSound(OPEN_EDITOR, 128);
+// 		system("osascript -e \'tell app \"System Events\" to display dialog \
+// \"Use only 58-85 symbols on ascii (: -> U)\"\'");
+// 		system("touch ./maps/new_map.wm ; open -a TextEdit ./maps/new_map.wm");
 	}
 	if (x >= (WIDTH >> 1) - 78 && x <= (WIDTH >> 1) + 335
 	&& y >= (HEIGHT >> 1) + 82 && y <= (HEIGHT >> 1) + 140)
@@ -76,7 +76,7 @@ static void	check_button_select(int x, int y, t_env *env)
 
 void		menu_controls(int x, int y, t_env *env)
 {
-	bg_paralax(x, y, env);
+	// bg_paralax(x, y, env);
 	check_button_select(x, y, env);
 	draw_main_menu(env);
 }

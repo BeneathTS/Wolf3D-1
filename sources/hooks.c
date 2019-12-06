@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:13 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/05 21:48:54 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/06 21:58:11 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,27 @@ static void	rotate(int key, t_env *env)
 
 int			key_press(int key, t_env *env)
 {
-	if (key == ESC && env->mode != Game)
+	// if (key == ESC && env->mode != Game)
+	if (key == ESC)
 		x_close(env);
-	if (key == ESC && env->mode == Game)
-	{
-		env->cam->pos[X] = 1.5;
-		env->cam->pos[Y] = 1.5;
-		env->mode = Menu;
-		env->menu->controls->s_pos = 79;
-		resset_card_coords(env);
-		ft_destroy_string_arr(env->map->level);
-		ft_free_tex(env);
-		draw_main_menu(env);
-	}
-	if (env->mode != Game)
-		return (0);
-	if (key == ARR_DOWN || key == ARR_LFT || key == ARR_RGHT ||
-	key == ARR_UP || key == KB_A || key == KB_D)
-		rotate(key, env);
-	if (key == KB_W || key == KB_S)
-		player_move(key, env);
+	// if (key == ESC && env->mode == Game)
+	// {
+	// 	env->cam->pos[X] = 1.5;
+	// 	env->cam->pos[Y] = 1.5;
+	// 	env->mode = Menu;
+	// 	env->menu->controls->s_pos = 79;
+	// 	resset_card_coords(env);
+	// 	ft_destroy_string_arr(env->map->level);
+	// 	ft_free_tex(env);
+	// 	draw_main_menu(env);
+	// }
+	// if (env->mode != Game)
+	// 	return (0);
+	// if (key == ARR_DOWN || key == ARR_LFT || key == ARR_RGHT ||
+	// key == ARR_UP || key == KB_A || key == KB_D)
+	// 	rotate(key, env);
+	// if (key == KB_W || key == KB_S)
+	// 	player_move(key, env);
 	return (0);
 }
 
@@ -66,7 +67,7 @@ void		init_key_hooks(t_env *env)
 {
 	mlx_hook(env->win, 17, 0, x_close, env);
 	mlx_hook(env->win, 2, 0, key_press, env);
-	mlx_hook(env->win, 4, 0, push_buttons, env);
-	mlx_hook(env->win, 5, 0, mouse_release, env);
-	mlx_hook(env->win, 6, 0, mouse_move, env);
+	// mlx_hook(env->win, 4, 0, push_buttons, env);
+	// mlx_hook(env->win, 5, 0, mouse_release, env);
+	// mlx_hook(env->win, 6, 0, mouse_move, env);
 }

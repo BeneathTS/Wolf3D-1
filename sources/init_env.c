@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:18 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 20:20:19 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/06 21:33:05 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_env			*env_init(t_map *map)
 	env->cam = cam_init();
 	env->cast = cast_init();
 	env->cntrls = cntrls_init();
-	env->mode = Menu;
+	env->mode = Game;
 	if (!(env->mlx = mlx_init()))
 		ft_exit(ERROR_MSG);
 	if (!(env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "Wolf3D")))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings_controls.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:18:12 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/03 21:56:56 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/06 21:35:17 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void		settings_push_buttons(int x, int y, t_env *env)
 
 void		settings_controls(int x, int y, t_env *env)
 {
-	bg_paralax(x, y, env);
+	// bg_paralax(x, y, env);
 	check_add_button_select(x, y, env);
 	if (env->menu->controls->pressed[0] || env->menu->controls->pressed[1] ||
 		env->menu->controls->pressed[2] || env->menu->controls->pressed[3])
