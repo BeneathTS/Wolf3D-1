@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:31 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/06 21:54:21 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/06 23:36:27 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ static int		find_in_arr_text(int value, char *arr_id_tex)
 {
 	int			i;
 
-	i = -1;
+	i = 0;
 	if (!arr_id_tex[0])
 		return (0);
-	while (++i < NBR_TEXTURES)
+	while (i < NBR_TEXTURES)
 	{
 		if (arr_id_tex[i] == value)
 			return (-1);
 		if (!arr_id_tex[i])
 			return (i);
+		i++;
 	}
 	return (-1);
 }
@@ -44,10 +45,10 @@ static void		get_arr_text_id(char *arr_id_tex, t_env *env)
 	int			id;
 	int			k;
 
-	i = -1;
-	while (env->map->level[++i])
+	i = 0;
+	while (env->map->level[i])
 	{
-		k = -1;
+		k = 0;
 		while (env->map->level[i][++k])
 		{
 			if (env->map->level[i][k] != '0')
@@ -56,7 +57,9 @@ static void		get_arr_text_id(char *arr_id_tex, t_env *env)
 					arr_id_tex)) != -1)
 					arr_id_tex[id] = env->map->level[i][k];
 			}
+			k++;
 		}
+		i++;
 	}
 }
 
@@ -97,10 +100,10 @@ void			load_texture(char *arr_id_tex, t_env *env)
 	char		*tex;
 	t_tex		*temp;
 
-	i = -1;
+	i = 0;
 	env->tex = tex_init(NULL, NULL);
 	temp = env->tex;
-	while (arr_id_tex[++i])
+	while (arr_id_tex[i])
 	{
 		tex = get_texture_name(i, arr_id_tex);
 		// if (ft_strcmp(tex, SPECIAL_WALL) == 0)
@@ -109,7 +112,7 @@ void			load_texture(char *arr_id_tex, t_env *env)
 		// {
 			if (!(temp->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 				tex, &temp->width, &temp->height)))
-				ft_exit(ERROR_MSG);
+				ft_exit("LOLKEK");
 			if (!(temp->data = mlx_get_data_addr(temp->tex_ptr,
 				&temp->bts_pr_px, &temp->sz_ln, &temp->endian)))
 				ft_exit(ERROR_MSG);
@@ -117,6 +120,7 @@ void			load_texture(char *arr_id_tex, t_env *env)
 			temp->next = tex_init(temp, NULL);
 			temp = temp->next;
 		// }
+		i++;
 	}
 }
 

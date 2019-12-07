@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:22 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/21 14:19:41 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/06 23:25:35 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_tex		*tex_init(t_tex *prev, t_tex *next)
 
 	if (!(tex = (t_tex *)malloc(sizeof(t_tex))))
 		ft_exit(ERROR_MSG);
-	tex->id = 1;
+	tex->id = 65;
 	tex->tex_ptr = NULL;
 	tex->next = next;
 	tex->prev = prev;
