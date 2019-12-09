@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/05 17:40:44 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 02:11:20 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,12 @@ void		mouse_scroll(int x, int y, int button, t_env *env)
 
 int			push_buttons(int button, int x, int y, t_env *env)
 {
-	if (button == 1 && env->mode == Game)
-		playSound(SHOT, env->volume);
+	// if (button == 1 && env->mode == Game)
+		// playSound(SHOT, env->volume);
+	if (!env)
+		ft_exit("LOL");
+		if (!env->menu->controls)
+		ft_exit("KIK");
 	if (env->mode == Menu && button == 1)
 		menu_push_buttons(x, y, env);
 	if (env->mode == Settings && button == 1)
@@ -76,7 +80,7 @@ int			mouse_move(int x, int y, t_env *env)
 		env->cam->c_v_plane[Y] = env->cam->v_plane[X] * sin(env->cntrls->angle
 			* env->cam->r_speed) + env->cam->v_plane[Y]
 			* cos(env->cntrls->angle * env->cam->r_speed);
-		renderer(env);
+		// renderer(env);
 	}
 	return (0);
 }

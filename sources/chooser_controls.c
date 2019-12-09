@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chooser_controls.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:38:12 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/04 19:03:13 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/10 01:51:30 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	change_bg_color(t_lvl_crd *card, unsigned int color)
 	int y;
 
 	y = -1;
+	if (!card)
+		ft_exit(ERROR_MSG);
 	while (++y < 72)
 	{
 		x = -1;

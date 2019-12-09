@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:56 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/07 20:00:57 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 01:54:00 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ bool				read_map(const char *level_name, t_map *map)
 	ft_destroy_string_arr(split_slash_n);
 	if ((map->width = ft_strlen(map->level[0])) < 3)
 		return (ft_free(map->level, NULL));
-	if (!(check_symbols_in_map(map)))
-		return (ft_free(map->level, NULL));
-	if (!check_borders(map))
-		return (ft_free(map->level, NULL));
+	// if (!(check_symbols_in_map(map)))
+	// 	return (ft_free(map->level, NULL));
+	// if (!check_borders(map))
+	// 	return (ft_free(map->level, NULL));
 	return (true);
 }
