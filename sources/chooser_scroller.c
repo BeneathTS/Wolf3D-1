@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 21:26:32 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/10 06:12:40 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 08:06:32 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,40 +63,30 @@ void		move_scroller(int y, t_env *env)
 		scrolling(env, sign, temp);
 }
 
-void 		print_map(t_map *map)
-{
-	t_map	*tmp;
-
-	tmp = map;
-	while (tmp)
-	{
-		printf("%s\n", tmp->name);
-		tmp = tmp->next;
-	}
-}
+/*
+**	What's the logic here? The function will return the map as a structure
+**		next you'll have to look at map->level.
+**	If it is NULL:
+** 		Then I start the reader
+** 		Otherwise, I work with him right away
+**	Why is that necessary?
+**	Not to have to check the card many times
+*/
 
 static void	check_validation(const char *map_loc, t_env *env)
 {
 	t_map	*tmp;
-	//	Какая тут логика? Функция будет возвращать карту как структуру
-	//	Дальше нужно будет смотреть на map->level.
-	// 	Если он NULL:
-	// 		1) то запускаю ридер
-	// 	Иначе сразу с ним работаю
-	//	
-	// Зачем это нужно?
-	// Чтобы не проверять карту по многу раз при запуске
+
 	tmp = find_current_map(map_loc, &env->map);
-	read_map(map_loc, tmp);
-	print_map(env->map);
+	if (!tmp->level)
+		read_map(map_loc, tmp);
 	ft_bzero(env->data_addr, (WIDTH * (env->bts_pr_px >> 3)) * HEIGHT);
 	mlx_clear_window(env->mlx, env->win);
 	env->menu->cards->selected = No;
-	// load_textures(env);
-	env->mode = Game;
-		
-	// change_music(music_flag_1, env->music);
-	// renderer(env);
+	load_textures(env);
+	env->mode = Game;	
+	change_music(music_flag_1, env->music);
+	renderer(env);
 }
 
 void		push_scroller(int x, int y, t_env *env)

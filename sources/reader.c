@@ -6,16 +6,16 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:56 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 06:33:46 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 08:02:15 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int				ft_strlen_a(char symb, const char *s)
+size_t			ft_strlen_without_symb(char symb, const char *s)
 {
-	size_t	i;
-	size_t	count;
+	size_t		i;
+	size_t		count;
 
 	i = -1;
 	count = 0;
@@ -27,6 +27,24 @@ int				ft_strlen_a(char symb, const char *s)
 	return (count);
 }
 
+char			*ft_strnew_without_symb(char symb, char *str)
+{
+	int			i;
+	int			k;
+	int			len;
+	char		*new_str;
+
+	len = ft_strlen_without_symb(' ', (const char *)str);
+	new_str = ft_strnew(len);
+	i = -1;
+	k = -1;
+	while (str[++i])
+	{
+		if (str[i] != symb)
+			new_str[++k] = str[i];
+	}
+	return (new_str);
+}
 
 char			*read_file(t_map *map)
 {
@@ -39,7 +57,7 @@ char			*read_file(t_map *map)
 		return (NULL);
 	if (get_next_line(fd, &str2) == -1)
 		return (NULL);
-	map->width = ft_strlen_a(' ', str2);
+	map->width = ft_strlen_without_symb(' ', str2);
 	while((res = get_next_line(fd, &str1)) > 0)
 		str2 = ft_strjoin_free(str2, str1, 2);
 	if (res == -1)
@@ -57,7 +75,7 @@ static void		count_height(char *file, t_map *map)
 	int			file_len;
 
 	i = map->width;
-	file_len = ft_strlen_a(' ', file);
+	file_len = ft_strlen_without_symb(' ', file);
 	while (i <= file_len)
 	{
 		i += map->width;
@@ -69,27 +87,22 @@ static void			fill_map(char *file, t_map **map)
 {
 	int				i;
 	int				k;
-	int				j;
+	char			*file_without_whitespace;
 	
 	i = -1;
 	k = 0;
-	//	Что тут должно происходить?
-	// 	Выделил место под лвл
-	// 	Дальше заполняю линию не пробелами
-	// 	Меммуваю file или играюсь с счетчиками
-	(*map)->level = (char **)ft_memalloc(sizeof(char *) * ((*map)->height + 1)); //mb problem
+	file_without_whitespace = ft_strnew_without_symb(' ', file);
+	(*map)->level =
+		(char **)ft_memalloc(sizeof(char *) * ((*map)->height + 1));
 	while (++i < (*map)->height)
 	{
-		(*map)->level[i] = ft_strnew((*map)->width);
-		while (k < (*map)->width)
-		{
-			(*map)->level[i]
-		}
-		// (*map)->level[i] = ft_strsub(file, k, (*map)->width);
+		(*map)->level[i] =
+			ft_strsub(file_without_whitespace, k, (*map)->width);
 		k += (*map)->width;
 	}
+	ft_strdel(&file_without_whitespace);
 }
-
+//прикрутить проверки
 bool			read_map(const char *level_name, t_map *map)
 {
 	char		*file;
@@ -103,5 +116,6 @@ bool			read_map(const char *level_name, t_map *map)
 		return (false);
 	}
 	fill_map(file, &map);
+	ft_strdel(&file);
 	return (true);
 }

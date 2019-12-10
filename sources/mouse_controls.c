@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 02:11:20 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 08:05:34 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int			mouse_move(int x, int y, t_env *env)
 		env->cam->c_v_plane[Y] = env->cam->v_plane[X] * sin(env->cntrls->angle
 			* env->cam->r_speed) + env->cam->v_plane[Y]
 			* cos(env->cntrls->angle * env->cam->r_speed);
-		// renderer(env);
+		renderer(env);
 	}
 	return (0);
 }

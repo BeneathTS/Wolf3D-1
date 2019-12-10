@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:13 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/05 21:48:54 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 08:11:09 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int			key_press(int key, t_env *env)
 		env->mode = Menu;
 		env->menu->controls->s_pos = 79;
 		resset_card_coords(env);
-		ft_destroy_string_arr(env->map->level);
+		// ft_destroy_string_arr(env->map->level);
 		ft_free_tex(env);
 		draw_main_menu(env);
 	}
