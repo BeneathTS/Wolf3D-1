@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:33:01 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 09:50:26 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 10:05:12 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static void		draw_column(t_cast *cast, t_env *env, t_cam *cam, const int x)
 {
 	t_draw_column	vars;
 
-	vars.tex_id = env->map->level[cast->ray->m_pos[Y]][cast->ray->m_pos[X]];//fix
+	vars.tex_id = env->map->level[cast->ray->m_pos[Y]][cast->ray->m_pos[X]];
 	if ((vars.y[START] = ((HEIGHT - cam->view_height) >> 1) -
 		(cast->wall_height >> 1) - 1) < -1)
 		vars.y[START] = -1;
@@ -163,8 +163,6 @@ void			renderer(t_env *env)
 	int			ray;
 	double		x;
 
-	// ft_bzero(env->data_addr, (WIDTH * (env->bts_pr_px >> 3)) * HEIGHT);
-	// mlx_clear_window(env->mlx, env->win);
 	ray = -1;
 	draw_floor(env);
 	draw_ceiling(env);

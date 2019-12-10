@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:56 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 09:13:58 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 10:11:46 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,6 @@ static bool			check_symbols_in_map(t_map *map)
 		}
 	}
 	return (true);
-}
-
-static char			*read_file(t_map *map)
-{
-	char			*str1;
-	char			*str2;
-	int				fd;
-	int				res;
-
-	if ((fd = open(map->name, O_RDONLY)) < 0)
-		return (NULL);
-	if (get_next_line(fd, &str2) == -1)
-		return (NULL);
-	map->width = ft_strlen_without_symb(' ', str2);
-	while ((res = get_next_line(fd, &str1)) > 0)
-		str2 = ft_strjoin_free(str2, str1, 3);
-	ft_strdel(&str1);
-	if (res == -1)
-	{
-		ft_strdel(&str2);
-		return (NULL);
-	}
-	close(fd);
-	return (str2);
 }
 
 static bool			count_height(char *file, t_map *map)
