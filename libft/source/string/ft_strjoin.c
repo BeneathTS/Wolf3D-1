@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 10:53:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/16 04:17:03 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 05:23:10 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char			*ft_strjoin(char const *s1, char const *s2)
 	while (++i < len_s1)
 	{
 		str[i] = *s1;
-		++i;
 		++s1;
 	}
 	while (i < len_sum)

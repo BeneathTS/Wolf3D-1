@@ -67,12 +67,13 @@ SRC_NAME =	main.c 						\
 			move.c						\
 			chooser_data_load.c			\
 			chooser_data_load_2.c		\
-			chooser.c					\
 			chooser_controls.c			\
+			chooser.c					\
 			menu_add_bttns_control.c	\
 			load_additional_buttons.c	\
 			player_weapon.c				\
 			chooser_scroller.c			\
+			work_with_map.c				\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

@@ -6,100 +6,102 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:56 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 01:54:00 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 06:33:46 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static bool			check_borders(t_map *map)
+int				ft_strlen_a(char symb, const char *s)
 {
-	int				i;
+	size_t	i;
+	size_t	count;
 
-	if (!ft_find_symb_in_str_arr(map->level, '0'))
-		return (false);
-	if (ft_strchr(map->level[0], '0')
-		|| ft_strchr(map->level[map->height - 1], '0'))
-		return (false);
-	i = 0;
-	while (++i < map->height - 1)
+	i = -1;
+	count = 0;
+	while (s[++i])
 	{
-		if (map->level[i][0] == '0' || map->level[i][map->width - 1] == '0')
-			return (false);
+		if (s[i] != symb)
+			count++;
 	}
-	return (true);
+	return (count);
 }
 
-static bool			check_symbols_in_map(t_map *map)
+
+char			*read_file(t_map *map)
+{
+	char 		*str1;
+	char 		*str2;
+	int			fd;
+	int			res;
+
+	if ((fd = open(map->name, O_RDONLY)) < 0)
+		return (NULL);
+	if (get_next_line(fd, &str2) == -1)
+		return (NULL);
+	map->width = ft_strlen_a(' ', str2);
+	while((res = get_next_line(fd, &str1)) > 0)
+		str2 = ft_strjoin_free(str2, str1, 2);
+	if (res == -1)
+	{
+		ft_strdel(&str2);
+		return (NULL);
+	}
+	close(fd);
+	return (str2);
+}
+
+static void		count_height(char *file, t_map *map)
+{
+	int			i;
+	int			file_len;
+
+	i = map->width;
+	file_len = ft_strlen_a(' ', file);
+	while (i <= file_len)
+	{
+		i += map->width;
+		map->height++;
+	}
+}
+
+static void			fill_map(char *file, t_map **map)
 {
 	int				i;
 	int				k;
-
+	int				j;
+	
 	i = -1;
-	while (map->level[++i])
+	k = 0;
+	//	Что тут должно происходить?
+	// 	Выделил место под лвл
+	// 	Дальше заполняю линию не пробелами
+	// 	Меммуваю file или играюсь с счетчиками
+	(*map)->level = (char **)ft_memalloc(sizeof(char *) * ((*map)->height + 1)); //mb problem
+	while (++i < (*map)->height)
 	{
-		k = -1;
-		if (ft_strlen(map->level[i]) != map->width)
-			return (false);
-		while (map->level[i][++k])
+		(*map)->level[i] = ft_strnew((*map)->width);
+		while (k < (*map)->width)
 		{
-			if ((((int)map->level[i][k] >= T_11 &&
-				(int)map->level[i][k] <= T_38)) || (int)map->level[i][k] == 48)
-				continue ;
-			else
-				return (false);
+			(*map)->level[i]
 		}
-	}
-	return (true);
-}
-
-static void			fill_line(int i, char **split_whitespace, t_map **map)
-{
-	int				k;
-
-	k = -1;
-	(*map)->level[i] = (char *)ft_safe_malloc(sizeof(char)
-		* (ft_len_arr(split_whitespace) + 1));
-	while (split_whitespace[++k])
-		(*map)->level[i][k] = split_whitespace[k][0];
-	(*map)->level[i][k] = '\0';
-}
-
-static void			fill_map(char **split_slash_n,
-						char **split_whitespace, t_map **map)
-{
-	int				i;
-
-	i = -1;
-	while (split_slash_n[++i])
-	{
-		split_whitespace = ft_strsplit(split_slash_n[i], ' ');
-		fill_line(i, split_whitespace, map);
-		ft_destroy_string_arr(split_whitespace);
+		// (*map)->level[i] = ft_strsub(file, k, (*map)->width);
+		k += (*map)->width;
 	}
 }
 
-bool				read_map(const char *level_name, t_map *map)
+bool			read_map(const char *level_name, t_map *map)
 {
-	char			*file;
-	char			**split_whitespace;
-	char			**split_slash_n;
+	char		*file;
 
-	if (!(file = read_big_file(file, (char *)level_name)))
+	if (!(file = read_file(map)))
 		return (false);
-	split_slash_n = ft_strsplit(file, '\n');
-	ft_strdel(&file);
-	if ((map->height = ft_len_arr(split_slash_n)) < 3)
-		return (ft_free(split_slash_n, NULL));
-	map->level = (char **)ft_safe_malloc(sizeof(char *) * (map->height + 1));
-	map->level[map->height] = NULL;
-	fill_map(split_slash_n, split_whitespace, &map);
-	ft_destroy_string_arr(split_slash_n);
-	if ((map->width = ft_strlen(map->level[0])) < 3)
-		return (ft_free(map->level, NULL));
-	// if (!(check_symbols_in_map(map)))
-	// 	return (ft_free(map->level, NULL));
-	// if (!check_borders(map))
-	// 	return (ft_free(map->level, NULL));
+	count_height(file, map);
+	if (map->height < 3 || map->width < 3)
+	{
+		ft_strdel(&file);
+		return (false);
+	}
+	fill_map(file, &map);
 	return (true);
 }

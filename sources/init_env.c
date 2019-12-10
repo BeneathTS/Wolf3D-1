@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:18 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/03 20:20:19 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/10 04:05:24 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ t_cntrls		*cntrls_init(void)
 	return (cntrls);
 }
 
-t_env			*env_init(t_map *map)
+t_env			*env_init(void)
 {
 	t_env		*env;
 
 	if (!(env = (t_env*)malloc(sizeof(t_env))))
 		ft_exit(ERROR_MSG);
-	env->map = map;
+	env->map = NULL;
 	env->tex = NULL;
 	env->cam = cam_init();
 	env->cast = cast_init();

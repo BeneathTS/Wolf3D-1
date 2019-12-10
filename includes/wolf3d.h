@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/05 04:27:45 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 04:45:36 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,11 @@ typedef struct			s_draw_column
 */
 typedef struct			s_map
 {
+	char				*name;
 	int					width;
 	int					height;
 	char				**level;
+	struct s_map		*next;
 }						t_map;
 
 /*
@@ -275,14 +277,13 @@ void					init_key_hooks(t_env *env);
 /*
 **	init_env.c
 */
-t_env					*env_init(t_map *map);
+t_env					*env_init(void);
 
 /*
 **	init_game_data.c
 */
 t_tex					*tex_init(t_tex *prev, t_tex *next);
 t_cam					*cam_init();
-t_map					*map_init();
 t_ray					*ray_init();
 t_cast					*cast_init();
 
@@ -376,5 +377,12 @@ void					load_settings_data(t_env *env);
 **	settings.c
 */
 void					draw_settings(t_env *env);
+
+/*
+**	work_with_map.c
+*/
+t_map					*map_init(char *name);
+t_map					*find_current_map(const char *name, t_map **map);
+void					delete_list_maps(t_map **map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:22 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/21 14:19:41 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 03:46:10 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,6 @@ t_cam		*cam_init(void)
 	cam->m_speed = 0.1;
 	cam->r_speed = 1.3;
 	return (cam);
-}
-
-t_map		*map_init(void)
-{
-	t_map	*map;
-
-	if (!(map = (t_map *)malloc(sizeof(t_map))))
-		ft_exit(ERROR_MSG);
-	map->width = 0;
-	map->height = 0;
-	map->level = NULL;
-	return (map);
 }
 
 t_ray		*ray_init(void)

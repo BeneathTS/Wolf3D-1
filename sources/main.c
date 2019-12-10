@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:35 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/05 21:33:47 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 05:44:21 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 int			main(int argc, char **argv)
 {
 	t_env	*env;
-	t_map	*map;
 
 	if (argc > 1)
 		ft_exit(ERROR_INPUT);
-	map = map_init();
-	env = env_init(map);
+	env = env_init();
 	load_menu_data(env);
 	load_settings_data(env);
 	load_chooser_data(env);
