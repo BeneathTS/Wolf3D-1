@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 21:26:32 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/10 08:06:32 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 08:42:38 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,21 @@ static void	check_validation(const char *map_loc, t_env *env)
 
 	tmp = find_current_map(map_loc, &env->map);
 	if (!tmp->level)
-		read_map(map_loc, tmp);
-	ft_bzero(env->data_addr, (WIDTH * (env->bts_pr_px >> 3)) * HEIGHT);
-	mlx_clear_window(env->mlx, env->win);
-	env->menu->cards->selected = No;
-	load_textures(env);
-	env->mode = Game;	
-	change_music(music_flag_1, env->music);
-	renderer(env);
+	{
+		if (!read_map(map_loc, tmp))
+			system("osascript -e \'display notification\" \
+This map is not valid!\" with title \"Warning!\"\'");
+		else
+		{
+			// ft_bzero(env->data_addr, (WIDTH * (env->bts_pr_px >> 3)) * HEIGHT);
+			// mlx_clear_window(env->mlx, env->win);
+			env->menu->cards->selected = No;
+			load_textures(env);
+			env->mode = Game;	
+			change_music(music_flag_1, env->music);
+			renderer(env);
+		}		
+	}
 }
 
 void		push_scroller(int x, int y, t_env *env)

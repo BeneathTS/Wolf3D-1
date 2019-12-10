@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"typeinfo": "c",
-		"ft_string.h": "c"
+		"ft_string.h": "c",
+		"ft_error.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/04 13:31:34 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/12 12:53:31 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 08:58:51 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char				*read_file(int size, char *name)
 	i = -1;
 	if (size <= 0 || !name)
 		return (NULL);
-	if (!(str = (char *)malloc(sizeof(char) * size)))
+	if (!(str = ft_strnew(size)))
 		return (NULL);
 	while (++i < size)
 		str[i] = '\0';

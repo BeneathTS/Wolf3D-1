@@ -6,60 +6,66 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:56 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 08:02:15 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 09:13:58 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-size_t			ft_strlen_without_symb(char symb, const char *s)
+static bool			check_borders(t_map *map)
 {
-	size_t		i;
-	size_t		count;
+	int				i;
 
-	i = -1;
-	count = 0;
-	while (s[++i])
+	if (!ft_find_symb_in_str_arr(map->level, '0'))
+		return (false);
+	if (ft_strchr(map->level[0], '0')
+		|| ft_strchr(map->level[map->height - 1], '0'))
+		return (false);
+	i = 0;
+	while (++i < map->height - 1)
 	{
-		if (s[i] != symb)
-			count++;
+		if (map->level[i][0] == '0' || map->level[i][map->width - 1] == '0')
+			return (false);
 	}
-	return (count);
+	return (true);
 }
 
-char			*ft_strnew_without_symb(char symb, char *str)
+static bool			check_symbols_in_map(t_map *map)
 {
-	int			i;
-	int			k;
-	int			len;
-	char		*new_str;
+	int				i;
+	int				k;
 
-	len = ft_strlen_without_symb(' ', (const char *)str);
-	new_str = ft_strnew(len);
 	i = -1;
-	k = -1;
-	while (str[++i])
+	while (map->level[++i])
 	{
-		if (str[i] != symb)
-			new_str[++k] = str[i];
+		k = -1;
+		while (map->level[i][++k])
+		{
+			if ((((int)map->level[i][k] >= T_11 &&
+				(int)map->level[i][k] <= T_38)) || (int)map->level[i][k] == 48)
+				continue ;
+			else
+				return (false);
+		}
 	}
-	return (new_str);
+	return (true);
 }
 
-char			*read_file(t_map *map)
+static char			*read_file(t_map *map)
 {
-	char 		*str1;
-	char 		*str2;
-	int			fd;
-	int			res;
+	char			*str1;
+	char			*str2;
+	int				fd;
+	int				res;
 
 	if ((fd = open(map->name, O_RDONLY)) < 0)
 		return (NULL);
 	if (get_next_line(fd, &str2) == -1)
 		return (NULL);
 	map->width = ft_strlen_without_symb(' ', str2);
-	while((res = get_next_line(fd, &str1)) > 0)
-		str2 = ft_strjoin_free(str2, str1, 2);
+	while ((res = get_next_line(fd, &str1)) > 0)
+		str2 = ft_strjoin_free(str2, str1, 3);
+	ft_strdel(&str1);
 	if (res == -1)
 	{
 		ft_strdel(&str2);
@@ -69,18 +75,20 @@ char			*read_file(t_map *map)
 	return (str2);
 }
 
-static void		count_height(char *file, t_map *map)
+static bool			count_height(char *file, t_map *map)
 {
-	int			i;
-	int			file_len;
+	int				i;
+	int				file_len;
 
 	i = map->width;
-	file_len = ft_strlen_without_symb(' ', file);
+	if ((file_len = ft_strlen_without_symb(' ', file)) == 0)
+		return (false);
 	while (i <= file_len)
 	{
 		i += map->width;
 		map->height++;
 	}
+	return (true);
 }
 
 static void			fill_map(char *file, t_map **map)
@@ -88,7 +96,7 @@ static void			fill_map(char *file, t_map **map)
 	int				i;
 	int				k;
 	char			*file_without_whitespace;
-	
+
 	i = -1;
 	k = 0;
 	file_without_whitespace = ft_strnew_without_symb(' ', file);
@@ -102,14 +110,18 @@ static void			fill_map(char *file, t_map **map)
 	}
 	ft_strdel(&file_without_whitespace);
 }
-//прикрутить проверки
-bool			read_map(const char *level_name, t_map *map)
+
+bool				read_map(const char *level_name, t_map *map)
 {
-	char		*file;
+	char			*file;
 
 	if (!(file = read_file(map)))
 		return (false);
-	count_height(file, map);
+	if (!count_height(file, map))
+	{
+		ft_strdel(&file);
+		return (false);
+	}
 	if (map->height < 3 || map->width < 3)
 	{
 		ft_strdel(&file);
@@ -117,5 +129,9 @@ bool			read_map(const char *level_name, t_map *map)
 	}
 	fill_map(file, &map);
 	ft_strdel(&file);
+	if (!check_symbols_in_map(map))
+		return (false);
+	if (!check_borders(map))
+		return (false);
 	return (true);
 }

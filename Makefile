@@ -48,6 +48,7 @@ MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit -framework OpenCL
 SRC_NAME =	main.c 						\
 			init_game_data.c 			\
 			init_env.c 					\
+			reader_helper.c				\
 			reader.c 					\
 			renderer.c 					\
 			ray_caster.c 				\

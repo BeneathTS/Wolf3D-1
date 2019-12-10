@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 10:31:36 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/17 02:45:09 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 09:12:10 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,10 @@ char	*ft_strjoin_free(char *s1, char *s2, int num)
 		ft_strdel(&s1);
 	else if (num == 2)
 		ft_strdel(&s2);
+	else if (num == 3)
+	{		
+		ft_strdel(&s1);
+		ft_strdel(&s2);
+	}
 	return (nw);
 }

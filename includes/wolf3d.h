@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 04:45:36 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 08:23:49 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,6 +351,12 @@ void					load_weapon_texture(t_env *env);
 **	ray_caster.c
 */
 void					cast_a_ray(t_cast *cast, t_cam *cam, t_env *env);
+
+/*
+**	reader_helper.c
+*/
+size_t					ft_strlen_without_symb(char symb, const char *s);
+char					*ft_strnew_without_symb(char symb, char *str);
 
 /*
 **	reader.c
