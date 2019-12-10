@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 08:23:49 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 09:49:04 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,7 +296,7 @@ void					load_refresh_button(t_env *env);
 /*
 **	load_textures.c
 */
-void					load_textures(t_env *env);
+void					load_textures(t_map	*tmp, t_env *env);
 
 /*
 **	menu_additional_bttns_control.c

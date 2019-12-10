@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:31 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/04 22:14:32 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 09:44:31 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,23 @@ static int		find_in_arr_text(int value, char *arr_id_tex)
 **	the unique numbers of textures that appear on this map
 */
 
-static void		get_arr_text_id(char *arr_id_tex, t_env *env)
+static void		get_arr_text_id(char *arr_id_tex, t_map *tmp, t_env *env)
 {
 	int			i;
 	int			id;
 	int			k;
 
 	i = -1;
-	while (env->map->level[++i])
+	while (tmp->level[++i])
 	{
 		k = -1;
-		while (env->map->level[i][++k])
+		while (tmp->level[i][++k])
 		{
-			if (env->map->level[i][k] != '0')
+			if (tmp->level[i][k] != '0')
 			{
-				if ((id = find_in_arr_text((int)env->map->level[i][k],
+				if ((id = find_in_arr_text((int)tmp->level[i][k],
 					arr_id_tex)) != -1)
-					arr_id_tex[id] = env->map->level[i][k];
+					arr_id_tex[id] = tmp->level[i][k];
 			}
 		}
 	}
@@ -120,12 +120,12 @@ void			load_texture(char *arr_id_tex, t_env **env)
 	}
 }
 
-void			load_textures(t_env *env)
+void			load_textures(t_map	*tmp, t_env *env)
 {
 	char		*arr_id_tex;
 
 	arr_id_tex = ft_strnew(NBR_TEXTURES);
-	get_arr_text_id(arr_id_tex, env);
+	get_arr_text_id(arr_id_tex, tmp, env);
 	load_texture(arr_id_tex, &env);
 	ft_strdel(&arr_id_tex);
 }

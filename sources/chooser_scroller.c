@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 21:26:32 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/10 08:42:38 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 09:44:18 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,21 @@ static void	check_validation(const char *map_loc, t_env *env)
 This map is not valid!\" with title \"Warning!\"\'");
 		else
 		{
-			// ft_bzero(env->data_addr, (WIDTH * (env->bts_pr_px >> 3)) * HEIGHT);
-			// mlx_clear_window(env->mlx, env->win);
 			env->menu->cards->selected = No;
-			load_textures(env);
+			load_textures(tmp, env);
 			env->mode = Game;	
 			change_music(music_flag_1, env->music);
 			renderer(env);
 		}		
 	}
+	else
+	{
+		env->menu->cards->selected = No;
+		load_textures(tmp, env);
+		env->mode = Game;	
+		change_music(music_flag_1, env->music);
+		renderer(env);
+	}		
 }
 
 void		push_scroller(int x, int y, t_env *env)

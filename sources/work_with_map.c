@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 03:36:31 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 04:51:37 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 09:59:44 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ t_map		*find_current_map(const char *name, t_map **map)
 		tmp = tmp->next;
 	}
 	new_node = map_init((char *)name);
-	tmp->next = new_node;
+	new_node->next = *map;
+	*map = new_node;
 	return (new_node);
 }
 
