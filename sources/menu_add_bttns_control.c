@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:35:10 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/05 04:27:45 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/10 10:21:36 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	clear_maps(t_lvl_crd *cards, t_menu *menu, t_env *env)
 {
+	delete_list_maps(&env->map);
 	while (cards->id != 0)
 		cards = cards->prev;
 	while (1)
@@ -21,8 +22,7 @@ static void	clear_maps(t_lvl_crd *cards, t_menu *menu, t_env *env)
 		free(cards->level_name);
 		mlx_destroy_image(env->mlx, cards->background->tex_ptr);
 		cards->background->tex_ptr = NULL;
-		free(cards->background);
-		cards->background = NULL;
+		ft_memdel((void *)&cards->background);
 		cards->level_name = NULL;
 		if (cards->next)
 		{
@@ -33,8 +33,7 @@ static void	clear_maps(t_lvl_crd *cards, t_menu *menu, t_env *env)
 		else
 		{
 			cards->prev = NULL;
-			free(env->menu->cards);
-			env->menu->cards = NULL;
+			ft_memdel((void *)&env->menu->cards);
 			break ;
 		}
 	}
