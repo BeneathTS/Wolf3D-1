@@ -6,15 +6,15 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 03:36:31 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 09:59:44 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/11 04:14:21 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-t_map		*map_init(char *name)
+t_map			*map_init(char *name)
 {
-	t_map	*map;
+	t_map		*map;
 
 	if (!(map = (t_map *)malloc(sizeof(t_map))))
 		ft_exit(ERROR_MSG);
@@ -26,10 +26,24 @@ t_map		*map_init(char *name)
 	return (map);
 }
 
-t_map		*find_current_map(const char *name, t_map **map)
+static t_map	*find_prev_map(t_map *current_map, t_map **map)
 {
-	t_map	*tmp;
-	t_map	*new_node;
+	t_map		*tmp;
+
+	tmp = *map;
+	while (tmp && tmp->next)
+	{
+		if (tmp->next == current_map)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+t_map			*find_current_map(const char *name, t_map **map)
+{
+	t_map		*tmp;
+	t_map		*node;
 
 	if (!(*map))
 		return (*map = map_init((char *)name));
@@ -37,20 +51,27 @@ t_map		*find_current_map(const char *name, t_map **map)
 	while (tmp)
 	{
 		if (ft_strcmp(name, tmp->name) == 0)
+		{
+			if (!(node = find_prev_map(tmp, map)))
+				return (tmp);
+			node->next = tmp->next;
+			tmp->next = *map;
+			*map = tmp;
 			return (tmp);
+		}
 		if (!tmp->next)
 			break ;
 		tmp = tmp->next;
 	}
-	new_node = map_init((char *)name);
-	new_node->next = *map;
-	*map = new_node;
-	return (new_node);
+	node = map_init((char *)name);
+	node->next = *map;
+	*map = node;
+	return (node);
 }
 
-void		delete_list_maps(t_map **map)
+void			delete_list_maps(t_map **map)
 {
-	t_map	*tmp;
+	t_map		*tmp;
 
 	while (*map)
 	{
