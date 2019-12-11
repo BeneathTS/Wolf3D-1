@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 21:26:32 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/11 03:46:16 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/11 04:32:50 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	check_validation(const char *map_loc, t_env *env)
 {
 	t_map	*tmp;
 
-	tmp = find_current_map(map_loc, &env->map); //убрать тмп и работать с первым элементом листа
+	tmp = find_current_map(map_loc, &env->map);
 	if (!tmp->level)
 	{
 		if (!read_map(map_loc, tmp))

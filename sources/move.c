@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 07:25:32 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 08:05:28 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/11 05:06:44 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,18 @@ void			player_move(int key, t_env *env)
 		collisions_x(env, &env->cam->pos[X], env->cam->pos[Y], 1);
 		collisions_y(env, env->cam->pos[X], &env->cam->pos[Y], 1);
 	}
+	if (key == KB_A)
+	{
+		//
+	}
 	if (key == KB_S)
 	{
 		collisions_x(env, &env->cam->pos[X], env->cam->pos[Y], -1);
 		collisions_y(env, env->cam->pos[X], &env->cam->pos[Y], -1);
+	}
+	if (key == KB_D)
+	{
+		//
 	}
 	if (env->cam->pos[X] < 1.2)
 		env->cam->pos[X] = 1.2;
