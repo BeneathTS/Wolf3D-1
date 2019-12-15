@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:38:12 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/10 01:51:30 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 05:06:12 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	change_bg_color(t_lvl_crd *card, unsigned int color)
 
 	y = -1;
 	if (!card)
-		ft_exit(ERROR_MSG);
+		ft_exit(CHANGE_BG_COLOR);
 	while (++y < 72)
 	{
 		x = -1;

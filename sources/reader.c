@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:56 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 10:11:46 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 06:24:23 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ bool				read_map(const char *level_name, t_map *map)
 	fill_map(file, &map);
 	ft_strdel(&file);
 	if (!check_symbols_in_map(map))
-		return (false);
+		return (reader_error(&map));
 	if (!check_borders(map))
-		return (false);
+		return (reader_error(&map));
 	return (true);
 }

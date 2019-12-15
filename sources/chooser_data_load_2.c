@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chooser_data_load_2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:48:50 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/04 20:28:46 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/15 05:06:05 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			create_background(t_env *env, t_lvl_crd *card)
 	y = -1;
 	card->background = tex_init(NULL, NULL);
 	if (!(card->background->tex_ptr = mlx_new_image(env->mlx, 1324, 72)))
-		ft_exit(ERROR_MSG);
+		ft_exit(CREATE_BACKGROUND);
 	card->background->data = mlx_get_data_addr(card->background->tex_ptr,
 		&card->background->bts_pr_px, &card->background->sz_ln,
 		&card->background->endian);

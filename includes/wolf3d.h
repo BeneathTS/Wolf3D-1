@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 04:37:58 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 06:00:23 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -364,6 +364,7 @@ void					cast_a_ray(t_cast *cast, t_cam *cam, t_env *env);
 /*
 **	reader_helper.c
 */
+bool					reader_error(t_map **map);
 size_t					ft_strlen_without_symb(char symb, const char *s);
 char					*ft_strnew_without_symb(char symb, char *str);
 char					*read_file(t_map *map);

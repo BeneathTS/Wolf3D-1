@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 02:56:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/05 03:06:08 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 05:05:49 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ char			*get_texture_name(int i, char *arr_id_tex)
 	if ((res = wall_choise(arr_id_tex[i])))
 		return (res);
 	else
-		ft_exit(ERROR_MSG);
+		ft_exit(GET_TEXTURE_NAME);
 	return (res);
 }

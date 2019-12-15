@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/15 03:56:37 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 04:03:08 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 05:59:07 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,13 @@ static void	activate_game_mode(t_env *env)
 
 void		check_validation(const char *map_loc, t_env *env)
 {
-	find_current_map(map_loc, &env->map);
-	if (!env->map->level)
+	t_map	*tmp;
+
+	if (!(tmp = find_current_map(map_loc, &env->map)))
+		ft_exit(CHECK_VALIDATION);
+	if (!tmp->level)
 	{
-		if (!read_map(map_loc, env->map))
+		if (!read_map(map_loc, tmp))
 		{
 			playSound(CHOOSER_ERROR, 128);
 			system("osascript -e \'display notification\" \

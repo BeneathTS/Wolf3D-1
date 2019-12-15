@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/15 04:37:32 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 05:00:35 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 05:38:51 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define ERRORS_H
 
 # define CHANGE_BG_COLOR 			"change_bg_color error"
-# define CREATE_BACKGROUND_ERROR	"create_background error"
+# define CREATE_BACKGROUND			"create_background error"
 # define CREATE_CARD				"create_card error"
 # define READ_MAP_FILES				"read_map_files error"
 # define LOAD_SCROLLER				"load_scroller error"
@@ -33,5 +33,6 @@
 # define LOAD_TITLES				"load_titles error"
 # define CREATE_ROLLERS				"create_rollers error"
 # define LOAD_ROLLERS				"load_rollers error"
+# define CHECK_VALIDATION			"check_validation error"
 
 #endif
