@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 04:02:57 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:37:58 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@
 # include <stdbool.h>
 
 # include "../Simple-SDL2-Audio/audio.h"
-# include "menu.h"
 # include "../libft/includes/libft.h"
+# include "menu.h"
+# include "errors.h"
 # include "controls.h"
 # include "define_value.h"
 

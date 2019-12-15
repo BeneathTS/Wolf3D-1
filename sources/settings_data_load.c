@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings_data_load.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:15:04 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/04 20:47:11 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:58:35 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	load_titles(t_env *env)
 
 	if (!(env->menu->settings->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 	MV_STTNG, &env->menu->settings->width, &env->menu->settings->height)))
-		ft_exit(ERROR_MSG);
+		ft_exit(LOAD_TITLES);
 	env->menu->settings->data = mlx_get_data_addr(env->menu->settings->tex_ptr,
 		&env->menu->settings->bts_pr_px, &env->menu->settings->sz_ln,
 		&env->menu->settings->endian);
@@ -42,7 +42,7 @@ static void	load_titles(t_env *env)
 		if (!(env->menu->settings->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 			get_img(i), &env->menu->settings->width,
 			&env->menu->settings->height)))
-			ft_exit(ERROR_MSG);
+			ft_exit(LOAD_TITLES);
 		env->menu->settings->data = mlx_get_data_addr(
 			env->menu->settings->tex_ptr, &env->menu->settings->bts_pr_px,
 			&env->menu->settings->sz_ln, &env->menu->settings->endian);
@@ -58,7 +58,7 @@ static void	create_rollers(t_env *env)
 	int ct_x;
 
 	if (!(env->menu->settings->tex_ptr = mlx_new_image(env->mlx, 400, 2)))
-		ft_exit(ERROR_MSG);
+		ft_exit(CREATE_ROLLERS);
 	env->menu->settings->data =
 	mlx_get_data_addr(env->menu->settings->tex_ptr,
 	&env->menu->settings->bts_pr_px, &env->menu->settings->sz_ln,
@@ -87,7 +87,7 @@ static void	load_rollers(t_env *env)
 			mlx_xpm_file_to_image(env->mlx,
 			CNTRL_RLLR, &env->menu->settings->width,
 			&env->menu->settings->height)))
-				ft_exit(ERROR_MSG);
+				ft_exit(LOAD_ROLLERS);
 			env->menu->settings->data =
 			mlx_get_data_addr(env->menu->settings->tex_ptr,
 			&env->menu->settings->bts_pr_px, &env->menu->settings->sz_ln,

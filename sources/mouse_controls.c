@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 03:18:52 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:55:36 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,6 @@ int			push_buttons(int button, int x, int y, t_env *env)
 {
 	if (button == 1 && env->mode == Game)
 		playSound(SHOT, env->volume);
-	if (!env)
-		ft_exit("LOL");
-	if (!env->menu->controls)
-		ft_exit("KIK");
 	if (env->mode == Menu && button == 1)
 		menu_push_buttons(x, y, env);
 	if (env->mode == Settings && button == 1)
@@ -68,18 +64,6 @@ int			mouse_move(int x, int y, t_env *env)
 	{
 		env->cntrls->angle = x * 0.001;
 		env->cam->view_height = (y - (HEIGHT >> 1)) * 3;
-		env->cam->c_v_dir[X] = env->cam->v_dir[X] *
-			cos(env->cntrls->angle * env->cam->r_speed) - env->cam->v_dir[Y]
-			* sin(env->cntrls->angle * env->cam->r_speed);
-		env->cam->c_v_dir[Y] = env->cam->v_dir[X] * sin(env->cntrls->angle
-			* env->cam->r_speed) + env->cam->v_dir[Y]
-			* cos(env->cntrls->angle * env->cam->r_speed);
-		env->cam->c_v_plane[X] = env->cam->v_plane[X]
-			* cos(env->cntrls->angle * env->cam->r_speed) - env->cam->v_plane[Y]
-			* sin(env->cntrls->angle * env->cam->r_speed);
-		env->cam->c_v_plane[Y] = env->cam->v_plane[X] * sin(env->cntrls->angle
-			* env->cam->r_speed) + env->cam->v_plane[Y]
-			* cos(env->cntrls->angle * env->cam->r_speed);
 		renderer(env);
 	}
 	return (0);

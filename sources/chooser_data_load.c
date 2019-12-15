@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:42:12 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/15 03:43:39 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:44:40 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ static t_lvl_crd	*create_card(t_env *env, int id,
 {
 	t_lvl_crd *new_card;
 
-	if (!(new_card = (t_lvl_crd *)malloc(sizeof(t_lvl_crd))))
-		ft_exit(ERROR_MSG);
+	new_card = (t_lvl_crd *)ft_safe_malloc(sizeof(t_lvl_crd));
 	new_card->id = id;
 	if (!(new_card->level_name = ft_strdup(file_name)))
-		ft_exit(ERROR_MSG);
+		ft_exit(CREATE_CARD);
 	if (prev)
 		new_card->pos = prev->pos + 106;
 	else
@@ -63,7 +62,7 @@ void				read_map_files(t_env *env, t_menu *menu)
 	ct = -1;
 	id = -1;
 	if (!(menu->dir_ptr = opendir(MAPS_FOLDER)))
-		ft_exit(ERROR_MSG);
+		ft_exit(READ_MAP_FILES);
 	while (++ct < MAPS_LIMIT && (menu->file_name = readdir(menu->dir_ptr)))
 	{
 		check_file_name(env, menu, &id);
@@ -80,7 +79,7 @@ void				load_scroller(t_env *env)
 	ct = -1;
 	if (!(env->menu->chooser->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 	SCRL, &env->menu->chooser->width, &env->menu->chooser->height)))
-		ft_exit(ERROR_MSG);
+		ft_exit(LOAD_SCROLLER);
 	env->menu->chooser->data = mlx_get_data_addr(env->menu->chooser->tex_ptr,
 		&env->menu->chooser->bts_pr_px, &env->menu->chooser->sz_ln,
 		&env->menu->chooser->endian);
@@ -88,7 +87,7 @@ void				load_scroller(t_env *env)
 	env->menu->chooser->next = tex_init(env->menu->chooser, NULL);
 	env->menu->chooser = env->menu->chooser->next;
 	if (!(env->menu->chooser->tex_ptr = mlx_new_image(env->mlx, 1, 835)))
-		ft_exit(ERROR_MSG);
+		ft_exit(LOAD_SCROLLER);
 	env->menu->chooser->data = mlx_get_data_addr(env->menu->chooser->tex_ptr,
 		&env->menu->chooser->bts_pr_px, &env->menu->chooser->sz_ln,
 		&env->menu->chooser->endian);

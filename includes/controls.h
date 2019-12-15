@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:23:47 by sleonia           #+#    #+#             */
-/*   Updated: 2019/11/15 23:23:48 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:20:29 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define KB_A 0
 # define KB_S 1
 # define KB_D 2
+
+# define SPACE 49
 
 typedef struct	s_cntrls
 {

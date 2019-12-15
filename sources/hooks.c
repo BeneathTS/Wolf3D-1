@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:13 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 02:57:45 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:26:00 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	rotate(int key, t_env *env)
 	env->cam->c_v_plane[Y] = env->cam->v_plane[X] * sin(env->cntrls->angle
 		* env->cam->r_speed) + env->cam->v_plane[Y]
 			* cos(env->cntrls->angle * env->cam->r_speed);
-	renderer(env);
 }
 
 int			key_press(int key, t_env *env)
@@ -53,11 +52,14 @@ int			key_press(int key, t_env *env)
 	}
 	if (env->mode != Game)
 		return (0);
+	if (key == SPACE)
+		playSound(SHOT, env->volume);
 	if (key == ARR_DOWN || key == ARR_LFT || key == ARR_RGHT ||
 	key == ARR_UP)
 		rotate(key, env);
 	if (key == KB_W || key == KB_A || key == KB_S || key == KB_D)
 		player_move(key, env);
+	renderer(env);
 	return (0);
 }
 

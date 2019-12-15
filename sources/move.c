@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 07:25:32 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 03:21:43 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:26:04 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,4 @@ void			player_move(int key, t_env *env)
 		env->cam->pos[Y] = 1.2;
 	if (env->cam->pos[Y] > env->map->height - 1.2)
 		env->cam->pos[Y] = env->map->height - 1.2;
-	renderer(env);
 }

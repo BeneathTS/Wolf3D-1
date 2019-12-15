@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 09:13:59 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 03:18:45 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:56:07 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void			init_sdl_music(Mix_Music **music, int *volume)
 	*volume = 59;
 	Mix_VolumeMusic(*volume);
 	if (!(music[0] = Mix_LoadMUS(SONG_0)))
-		ft_exit(ERROR_MSG);
+		ft_exit(MIX_LOADMUS);
 	if (!(music[1] = Mix_LoadMUS(SONG_1)))
-		ft_exit(ERROR_MSG);
+		ft_exit(MIX_LOADMUS);
 	if (!(music[2] = Mix_LoadMUS(SONG_2)))
-		ft_exit(ERROR_MSG);
+		ft_exit(MIX_LOADMUS);
 	if (!(music[3] = Mix_LoadMUS(SHOT)))
-		ft_exit(ERROR_MSG);
+		ft_exit(MIX_LOADMUS);
 }
 
 void			change_music(int flag, Mix_Music **music)

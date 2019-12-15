@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_data_load.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:38 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/04 20:32:44 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:54:54 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	load_buttons(t_env *env)
 		env->menu->main = env->menu->main->next;
 		if (!(env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 		get_image(ct), &env->menu->main->width, &env->menu->main->height)))
-			ft_exit(ERROR_MSG);
+			ft_exit(LOAD_BUTTONS);
 		env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr,
 			&env->menu->main->bts_pr_px, &env->menu->main->sz_ln,
 			&env->menu->main->endian);
@@ -61,7 +61,7 @@ static void	load_logo(t_env *env)
 	env->menu->main = env->menu->main->next;
 	if (!(env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 	LG_IMG, &env->menu->main->width, &env->menu->main->height)))
-		ft_exit(ERROR_MSG);
+		ft_exit(LOAD_LOGO);
 	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr,
 	&env->menu->main->bts_pr_px, &env->menu->main->sz_ln,
 	&env->menu->main->endian);
@@ -72,7 +72,7 @@ static void	load_logo(t_env *env)
 	env->menu->main = env->menu->main->next;
 	if (!(env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 	LG_BASE, &env->menu->main->width, &env->menu->main->height)))
-		ft_exit(ERROR_MSG);
+		ft_exit(LOAD_LOGO);
 	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr,
 	&env->menu->main->bts_pr_px, &env->menu->main->sz_ln,
 	&env->menu->main->endian);
@@ -83,7 +83,7 @@ void		load_menu_data(t_env *env)
 {
 	if (!(env->menu->main->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 	BG_IMG, &env->menu->main->width, &env->menu->main->height)))
-		ft_exit(ERROR_MSG);
+		ft_exit(LOAD_MENU_DATA);
 	env->menu->main->data = mlx_get_data_addr(env->menu->main->tex_ptr,
 		&env->menu->main->bts_pr_px, &env->menu->main->sz_ln,
 		&env->menu->main->endian);

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 21:26:32 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/15 03:56:49 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:45:28 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ void		push_scroller(int x, int y, t_env *env)
 		if (env->menu->cards->selected == Yes)
 		{
 			if (!(map_loc = ft_strdup(MAPS_FOLDER)))
-				ft_exit(ERROR_MSG);
+				ft_exit(PUSH_SCROLLER);
 			if (!(map_loc = ft_strjoin_free(map_loc,
 				env->menu->cards->level_name, 1)))
-				ft_exit(ERROR_MSG);
+				ft_exit(PUSH_SCROLLER);
 			check_validation(map_loc, env);
 			if (map_loc)
 				free(map_loc);

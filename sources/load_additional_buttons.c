@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_additional_buttons.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 21:35:18 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/04 20:30:42 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:51:41 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	load_back_button(t_env *env)
 	env->menu->back_button = tex_init(NULL, NULL);
 	if (!(env->menu->back_button->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 	BCK_BTN, &env->menu->back_button->width, &env->menu->back_button->height)))
-		ft_exit(ERROR_MSG);
+		ft_exit(LOAD_BACK_BUTTON);
 	env->menu->back_button->data =
 		mlx_get_data_addr(env->menu->back_button->tex_ptr,
 		&env->menu->back_button->bts_pr_px, &env->menu->back_button->sz_ln,
@@ -27,7 +27,7 @@ void	load_back_button(t_env *env)
 	env->menu->back_button = env->menu->back_button->next;
 	if (!(env->menu->back_button->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 	BCK_BTN, &env->menu->back_button->width, &env->menu->back_button->height)))
-		ft_exit(ERROR_MSG);
+		ft_exit(LOAD_BACK_BUTTON);
 	env->menu->back_button->data =
 		mlx_get_data_addr(env->menu->back_button->tex_ptr,
 		&env->menu->back_button->bts_pr_px, &env->menu->back_button->sz_ln,
@@ -43,7 +43,7 @@ void	load_refresh_button(t_env *env)
 	if (!(env->menu->refresh_button->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 		RFSH_BTN, &env->menu->refresh_button->width,
 			&env->menu->refresh_button->height)))
-		ft_exit(ERROR_MSG);
+		ft_exit(LOAD_REFRESH_BUTTON);
 	env->menu->refresh_button->data = mlx_get_data_addr(
 		env->menu->refresh_button->tex_ptr,
 		&env->menu->refresh_button->bts_pr_px,
@@ -55,7 +55,7 @@ void	load_refresh_button(t_env *env)
 	if (!(env->menu->refresh_button->tex_ptr = mlx_xpm_file_to_image(env->mlx,
 		RFSH_BTN, &env->menu->refresh_button->width,
 		&env->menu->refresh_button->height)))
-		ft_exit(ERROR_MSG);
+		ft_exit(LOAD_REFRESH_BUTTON);
 	env->menu->refresh_button->data =
 		mlx_get_data_addr(env->menu->refresh_button->tex_ptr,
 		&env->menu->refresh_button->bts_pr_px,

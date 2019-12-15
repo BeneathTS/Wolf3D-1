@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:31 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 10:06:58 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:52:56 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ static void		load_special_wall(char *tex, t_tex **temp, t_env **env)
 			(*temp)->id = West;
 		if (!((*temp)->tex_ptr = mlx_xpm_file_to_image((*env)->mlx, tex,
 				&(*temp)->width, &(*temp)->height)))
-			ft_exit(ERROR_MSG);
+			ft_exit(LOAD_SPECIAL_WALL);
 		if (!((*temp)->data = mlx_get_data_addr((*temp)->tex_ptr,
 			&(*temp)->bts_pr_px, &(*temp)->sz_ln, &(*temp)->endian)))
-			ft_exit(ERROR_MSG);
+			ft_exit(LOAD_SPECIAL_WALL);
 		(*temp)->next = tex_init((*temp), NULL);
 		(*temp) = (*temp)->next;
 	}
@@ -109,10 +109,10 @@ void			load_texture(char *arr_id_tex, t_env **env)
 		{
 			if (!(temp->tex_ptr = mlx_xpm_file_to_image((*env)->mlx,
 				tex, &temp->width, &temp->height)))
-				ft_exit(ERROR_MSG);
+				ft_exit(LOAD_TEXTURE);
 			if (!(temp->data = mlx_get_data_addr(temp->tex_ptr,
 				&temp->bts_pr_px, &temp->sz_ln, &temp->endian)))
-				ft_exit(ERROR_MSG);
+				ft_exit(LOAD_TEXTURE);
 			temp->id = arr_id_tex[i];
 			temp->next = tex_init(temp, NULL);
 			temp = temp->next;

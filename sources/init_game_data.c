@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:22 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 03:46:10 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:50:32 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ t_tex		*tex_init(t_tex *prev, t_tex *next)
 {
 	t_tex	*tex;
 
-	if (!(tex = (t_tex *)malloc(sizeof(t_tex))))
-		ft_exit(ERROR_MSG);
+	tex = (t_tex *)ft_safe_malloc(sizeof(t_tex));
 	tex->id = 1;
 	tex->tex_ptr = NULL;
 	tex->next = next;
@@ -35,8 +34,7 @@ t_cam		*cam_init(void)
 {
 	t_cam	*cam;
 
-	if (!(cam = (t_cam *)malloc(sizeof(t_cam))))
-		ft_exit(ERROR_MSG);
+	cam = (t_cam *)ft_safe_malloc(sizeof(t_cam));
 	cam->pos[X] = 1.5;
 	cam->pos[Y] = 1.5;
 	cam->v_dir[X] = 1.0;
@@ -58,8 +56,7 @@ t_ray		*ray_init(void)
 {
 	t_ray	*ray;
 
-	if (!(ray = (t_ray *)malloc(sizeof(t_ray))))
-		ft_exit(ERROR_MSG);
+	ray = (t_ray *)ft_safe_malloc(sizeof(t_ray));
 	return (ray);
 }
 
@@ -67,8 +64,7 @@ t_cast		*cast_init(void)
 {
 	t_cast	*cast;
 
-	if (!(cast = (t_cast *)malloc(sizeof(t_cast))))
-		ft_exit(ERROR_MSG);
+	cast = (t_cast *)ft_safe_malloc(sizeof(t_cast));
 	cast->ray = ray_init();
 	return (cast);
 }

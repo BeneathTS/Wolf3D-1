@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 03:36:31 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/11 04:14:21 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:59:02 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ t_map			*map_init(char *name)
 {
 	t_map		*map;
 
-	if (!(map = (t_map *)malloc(sizeof(t_map))))
-		ft_exit(ERROR_MSG);
+	map = (t_map *)ft_safe_malloc(sizeof(t_map));
 	map->name = ft_strdup(name);
 	map->width = 0;
 	map->height = 0;

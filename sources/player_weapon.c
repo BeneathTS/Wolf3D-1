@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:39:44 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/04 22:25:10 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:56:54 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void				load_weapon_texture(t_env *env)
 	env->cam->weapon = tex_init(NULL, NULL);
 	if (!(env->cam->weapon->tex_ptr = mlx_xpm_file_to_image(env->mlx, GUN_1,
 		&env->cam->weapon->width, &env->cam->weapon->height)))
-		ft_exit(ERROR_MSG);
+		ft_exit(LOAD_WEAPON_TEXTURE);
 	env->cam->weapon->data = mlx_get_data_addr(
 		env->cam->weapon->tex_ptr, &env->cam->weapon->bts_pr_px,
 		&env->cam->weapon->sz_ln, &env->cam->weapon->endian);
