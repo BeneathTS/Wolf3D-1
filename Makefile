@@ -45,35 +45,36 @@ FLAGS = 	-Wall -Werror -Wextra -Ofast -g
 
 MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit -framework OpenCL
 
-SRC_NAME =	main.c 						\
-			init_game_data.c 			\
-			init_env.c 					\
-			reader_helper.c				\
-			reader.c 					\
-			renderer.c 					\
-			ray_caster.c 				\
-			hooks.c 					\
-			load_textures.c 			\
-			mouse_controls.c 			\
-			menu_data_load.c 			\
-			menu.c 						\
+SRC_NAME =	chooser_controls.c			\
+			chooser_data_load_2.c		\
+			chooser_data_load.c			\
+			chooser_scroller_2.c		\
+			chooser_scroller.c			\
+			chooser.c					\
 			close.c						\
 			ft_free.c					\
 			get_texture_name.c			\
-			menu_controls.c				\
-			settings.c					\
-			settings_data_load.c		\
-			settings_controls.c			\
-			music_manager.c				\
-			move.c						\
-			chooser_data_load.c			\
-			chooser_data_load_2.c		\
-			chooser_controls.c			\
-			chooser.c					\
-			menu_add_bttns_control.c	\
+			hooks.c 					\
+			init_env.c 					\
+			init_game_data.c 			\
 			load_additional_buttons.c	\
+			load_textures.c 			\
+			main.c 						\
+			menu_add_bttns_control.c	\
+			menu_controls.c				\
+			menu_data_load.c 			\
+			menu.c 						\
+			mouse_controls.c 			\
+			move.c						\
+			music_manager.c				\
 			player_weapon.c				\
-			chooser_scroller.c			\
+			ray_caster.c 				\
+			reader_helper.c				\
+			reader.c 					\
+			renderer.c 					\
+			settings_controls.c			\
+			settings_data_load.c		\
+			settings.c					\
 			work_with_map.c				\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)

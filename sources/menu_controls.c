@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:28:34 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/15 01:53:40 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 03:40:51 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void		menu_push_buttons(int x, int y, t_env *env)
 	{
 		playSound(OPEN_EDITOR, 128);
 		system("osascript -e \'tell app \"System Events\" to display dialog \
-\"Use only 58-85 symbols on ascii (: -> U)\"\'");
-		system("touch ./maps/new_map.wm ; open -a TextEdit ./maps/new_map.wm");
+			\"Use only 58-85 symbols on ascii (: -> U)\"\' ; \
+				touch ./maps/new_map.wm ; open -a TextEdit ./maps/new_map.wm");
 	}
 	if (x >= (WIDTH >> 1) - 78 && x <= (WIDTH >> 1) + 335
 	&& y >= (HEIGHT >> 1) + 82 && y <= (HEIGHT >> 1) + 140)

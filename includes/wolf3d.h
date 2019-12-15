@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 03:08:26 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 04:02:57 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,12 @@ void					create_background(t_env *env, t_lvl_crd *card);
 */
 void					read_map_files(t_env *env, t_menu *menu);
 void					load_chooser_data(t_env *env);
+
+/*
+**	chooser_scroller_2.c
+*/
+
+void					check_validation(const char *map_loc, t_env *env);
 
 /*
 **	chooser_scroller.c

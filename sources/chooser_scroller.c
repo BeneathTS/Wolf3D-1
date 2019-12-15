@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 21:26:32 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/15 01:56:21 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 03:56:49 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,48 +61,6 @@ void		move_scroller(int y, t_env *env)
 		env->menu->controls->s_pos = 842;
 	if (temp != env->menu->controls->s_pos)
 		scrolling(env, sign, temp);
-}
-
-/*
-**	What's the logic here? The function will return the map as a structure
-**		next you'll have to look at map->level.
-**	If it is NULL:
-** 		Then I start the reader
-** 		Otherwise, I work with him right away
-**	Why is that necessary?
-**	Not to have to check the card many times
-*/
-
-static void	check_validation(const char *map_loc, t_env *env)
-{
-	t_map	*tmp;
-
-	tmp = find_current_map(map_loc, &env->map);
-	if (!tmp->level)
-	{
-		if (!read_map(map_loc, tmp))
-		{
-			playSound(CHOOSER_ERROR, 128);
-			system("osascript -e \'display notification\" \
-This map is not valid!\" with title \"Warning!\"\'");
-		}
-		else
-		{
-			env->menu->cards->selected = No;
-			load_textures(env);
-			env->mode = Game;
-			change_music(music_flag_1, env->music);
-			renderer(env);
-		}
-	}
-	else
-	{
-		env->menu->cards->selected = No;
-		load_textures(env);
-		env->mode = Game;
-		change_music(music_flag_1, env->music);
-		renderer(env);
-	}
 }
 
 void		push_scroller(int x, int y, t_env *env)
