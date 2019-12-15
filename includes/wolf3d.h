@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 10:12:17 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 03:08:26 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,8 @@ typedef struct			s_menu
 ** win - window ptr.
 ** img - main image ptr(used for rendering)
 ** bts_pr_px, sz_ln, endian not used, but that needed to mlx.
+** mode - Game/Menu/Settings
+** volume - volume of music.
 ** map - map data structure.
 ** tex - texture data structure.
 ** cam - cam/player data structure.

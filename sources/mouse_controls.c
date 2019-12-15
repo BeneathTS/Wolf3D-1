@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/10 09:49:08 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 03:18:52 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void		mouse_scroll(int x, int y, int button, t_env *env)
 
 int			push_buttons(int button, int x, int y, t_env *env)
 {
-	// if (button == 1 && env->mode == Game)
-		// playSound(SHOT, env->volume);
+	if (button == 1 && env->mode == Game)
+		playSound(SHOT, env->volume);
 	if (!env)
 		ft_exit("LOL");
-		if (!env->menu->controls)
+	if (!env->menu->controls)
 		ft_exit("KIK");
 	if (env->mode == Menu && button == 1)
 		menu_push_buttons(x, y, env);

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 07:25:32 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/11 05:06:44 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 03:19:04 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,28 @@ static void		collisions_y(t_env *env, int x, double *y, char sign)
 		*y = step;
 }
 
+static void		sidestep(t_env *env, double *x, double *y, char sign)
+{
+	if (sign == -1)
+	{
+		if (env->cam->c_v_dir[X] < env->cam->c_v_dir[Y])
+			*x = *x + env->cam->c_v_dir[Y] * env->cam->m_speed;
+		else
+			*y = *y - env->cam->c_v_dir[X] * env->cam->m_speed;
+		collisions_x(env, x, *y, 0);
+		collisions_y(env, *x, y, 0);
+	}
+	else
+	{
+		if (env->cam->c_v_dir[X] < env->cam->c_v_dir[Y])
+			*x = *x - env->cam->c_v_dir[Y] * env->cam->m_speed;
+		else
+			*y = *y + env->cam->c_v_dir[X] * env->cam->m_speed;
+		collisions_x(env, x, *y, 0);
+		collisions_y(env, *x, y, 0);
+	}
+}
+
 void			player_move(int key, t_env *env)
 {
 	if (key == KB_W)
@@ -70,18 +92,14 @@ void			player_move(int key, t_env *env)
 		collisions_y(env, env->cam->pos[X], &env->cam->pos[Y], 1);
 	}
 	if (key == KB_A)
-	{
-		//
-	}
+		sidestep(env, &env->cam->pos[X], &env->cam->pos[Y], -1);
 	if (key == KB_S)
 	{
 		collisions_x(env, &env->cam->pos[X], env->cam->pos[Y], -1);
 		collisions_y(env, env->cam->pos[X], &env->cam->pos[Y], -1);
 	}
 	if (key == KB_D)
-	{
-		//
-	}
+		sidestep(env, &env->cam->pos[X], &env->cam->pos[Y], 1);
 	if (env->cam->pos[X] < 1.2)
 		env->cam->pos[X] = 1.2;
 	if (env->cam->pos[X] > env->map->width - 1.2)

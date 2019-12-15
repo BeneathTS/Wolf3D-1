@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:13 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/11 05:02:39 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 02:57:45 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			key_press(int key, t_env *env)
 	if (key == ARR_DOWN || key == ARR_LFT || key == ARR_RGHT ||
 	key == ARR_UP)
 		rotate(key, env);
-	if (key == KB_W || key == KB_S)
+	if (key == KB_W || key == KB_A || key == KB_S || key == KB_D)
 		player_move(key, env);
 	return (0);
 }
