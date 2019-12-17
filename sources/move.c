@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 07:25:32 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 04:26:04 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/17 12:26:27 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,31 @@ static void		collisions_y(t_env *env, int x, double *y, char sign)
 		*y = step;
 }
 
-static void		move_sidestep(t_env *env, double *x, double *y, char sign)
+static void			move_sidestep(t_env *env, double *x, double *y, char sign)
 {
 	if (sign == -1)
 	{
-		if (env->cam->c_v_dir[X] < env->cam->c_v_dir[Y])
-			*x = *x + env->cam->c_v_dir[Y] * env->cam->m_speed;
-		else
-			*y = *y - env->cam->c_v_dir[X] * env->cam->m_speed;
-		collisions_x(env, x, *y, 0);
-		collisions_y(env, *x, y, 0);
+		if (fabs(env->cam->c_v_dir[X]) > fabs(env->cam->c_v_dir[Y]))
+		{
+			*y = *y - env->cam->m_speed;
+		}
+		else if (fabs(env->cam->c_v_dir[X]) < fabs(env->cam->c_v_dir[Y]))
+		{
+			*x = *x - env->cam->m_speed;
+		}
 	}
-	else
+	else if (sign == 1)
 	{
-		if (env->cam->c_v_dir[X] < env->cam->c_v_dir[Y])
-			*x = *x - env->cam->c_v_dir[Y] * env->cam->m_speed;
-		else
-			*y = *y + env->cam->c_v_dir[X] * env->cam->m_speed;
+		if (fabs(env->cam->c_v_dir[X]) > fabs(env->cam->c_v_dir[Y]))
+		{
+			*y = *y + env->cam->m_speed;
+		}
+		else if (fabs(env->cam->c_v_dir[X]) < fabs(env->cam->c_v_dir[Y]))
+		{
+			*x = *x + env->cam->m_speed;
+		}
+		*x = *x;
+		*y = *y;
 		collisions_x(env, x, *y, 0);
 		collisions_y(env, *x, y, 0);
 	}

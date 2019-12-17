@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 08:21:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 06:22:04 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/15 09:25:52 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ bool			reader_error(t_map **map)
 		ft_strdel(&(*map)->level[i]);
 		i++;
 	}
-	free((*map)->level);
-	(*map)->level = NULL;
+	if ((*map)->level)
+	{
+		free((*map)->level);
+		(*map)->level = NULL;
+	}
 	return (false);
 }
 
