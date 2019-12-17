@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 07:25:32 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/17 12:26:27 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/17 13:51:02 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,32 +64,35 @@ static void		collisions_y(t_env *env, int x, double *y, char sign)
 
 static void			move_sidestep(t_env *env, double *x, double *y, char sign)
 {
+	double			c_v_dir_x_fabs;
+	double			c_v_dir_y_fabs;
+
+	c_v_dir_x_fabs = fabs(env->cam->c_v_dir[X]);
+	c_v_dir_y_fabs = fabs(env->cam->c_v_dir[Y]);
 	if (sign == -1)
 	{
-		if (fabs(env->cam->c_v_dir[X]) > fabs(env->cam->c_v_dir[Y]))
-		{
+		if (env->cam->c_v_dir[X] > 0 && (c_v_dir_x_fabs > c_v_dir_y_fabs))
 			*y = *y - env->cam->m_speed;
-		}
-		else if (fabs(env->cam->c_v_dir[X]) < fabs(env->cam->c_v_dir[Y]))
-		{
+		else if (env->cam->c_v_dir[X] < 0 && (c_v_dir_x_fabs > c_v_dir_y_fabs))
+			*y = *y + env->cam->m_speed;
+		else if (env->cam->c_v_dir[X] > 0 && (c_v_dir_x_fabs < c_v_dir_y_fabs))
 			*x = *x - env->cam->m_speed;
-		}
+		else if (env->cam->c_v_dir[X] < 0 && (c_v_dir_x_fabs < c_v_dir_y_fabs))
+			*x = *x - env->cam->m_speed;
 	}
 	else if (sign == 1)
 	{
-		if (fabs(env->cam->c_v_dir[X]) > fabs(env->cam->c_v_dir[Y]))
-		{
+		if (env->cam->c_v_dir[X] > 0 && (c_v_dir_x_fabs > c_v_dir_y_fabs))
 			*y = *y + env->cam->m_speed;
-		}
-		else if (fabs(env->cam->c_v_dir[X]) < fabs(env->cam->c_v_dir[Y]))
-		{
+		else if (env->cam->c_v_dir[X] < 0 && (c_v_dir_x_fabs > c_v_dir_y_fabs))
+			*y = *y - env->cam->m_speed;
+		else if (env->cam->c_v_dir[X] > 0 && (c_v_dir_x_fabs < c_v_dir_y_fabs))
 			*x = *x + env->cam->m_speed;
-		}
-		*x = *x;
-		*y = *y;
-		collisions_x(env, x, *y, 0);
-		collisions_y(env, *x, y, 0);
+		else if (env->cam->c_v_dir[X] < 0 && (c_v_dir_x_fabs < c_v_dir_y_fabs))
+			*x = *x + env->cam->m_speed;
 	}
+	collisions_x(env, x, *y, 0);
+	collisions_y(env, *x, y, 0);
 }
 
 void			player_move(int key, t_env *env)
