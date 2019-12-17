@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 12:39:44 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 04:56:54 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/17 15:30:19 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,4 @@ void				load_weapon_texture(t_env *env)
 		env->cam->weapon->tex_ptr, &env->cam->weapon->bts_pr_px,
 		&env->cam->weapon->sz_ln, &env->cam->weapon->endian);
 	set_color_alpha(env->cam->weapon, 0xFF, EMPTY_COLOR);
-	env->cam->weapon->id = '1';
 }

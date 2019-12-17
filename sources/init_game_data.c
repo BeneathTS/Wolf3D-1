@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:22 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 04:50:32 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/17 15:27:57 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_cam		*cam_init(void)
 	cam->depth = 5;
 	cam->m_speed = 0.1;
 	cam->r_speed = 1.3;
+	cam->weapon = NULL;
 	return (cam);
 }
 
