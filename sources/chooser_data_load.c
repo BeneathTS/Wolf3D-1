@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:42:12 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/15 04:44:40 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/19 05:49:51 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static void			check_file_name(t_env *env, t_menu *menu, int *id)
 {
 	int len;
 
-	len = ft_strlen(menu->file_name->d_name);
+	if ((len = ft_strlen(menu->file_name->d_name)) < 3)
+		return ;
 	if (menu->file_name->d_name[len - 3] == '.' &&
 		menu->file_name->d_name[len - 2] == 'w' &&
 		menu->file_name->d_name[len - 1] == 'm')
@@ -63,12 +64,16 @@ void				read_map_files(t_env *env, t_menu *menu)
 	id = -1;
 	if (!(menu->dir_ptr = opendir(MAPS_FOLDER)))
 		ft_exit(READ_MAP_FILES);
-	while (++ct < MAPS_LIMIT && (menu->file_name = readdir(menu->dir_ptr)))
+	// while (++ct < 3)
+	while (++ct < MAPS_LIMIT)
 	{
-		check_file_name(env, menu, &id);
+		if ((menu->file_name = readdir(menu->dir_ptr)))
+			check_file_name(env, menu, &id);
+		else
+			break ;
 	}
 	menu->controls->num_of_cards = id + 1;
-	closedir(env->menu->dir_ptr);
+	closedir(menu->dir_ptr);
 	menu->dir_ptr = NULL;
 }
 

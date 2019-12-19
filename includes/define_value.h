@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 09:55:42 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/05 17:42:08 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/19 04:36:53 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ typedef enum			e_music
 
 # define MAPS_FOLDER	"maps/"
 
-# define MAPS_LIMIT		50
+# define MAPS_LIMIT		15
 
 /*
 **	TEXTURE FOR BAD GUY

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 07:25:32 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/17 15:12:38 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/19 06:58:15 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,36 +64,43 @@ static void		collisions_y(t_env *env, int x, double *y, char sign)
 
 static void		move_sidestep(t_env *env, double *x, double *y, char sign)
 {
-	double		c_v_dir_x_fabs;
-	double		c_v_dir_y_fabs;
+// printf("%f    %f\n", env->cam->c_v_dir[X], env->cam->c_v_dir[Y]);
+	if (env->cam->c_v_dir[X] > 0 && env->cam->c_v_dir[Y] > 0)
+	{
+		*x = *x + 0.5 * env->cam->m_speed * sign;
+		*y = *y - 0.5 * env->cam->m_speed * sign;
+	}
+	else if (env->cam->c_v_dir[X] < 0 && env->cam->c_v_dir[Y] > 0)
+	{
+		*x = *x + 0.5 * env->cam->m_speed * sign;
+		*y = *y + 0.5 * env->cam->m_speed * sign;
+	}
+	else if (env->cam->c_v_dir[X] > 0 && env->cam->c_v_dir[Y] < 0)
+	{
+		*x = *x - 0.5 * env->cam->m_speed * sign;
+		*y = *y - 0.5 * env->cam->m_speed * sign;
+	}
+	else if (env->cam->c_v_dir[X] < 0 && env->cam->c_v_dir[Y] < 0)
+	{
+		*x = *x - 0.5 * env->cam->m_speed * sign;
+		*y = *y + 0.5 * env->cam->m_speed * sign;
+	}
+	else if (env->cam->c_v_dir[X] == 0)
+		*x = *x - 0.5 * env->cam->m_speed * sign;
+	else if (env->cam->c_v_dir[Y] == 0)
+		*y = *y - 0.5 * env->cam->m_speed * sign;
+}
 
-	printf("%f    %f\n", env->cam->c_v_dir[X], env->cam->c_v_dir[Y]);
-	c_v_dir_x_fabs = fabs(env->cam->c_v_dir[X]);
-	c_v_dir_y_fabs = fabs(env->cam->c_v_dir[Y]);
-	if (sign == -1)
-	{
-		if (env->cam->c_v_dir[X] > 0 && (c_v_dir_x_fabs > c_v_dir_y_fabs))
-			*y = *y - env->cam->m_speed;
-		else if (env->cam->c_v_dir[X] < 0 && (c_v_dir_x_fabs > c_v_dir_y_fabs))
-			*y = *y + env->cam->m_speed;
-		else if (env->cam->c_v_dir[X] > 0 && (c_v_dir_x_fabs < c_v_dir_y_fabs))
-			*x = *x + env->cam->m_speed;
-		else if (env->cam->c_v_dir[X] < 0 && (c_v_dir_x_fabs < c_v_dir_y_fabs))
-			*x = *x - env->cam->m_speed;
-	}
-	else if (sign == 1)
-	{
-		if (env->cam->c_v_dir[X] > 0 && (c_v_dir_x_fabs > c_v_dir_y_fabs))
-			*y = *y + env->cam->m_speed;
-		else if (env->cam->c_v_dir[X] < 0 && (c_v_dir_x_fabs > c_v_dir_y_fabs))
-			*y = *y - env->cam->m_speed;
-		else if (env->cam->c_v_dir[X] > 0 && (c_v_dir_x_fabs < c_v_dir_y_fabs))
-			*x = *x - env->cam->m_speed;
-		else if (env->cam->c_v_dir[X] < 0 && (c_v_dir_x_fabs < c_v_dir_y_fabs))
-			*x = *x + env->cam->m_speed;
-	}
-	collisions_x(env, x, *y, 0);
-	collisions_y(env, *x, y, 0);
+void			checking_map_borders(t_cam *cam, t_map *map)
+{
+	if (cam->pos[X] < 1.2)
+		cam->pos[X] = 1.2;
+	if (cam->pos[X] > map->width - 1.2)
+		cam->pos[X] = map->width - 1.2;
+	if (cam->pos[Y] < 1.2)
+		cam->pos[Y] = 1.2;
+	if (cam->pos[Y] > map->height - 1.2)
+		cam->pos[Y] = map->height - 1.2;
 }
 
 void			player_move(int key, t_env *env)
@@ -104,20 +111,21 @@ void			player_move(int key, t_env *env)
 		collisions_y(env, env->cam->pos[X], &env->cam->pos[Y], 1);
 	}
 	if (key == KB_A)
-		move_sidestep(env, &env->cam->pos[X], &env->cam->pos[Y], -1);
+	{
+		move_sidestep(env, &env->cam->pos[X], &env->cam->pos[Y], 1);
+		collisions_x(env, &env->cam->pos[X], env->cam->pos[Y], 0);
+		collisions_y(env, env->cam->pos[X], &env->cam->pos[Y], 0);
+	}
 	if (key == KB_S)
 	{
 		collisions_x(env, &env->cam->pos[X], env->cam->pos[Y], -1);
 		collisions_y(env, env->cam->pos[X], &env->cam->pos[Y], -1);
 	}
 	if (key == KB_D)
-		move_sidestep(env, &env->cam->pos[X], &env->cam->pos[Y], 1);
-	if (env->cam->pos[X] < 1.2)
-		env->cam->pos[X] = 1.2;
-	if (env->cam->pos[X] > env->map->width - 1.2)
-		env->cam->pos[X] = env->map->width - 1.2;
-	if (env->cam->pos[Y] < 1.2)
-		env->cam->pos[Y] = 1.2;
-	if (env->cam->pos[Y] > env->map->height - 1.2)
-		env->cam->pos[Y] = env->map->height - 1.2;
+	{
+		move_sidestep(env, &env->cam->pos[X], &env->cam->pos[Y], -1);
+		collisions_x(env, &env->cam->pos[X], env->cam->pos[Y], 0);
+		collisions_y(env, env->cam->pos[X], &env->cam->pos[Y], 0);
+	}
+	checking_map_borders(env->cam, env->map);
 }
