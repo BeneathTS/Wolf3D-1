@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 07:25:32 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/19 06:58:15 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/19 06:59:44 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static void		collisions_y(t_env *env, int x, double *y, char sign)
 
 static void		move_sidestep(t_env *env, double *x, double *y, char sign)
 {
-// printf("%f    %f\n", env->cam->c_v_dir[X], env->cam->c_v_dir[Y]);
 	if (env->cam->c_v_dir[X] > 0 && env->cam->c_v_dir[Y] > 0)
 	{
 		*x = *x + 0.5 * env->cam->m_speed * sign;

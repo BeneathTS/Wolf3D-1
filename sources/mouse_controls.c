@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:46 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/17 15:05:20 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/19 10:18:45 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void		mouse_scroll(int x, int y, int button, t_env *env)
 
 int			push_buttons(int button, int x, int y, t_env *env)
 {
-	// if (button == 1 && env->mode == Game)
-	// 	playSound(SHOT, env->volume);
+	if (button == 1 && env->mode == Game)
+		playSound(SHOT, env->volume);
 	if (env->mode == Menu && button == 1)
 		menu_push_buttons(x, y, env);
 	if (env->mode == Settings && button == 1)
@@ -62,7 +62,6 @@ int			mouse_move(int x, int y, t_env *env)
 		chooser_controls(x, y, env);
 	if (env->mode == Game)
 	{
-		// env->cntrls->angle = x * 0.001;
 		env->cam->view_height = (y - (HEIGHT >> 1)) * 3;
 		renderer(env);
 	}

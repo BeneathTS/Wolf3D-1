@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:38 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/17 13:32:00 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/19 10:18:33 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*get_image(int ct)
 	return (NULL);
 }
 
-static void	load_buttons(t_env *env) //sega?
+static void	load_buttons(t_env *env)
 {
 	int ct;
 

@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:15:04 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/17 13:32:56 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/19 10:18:14 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*get_img(int ct)
 	return (NULL);
 }
 
-static void	load_titles(t_env *env) //sega?
+static void	load_titles(t_env *env)
 {
 	int i;
 
@@ -52,7 +52,7 @@ static void	load_titles(t_env *env) //sega?
 	}
 }
 
-static void	create_rollers(t_env *env) //sega?
+static void	create_rollers(t_env *env)
 {
 	int ct_y;
 	int ct_x;
@@ -72,7 +72,7 @@ static void	create_rollers(t_env *env) //sega?
 	}
 }
 
-static void	load_rollers(t_env *env) //sega?
+static void	load_rollers(t_env *env)
 {
 	int ct;
 

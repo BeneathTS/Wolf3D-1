@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:42:12 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/19 05:49:51 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/19 10:27:12 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void				read_map_files(t_env *env, t_menu *menu)
 	id = -1;
 	if (!(menu->dir_ptr = opendir(MAPS_FOLDER)))
 		ft_exit(READ_MAP_FILES);
-	// while (++ct < 3)
 	while (++ct < MAPS_LIMIT)
 	{
 		if ((menu->file_name = readdir(menu->dir_ptr)))
