@@ -36,7 +36,7 @@ A A A A
 
 ##Authors
 
-**Me**
+**Me**  
 [**Valera**](https://github.com/BeneathTS)
 
 ![Example](https://github.com/EmbodimentEvil/Wolf3D-1/blob/master/images/blue_map.png)
