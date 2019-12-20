@@ -34,7 +34,7 @@ A A A A
 `:` - `U`	-	**use only 58-85 symbols on ascii (: -> U)**.
 `\t`		-	**use tab for split symbols**.
 
-##Authors
+## Authors
 
 **Me**  
 [**Valera**](https://github.com/BeneathTS)
