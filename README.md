@@ -3,6 +3,7 @@
 ## Wolf3D.
 ---
 ##### Partial implementation of the engine "Wolfenstein 3D engine" and its improvement using a cross-platform library for working with multimedia "SDL2".
+![Example](https://github.com/EmbodimentEvil/Wolf3D-1/blob/master/images/main_menu.png)
 ---
 ## Compiling snd running
 Runs on OSX.  
@@ -33,6 +34,10 @@ A A A A
 `:` - `U`	-	**use only 58-85 symbols on ascii (: -> U)**.
 `\t`		-	**use tab for split symbols**.
 
-![Example](https://github.com/EmbodimentEvil/Wolf3D-1/blob/master/images/main_menu.png)
+##Authors
+
+**Me**
+[**Valera**](https://github.com/BeneathTS)
+
 ![Example](https://github.com/EmbodimentEvil/Wolf3D-1/blob/master/images/blue_map.png)
 ![Example](https://github.com/EmbodimentEvil/Wolf3D-1/blob/master/images/red_map.png)
