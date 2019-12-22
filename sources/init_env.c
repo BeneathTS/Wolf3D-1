@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:18 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/19 10:19:12 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/22 17:48:14 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_menu			*menu_data_init(t_env *env)
 	menu->cards = NULL;
 	menu->controls =
 		(t_menu_controls *)ft_safe_malloc(sizeof(t_menu_controls));
-	menu->controls->m_pos = 208 + 402 * env->cam->m_speed;
+	menu->controls->m_pos = 208;
 	menu->controls->r_pos = 208 + 134 * env->cam->r_speed;
 	menu->controls->v_pos = 208 + 3.140625 * env->volume;
 	menu->controls->d_pos = 208;

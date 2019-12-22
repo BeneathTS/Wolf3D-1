@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   chooser_controls.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:38:12 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/15 05:06:12 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/22 16:53:16 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static void	change_bg_color(t_lvl_crd *card, unsigned int color)
+void		change_bg_color(t_lvl_crd *card, unsigned int color)
 {
 	int x;
 	int y;

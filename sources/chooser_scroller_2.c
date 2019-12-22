@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chooser_scroller_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/15 03:56:37 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 05:59:07 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/22 16:41:38 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 static void	activate_game_mode(t_env *env)
 {
 	env->menu->cards->selected = No;
+	env->menu->cards->font_color = 0x575757;
+	change_bg_color(env->menu->cards, 0x55B7B7B7);
 	load_textures(env);
 	env->mode = Game;
 	change_music(music_flag_1, env->music);

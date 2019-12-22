@@ -6,21 +6,21 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:13 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 04:26:00 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/22 23:57:10 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static void	rotate(int key, t_env *env)
+void		rotate(int key, t_env *env)
 {
 	if (key == ARR_LFT || key == KB_A)
 		env->cntrls->angle -= 0.03;
 	if (key == ARR_RGHT || key == KB_D)
 		env->cntrls->angle += 0.03;
-	if (key == ARR_DOWN)
+	if (key == ARR_DOWN && env->cam->view_height < VIEW_HEIGHT_LIM)
 		env->cam->view_height += 40;
-	if (key == ARR_UP)
+	if (key == ARR_UP && env->cam->view_height > -VIEW_HEIGHT_LIM)
 		env->cam->view_height -= 40;
 	env->cam->c_v_dir[X] = env->cam->v_dir[X] *
 		cos(env->cntrls->angle * env->cam->r_speed) - env->cam->v_dir[Y]

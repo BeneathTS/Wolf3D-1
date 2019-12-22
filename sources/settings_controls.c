@@ -6,7 +6,7 @@
 /*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:18:12 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/03 21:56:56 by ahiroko          ###   ########.fr       */
+/*   Updated: 2019/12/22 17:48:00 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 static void	change_values(t_env *env)
 {
-	if (env->menu->controls->pressed[0])
-		env->cam->m_speed = (float)(env->menu->controls->m_pos - 208)
-		/ 574.2857143;
-	else if (env->menu->controls->pressed[1])
+	if (env->menu->controls->pressed[1])
 		env->cam->r_speed = (float)(env->menu->controls->r_pos - 208) / 134;
 	else if (env->menu->controls->pressed[2])
 		env->volume =

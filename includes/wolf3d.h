@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:27:00 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 06:00:23 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/22 23:55:13 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,7 @@ typedef struct			s_env
 */
 void					check_card_selection(int x, int y, t_env *env);
 void					chooser_controls(int x, int y, t_env *env);
+void					change_bg_color(t_lvl_crd *card, unsigned int color);
 
 /*
 **	chooser_data_load_2.c
@@ -281,6 +282,7 @@ char					*get_texture_name(int i, char *arr_id_tex);
 /*
 **	hooks.c
 */
+void					rotate(int key, t_env *env);
 void					init_key_hooks(t_env *env);
 
 /*

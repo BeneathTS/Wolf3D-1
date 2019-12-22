@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:32:56 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/15 06:24:23 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/22 22:36:34 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static bool			check_symbols_in_map(t_map *map)
 				return (false);
 		}
 	}
+	if (map->level[1][1] != 48)
+		return (false);
 	return (true);
 }
 

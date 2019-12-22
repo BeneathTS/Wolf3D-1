@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chooser_data_load.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ahiroko <ahiroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 20:42:12 by ahiroko           #+#    #+#             */
-/*   Updated: 2019/12/19 10:27:12 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/22 16:35:15 by ahiroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void				read_map_files(t_env *env, t_menu *menu)
 	id = -1;
 	if (!(menu->dir_ptr = opendir(MAPS_FOLDER)))
 		ft_exit(READ_MAP_FILES);
-	while (++ct < MAPS_LIMIT)
+	while (++ct < MAPS_LIMIT + 2)
 	{
 		if ((menu->file_name = readdir(menu->dir_ptr)))
 			check_file_name(env, menu, &id);
