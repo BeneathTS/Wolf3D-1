@@ -6,7 +6,7 @@
 /*   By: sleonia <sleonia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 07:25:32 by sleonia           #+#    #+#             */
-/*   Updated: 2019/12/23 01:48:19 by sleonia          ###   ########.fr       */
+/*   Updated: 2019/12/23 02:01:20 by sleonia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void		collisions_y(t_env *env, int x, double *y, char sign)
 
 static void		move_sidestep_2(t_env *env, double *x, double *y, int sign)
 {
-	if (env->cam->c_v_dir[X] < 0 && env->cam->c_v_dir[Y] < 0)
+	if (env->cam->c_v_dir[X] < 0.4 && env->cam->c_v_dir[Y] < 0.4 && env->cam->c_v_dir[X] != 0.f && env->cam->c_v_dir[Y] != 0.f)
 	{
 		if (env->cam->c_v_dir[X] > env->cam->c_v_dir[Y])
 			*x = *x - 0.5 * env->cam->m_speed * sign;
@@ -79,21 +79,21 @@ static void		move_sidestep_2(t_env *env, double *x, double *y, int sign)
 
 static void		move_sidestep(t_env *env, double *x, double *y, int sign)
 {
-	if (env->cam->c_v_dir[X] > 0 && env->cam->c_v_dir[Y] > 0)
+	if (env->cam->c_v_dir[X] > 0.4 && env->cam->c_v_dir[Y] > 0.4  && env->cam->c_v_dir[X] != 0.f && env->cam->c_v_dir[Y] != 0.f)
 	{
 		if (env->cam->c_v_dir[X] > env->cam->c_v_dir[Y])
 			*y = *y - 0.5 * env->cam->m_speed * sign;
 		else if (env->cam->c_v_dir[X] < env->cam->c_v_dir[Y])
 			*x = *x + 0.5 * env->cam->m_speed * sign;
 	}
-	else if (env->cam->c_v_dir[X] < 0 && env->cam->c_v_dir[Y] > 0)
+	else if (env->cam->c_v_dir[X] < 0.4 && env->cam->c_v_dir[Y] > 0.4  && env->cam->c_v_dir[X] != 0.f && env->cam->c_v_dir[Y] != 0.f)
 	{
 		if (env->cam->c_v_dir[X] > env->cam->c_v_dir[Y])
 			*x = *x + 0.5 * env->cam->m_speed * sign;
 		else if (env->cam->c_v_dir[X] < env->cam->c_v_dir[Y])
 			*y = *y + 0.5 * env->cam->m_speed * sign;
 	}
-	else if (env->cam->c_v_dir[X] > 0 && env->cam->c_v_dir[Y] < 0)
+	else if (env->cam->c_v_dir[X] > 0.4 && env->cam->c_v_dir[Y] < 0.4  && env->cam->c_v_dir[X] != 0.f && env->cam->c_v_dir[Y] != 0.f)
 	{
 		if (env->cam->c_v_dir[X] > env->cam->c_v_dir[Y])
 			*y = *y - 0.5 * env->cam->m_speed * sign;
