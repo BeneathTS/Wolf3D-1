@@ -7,7 +7,7 @@
 ---
 ## Compiling snd running
 Runs on OSX.  
-Clone `git clone --recursive`  
+Clone `git clone --recursive https://github.com/EmbodimentEvil/Wolf3D`  
 Run `make` and programm will compile.  
 Run it with `./wolf3d`
 
